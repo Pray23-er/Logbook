@@ -27,7 +27,7 @@
         } */
          body{
             margin-top: 50px;
-        
+
          }
          .logbook{
             margin-right:70%;
@@ -118,7 +118,7 @@
 
         <ul>
             <ul>
-                <li class="logbook"><a href="/">Logbook</a></li>
+                <li class="logbook"><a href="/">SiwesLog</a></li>
 
                 <li><a href="{{ route('login') }}" id="login-link">Login</a></li>
                 @auth

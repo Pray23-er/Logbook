@@ -54,6 +54,6 @@ class School extends Model implements Authenticatable
 
     public function students(): HasMany
     {
-        return $this->hasMany(Student::class);
+        return $this->hasMany(Student::class, 'school_id','id');
     }
 }

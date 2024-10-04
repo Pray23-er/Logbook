@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 use Illuminate\Notifications\Notifiable;
 
 class Student extends Authenticatable
@@ -35,4 +36,10 @@ class Student extends Authenticatable
     {
         return $this->belongsTo(School::class);
     }
+
+    public function logbookRecords():HasMany
+{
+    return $this->hasMany(LogbookRecord::class);
+}
+
 }

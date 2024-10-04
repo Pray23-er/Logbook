@@ -40,11 +40,13 @@ class StudentController extends Controller
         $student->password = bcrypt($request->password);
         $student->save();
 
-        return redirect()->route('student_login')->with('success', 'Student created successfully!');
+        return redirect()->route('school.dashboard')->with('success', 'Student created successfully!');
     }
     // public function index()
     // {
     //     $students = Student::all();
     //     return view('students.index', compact('students'));
     // }
+
+
 }

@@ -105,6 +105,8 @@
             <input type="submit">
             <br>
         </form>
+        <br>
+        <a href="{{ route('school.dashboard') }}"> Back to School Page</a>
 
     </x-layout>
 

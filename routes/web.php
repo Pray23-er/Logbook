@@ -1,15 +1,21 @@
 <?php
 use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\LogbookRecordsController;
+
 use App\Http\Controllers\SchoolLoginController;
 use App\Http\Controllers\SchoolController;
+
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\StudentController;
 
 use App\Http\Controllers\StudentLoginController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\CompanyLoginController;
+
 use App\Http\Controllers\HelpUserController;
+
+use App\Http\Controllers\StudentFormController;
+use App\Http\Controllers\CompanyFormController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +38,7 @@ Route::get('/register',[RegisterUserController::class, 'register'])->name('regis
 Route::post('/register',[RegisterUserController::class, 'store'])->name('register.store');
 
 
+
 Route::get('/loginS',[SchoolLoginController::class,'login'])->name('school.login');
 Route::post('/loginS',[SchoolLoginController::class, 'store'])->name('school.login.store');
 
@@ -40,3 +47,5 @@ Route::post('/loginC',[CompanyLoginController::class, 'store'])->name('company.l
 
 
 Route::resource('/records', LogbookRecordsController::class);
+Route::resource('/forms', StudentFormController::class);
+Route::resource('/companyform', CompanyFormController::class);

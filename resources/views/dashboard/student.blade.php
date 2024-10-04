@@ -10,7 +10,7 @@
     <button> <a href="{{ route('records.index') }}"> Add logbook records</a> </button>
     <button> <a href="{{ route('student.dashboard') }}">  View Logbook records </a> </button>
     <button> <a href="{{ route('student.dashboard') }}">  View approval </a> </button>
-
+    <button><a href="{{ route('companyform.store') }}">fill company form</a></button>
 </div>
 
 <style>

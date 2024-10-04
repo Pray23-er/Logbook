@@ -12,6 +12,7 @@ class LogbookRecordsController extends Controller
      */
     public function index()
     {
+    // return view('dashboard.student');
         return view('records.index');
     }
 
@@ -19,6 +20,7 @@ class LogbookRecordsController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
+
     {
         return view('records.create');
     }
@@ -28,7 +30,11 @@ class LogbookRecordsController extends Controller
      */
     public function store(Request $request)
     {
-
+        // $logbookRecord = new LogbookRecord();
+        // $logbookRecord->student_id = Auth::id();
+        // // Save other logbook record details...
+        // $logbookRecord->save();
+        // return redirect()->route('student.dashboard');
     }
 
     /**

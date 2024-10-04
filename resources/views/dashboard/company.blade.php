@@ -14,7 +14,7 @@
 </div>
 
 <div>
-    <button> <a href=""></a> ADD STUDENT</button>
+    <button> <a href="{{ route('forms.index') }}"> ADD STUDENT</a></button>
 </div>
 <style>
     button{
