@@ -5,11 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Laravel App</title>
+    @vite('resources/css/app.css')
     <style>
         body {
             font-family: Arial, sans-serif;
             margin-top: 40px;
             padding: 0;
+            background-color: #b2a4a4d3;
 
 
         }
