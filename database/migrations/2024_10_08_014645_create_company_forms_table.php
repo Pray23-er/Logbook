@@ -17,7 +17,11 @@ return new class extends Migration
             $table->string('Company_phone_number');
             $table->string('Company_email');
             $table->string('Added_by');
+            $table->string('matric_number');
+            $table->string('status')->default('pending');
             $table->timestamps();
+
+            $table->foreign('matric_number')->references('matric_number')->on('students');
         });
     }
 

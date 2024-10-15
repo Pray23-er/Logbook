@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Student_form extends Model
 {
@@ -15,6 +16,12 @@ class Student_form extends Model
         'address',
         'firstname',
         'lastname',
+        'company_id',
 
     ];
+
+    public function company()
+{
+    return $this->belongsTo(Company::class);
+}
 }

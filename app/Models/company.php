@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Company extends Model implements Authenticatable
 {
@@ -52,4 +53,13 @@ class Company extends Model implements Authenticatable
     {
         return 'remember_token';
     }
+    public function students(): HasMany
+    {
+        return $this->hasMany(Student::class,'company_id');
+    }
+    public function student_forms()
+    {
+        return $this->hasMany(Student_form::class);
+    }
+
 }

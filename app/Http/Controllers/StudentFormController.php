@@ -12,8 +12,10 @@ class StudentFormController extends Controller
      */
     public function index()
     {
-        $student_forms = Student_form::all();
-        return view('forms.index',['student_forms'=>$student_forms]);
+        $company = auth()->guard('company')->user();
+        $student_forms = $company->student_forms;
+
+        return view('forms.index', compact('student_forms'));
     }
 
     /**
@@ -39,10 +41,10 @@ return view('forms.create');
             'school_name'=> ['required','min:30','max:255'],
             'phone_number'=> ['required','min:11','max:25'],
             'address'=> ['required','min:30','max:255'],
-
-
-
         ]);
+
+        // Add company_id to validated data
+        $validated['company_id'] = auth()->guard('company')->user()->id;
 
         Student_form::create($validated);
         return to_route('forms.index');
@@ -79,4 +81,6 @@ return view('forms.create');
     {
         //
     }
+
+
 }

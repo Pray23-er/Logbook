@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('matric_number');
             $table->string('school_name');
             $table->string('phone_number');
-
+            $table->foreignId('company_id')->constrained()->onDelete('cascade');
             $table->string('address');
             $table->timestamps();
 

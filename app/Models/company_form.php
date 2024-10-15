@@ -13,6 +13,7 @@ class company_form extends Model
         'Company_email',
         'Company_phone_number',
         'Added_by',
+        'matric_number',
 
     ];
 }

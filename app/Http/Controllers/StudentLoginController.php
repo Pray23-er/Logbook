@@ -34,9 +34,13 @@ class StudentLoginController extends Controller
         return redirect()->back()->withErrors(['matric_number' => 'Invalid credentials']);
     }
 
-    // public function logout()
-    // {
-    //     Auth::guard('student')->logout();
-    //     return redirect()->route('student.login');
-    // }
+
+    public function logout(Request $request)
+    {
+        Auth::guard('student')->logout();
+
+
+        return view('welcome');
+
+}
 }

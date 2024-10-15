@@ -38,6 +38,7 @@ class StudentController extends Controller
         $student->phone_number = $request->phone_number;
         $student->school_id = $request->school_id;
         $student->password = bcrypt($request->password);
+        $student->company_id = auth()->guard('company')->user()->id;
         $student->save();
 
         return redirect()->route('school.dashboard')->with('success', 'Student created successfully!');

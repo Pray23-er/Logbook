@@ -26,6 +26,7 @@ class Student extends Authenticatable
         'phone_number',
         'school_id',
         'password',
+        'company_id',
     ];
 
     protected $hidden = [
@@ -35,6 +36,11 @@ class Student extends Authenticatable
     public function school(): BelongsTo
     {
         return $this->belongsTo(School::class);
+    }
+
+    public function company(): BelongsTo
+    {
+        return $this->belongsTo(Company::class,'company_id');
     }
 
     public function logbookRecords():HasMany
