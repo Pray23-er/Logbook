@@ -1,6 +1,6 @@
 <?php
 use App\Http\Controllers\RegisterUserController;
-use App\Http\Controllers\LogbookRecordsController;
+use App\Http\Controllers\LogbookController;
 
 use App\Http\Controllers\SchoolLoginController;
 use App\Http\Controllers\SchoolController;
@@ -50,7 +50,7 @@ Route::post('/loginC',[CompanyLoginController::class, 'store'])->name('company.l
 // Route::post('/logout', [CompanyLoginController::class,'logout'])->name('logout');
 
 
-Route::resource('/records', LogbookRecordsController::class);
+Route::resource('/records', LogbookController::class);
 Route::resource('/forms', StudentFormController::class);
 Route::resource('/companyform', CompanyFormController::class);
 

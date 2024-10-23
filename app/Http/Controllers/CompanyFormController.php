@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\company_form;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class CompanyFormController extends Controller
 {
@@ -12,7 +13,10 @@ class CompanyFormController extends Controller
      */
     public function index()
     {
-        return view('companyform.index');
+        $company_forms = company_form::all();
+        return view('companyform.index',['company_forms'=> $company_forms]);
+        // return view('posts.index',['posts'=> $posts] );
+
     }
 
     /**
@@ -32,13 +36,16 @@ class CompanyFormController extends Controller
             'companyname' => ['required', 'min:10', 'max:255'],
             'Added_by' => ['required', 'min:5', 'max:255'],
             'Company_phone_number' => ['required', 'min:11', 'max:25'],
-            'Company_email'=>['required','min:10','max:90']
+            'Company_email'=>['required','min:10','max:90'],
+            'matric_number'=>['required'],
         ]);
 
         company_form::create($validated);
 
-        return redirect()->route('student.dashboard');
+        return redirect()->route('companyform.index');
     }
+
+
 
     /**
      * Display the specified resource.
@@ -70,5 +77,22 @@ class CompanyFormController extends Controller
     public function destroy(company_form $company_form)
     {
         //
+    }
+      public function approve($id)
+    {
+        $submission = company_form::find($id);
+        $submission->status = 'approved';
+        $submission->save();
+
+        return redirect()->back()->with('success', 'Submission approved!');
+    }
+
+    public function reject($id)
+    {
+        $submission =company_form::find($id);
+        $submission->status = 'rejected';
+        $submission->save();
+
+        return redirect()->back()->with('success', 'Submission rejected!');
     }
 }

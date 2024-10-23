@@ -9,8 +9,8 @@
         <button>
             <a href="{{ route('school.dashboard') }}">View Logbook records</a>
         </button>
-        <button>
-            <a href="{{ route('school.dashboard') }}">View approval</a>
+        <button onclick="Viewapproval()">
+            <a href="#">View approval</a>
         </button>
     </div>
 
@@ -22,7 +22,7 @@
 
     <br>
 
-    
+
 
     <div class="mt-4">
         <h1 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $authenticatedSchool->name }}</h1>
@@ -32,28 +32,32 @@
         @if (!empty($registeredStudents) && count($registeredStudents) > 0)
             <h2>Registered Students:</h2>
 
-            <table border="1">
-                <th>Matric Number</th>
-                <th>First name</th>
-                <th>Last name</th>
-                <th>Course</th>
-                <th>Level</th>
-                <th>Year</th>
-                <th>Email</th>
-                <th>Phone Number</th>
-                <th>School Id</th>
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">Matric Number</th>
+                        <th scope="col" class="px-6 py-3">First name</th>
+                        <th scope="col" class="px-6 py-3">Last name</th>
+                        <th scope="col" class="px-6 py-3">Course</th>
+                        <th scope="col" class="px-6 py-3">Level</th>
+                        <th scope="col" class="px-6 py-3">Year</th>
+                        <th scope="col" class="px-6 py-3">Email</th>
+                        <th scope="col" class="px-6 py-3">Phone Number</th>
+                    </tr>
+
+
 
                 @foreach ($registeredStudents as $student)
-                    <tr>
-                        <td>{{ $student->matric_number }}</td>
-                        <td>{{ $student->firstname }}</td>
-                        <td>{{ $student->lastname }}</td>
-                        <td>{{ $student->course_of_study }}</td>
-                        <td>{{ $student->level }}</td>
-                        <td>{{ $student->year }}</td>
-                        <td>{{ $student->email }}</td>
-                        <td>{{ $student->phone_number }}</td>
-                        <td>{{ $student->school_id }}</td>
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <td class="px-6 py-4" >{{ $student->matric_number }}</td>
+                        <td class="px-6 py-4">{{ $student->firstname }}</td>
+                        <td class="px-6 py-4">{{ $student->lastname }}</td>
+                        <td class="px-6 py-4">{{ $student->course_of_study }}</td>
+                        <td class="px-6 py-4">{{ $student->level }}</td>
+                        <td class="px-6 py-4">{{ $student->year }}</td>
+                        <td class="px-6 py-4">{{ $student->email }}</td>
+                        <td class="px-6 py-4">{{ $student->phone_number }}</td>
+
                     </tr>
                 @endforeach
             </table>
@@ -64,25 +68,29 @@
 
     <br><br>
 
+<div id="approval-list" style="display: none;">
 
-    <table border="1">
-        <th>Company Name</th>
-        <th>Company Phone Number</th>
-        <th>Company Email</th>
-        <th>Added By</th>
-        <th>Matric Number</th>
-        <th>Status</th>
-        <th>Actions</th>
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">Company Name</th>
+                        <th scope="col" class="px-6 py-3">Company Phone Number</th>
+                        <th scope="col" class="px-6 py-3">Company Email</th>
+                        <th scope="col" class="px-6 py-3">Added By</th>
+                        <th scope="col" class="px-6 py-3">Matric Number</th>
+                        <th scope="col" class="px-6 py-3">Status</th>
+                        <th scope="col" class="px-6 py-3">Actions</th>
+                    </tr>
 
         @foreach ($company_forms as $company_forms)
-            <tr>
-                <td>{{ $company_forms->companyname }}</td>
-                <td>{{ $company_forms->Company_phone_number }}</td>
-                <td>{{ $company_forms->Company_email }}</td>
-                <td>{{ $company_forms->Added_by }}</td>
-                <td>{{ $company_forms->matric_number }}</td>
-                <td>{{ $company_forms->status }}</td>
-                <td>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td class="px-6 py-4">{{ $company_forms->companyname }}</td>
+                <td class="px-6 py-4">{{ $company_forms->Company_phone_number }}</td>
+                <td class="px-6 py-4">{{ $company_forms->Company_email }}</td>
+                <td class="px-6 py-4">{{ $company_forms->Added_by }}</td>
+                <td class="px-6 py-4">{{ $company_forms->matric_number }}</td>
+                <td class="px-6 py-4">{{ $company_forms->status }}</td>
+                <td class="px-6 py-4">
                     @if ($company_forms->status == 'pending')
                         <a href="{{ route('form.approve', $company_forms->id) }}">Approve</a>
                         <a href="{{ route('form.reject', $company_forms->id) }}">Reject</a>
@@ -91,6 +99,8 @@
             </tr>
         @endforeach
        </table>
+</div>
+
 
 
     @auth
@@ -102,6 +112,9 @@
     <script>
         function showStudentList() {
             document.getElementById("student-list").style.display = "block";
+        }
+        function Viewapproval() {
+            document.getElementById("approval-list").style.display = "block";
         }
     </script>
 

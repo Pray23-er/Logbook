@@ -29,7 +29,13 @@
         <span  style="color: red">{{ $message }}</span>
         @enderror
 
-
+        <div>
+            <b><label>Matric Number</label></b> <br>
+            <input type="text" name="matric_number">
+        </div>
+        @error('matric_number')
+        <span  style="color: red">{{ $message }}</span>
+        @enderror
         <div>
             <b><label>Added By</label></b> <br>
             <input type="text" name="Added_by">

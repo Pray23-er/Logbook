@@ -43,6 +43,11 @@ class Student extends Authenticatable
         return $this->belongsTo(Company::class,'company_id');
     }
 
+    public function company_forms(): HasMany
+    {
+        return $this->hasMany(company_form::class, 'matric_number', 'matric_number');
+    }
+
     public function logbookRecords():HasMany
 {
     return $this->hasMany(LogbookRecord::class);
