@@ -13,10 +13,9 @@ class CompanyFormController extends Controller
      */
     public function index()
     {
-        $company_forms = company_form::all();
-        return view('companyform.index',['company_forms'=> $company_forms]);
-        // return view('posts.index',['posts'=> $posts] );
-
+        $student = auth('student')->user();
+        $company_forms = $student->company_forms;
+        return view('companyform.index', ['company_forms' => $company_forms]);
     }
 
     /**
@@ -58,9 +57,11 @@ class CompanyFormController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(company_form $company_form)
+    public function edit($id)
     {
-        //
+        $company_form = ompany_form::find($id);
+        // Return edit view with company_form data
+        return view('company_forms.edit', compact('company_form'));
     }
 
     /**
@@ -74,9 +75,16 @@ class CompanyFormController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(company_form $company_form)
+    public function destroy($id)
     {
-        //
+        $company_forms = company_form::find($id);
+
+        if ($company_forms) {
+            $company_forms->delete();
+            return redirect()->route('school.dashboard')->with('success', 'Company form deleted successfully.');
+        } else {
+            return redirect()->route('school.dashboard')->with('error', 'Company form not found.');
+        }
     }
       public function approve($id)
     {

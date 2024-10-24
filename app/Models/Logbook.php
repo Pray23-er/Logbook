@@ -13,4 +13,9 @@ class Logbook extends Model
         'description',
 
     ];
+
+    public function student()
+    {
+        return $this->belongsTo(Student::class);
+    }
 }

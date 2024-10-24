@@ -7,15 +7,16 @@ use Illuminate\Support\Facades\Auth;
 
 class StudentController extends Controller
 {
-    public function index(){
+    public function index()
+{
 
-        return view('dashboard.student');
-    }
+    return view('dashboard.student');
+}
     public function register(){
         return view('auth.studentRegister');
     }
 
-    
+
     public function store(Request $request)
     {
         $request->validate([
