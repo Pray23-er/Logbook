@@ -11,11 +11,15 @@ class Logbook extends Model
     protected $fillable =[
         'title',
         'description',
-
+        'matric_number',
     ];
 
     public function student()
     {
-        return $this->belongsTo(Student::class);
+        return $this->belongsTo(Student::class, 'matric_number');
+    }
+    public function companies()
+    {
+        return $this->belongsToMany(Company::class, 'logbook_company_pivot');
     }
 }

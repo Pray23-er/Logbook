@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Logbook;
+use App\Models\Student;
+use App\Models\Company;
 use Illuminate\Http\Request;
 
 class LogbookController extends Controller
@@ -11,12 +13,12 @@ class LogbookController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        //
-        $logbooks = Logbook::all();
-        return view('records.index', compact('logbooks'));
-    }
+{
+    $matricNumber = auth('student')->user()->matric_number;
+    $logbooks = Logbook::where('matric_number', $matricNumber)->get();
 
+    return view('records.index', compact('logbooks'));
+}
     /**
      * Show the form for creating a new resource.
      */
@@ -30,18 +32,35 @@ class LogbookController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    // public function store(Request $request)
+    // {
+    //     //
+    //     $validated = $request->validate([
+    //         'title' => ['required','min:5', 'max:255'],
+    //         'description'=> ['required','min:10'],
+
+    //     ]);
+    //     Logbook::create($validated);
+
+    //     return to_route('records.index');
+    // }
     public function store(Request $request)
-    {
-        //
-        $validated = $request->validate([
-            'title' => ['required','min:5', 'max:255'],
-            'description'=> ['required','min:10'],
+{
+    $validated = $request->validate([
+        'title' => ['required', 'min:5', 'max:255'],
+        'description' => ['required', 'min:10'],
+    ]);
 
-        ]);
-        Logbook::create($validated);
+    // Retrieve authenticated student's matric number using Student guard
+    $matricNumber = auth('student')->user()->matric_number;
 
-        return to_route('records.index');
-    }
+    // Merge matric number with validated data
+    $validated['matric_number'] = $matricNumber;
+
+    Logbook::create($validated);
+
+    return to_route('records.index');
+}
 
     /**
      * Display the specified resource.
@@ -91,4 +110,6 @@ class LogbookController extends Controller
         // Redirect with success message
         return redirect()->route('records.index');
     }
+
+
 }

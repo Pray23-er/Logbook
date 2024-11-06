@@ -68,7 +68,7 @@ class Student extends Authenticatable
         return 'remember_token';
     }
 
-    
+
     public function belongsToSchool(): BelongsTo
     {
         return $this->belongsTo(School::class);
@@ -84,8 +84,13 @@ class Student extends Authenticatable
         return $this->hasMany(company_form::class, 'matric_number', 'matric_number');
     }
 
-    public function logbooks(): HasMany
+    public function logbooks()
     {
-        return $this->hasMany(Logbook::class, 'matric_number', 'matric_number');
+        return $this->hasMany(Logbook::class, 'matric_number');
+    }
+
+    public function companies()
+    {
+        return $this->belongsToMany(Company::class, 'company_student_pivot', 'matric_number', 'company_id');
     }
 }

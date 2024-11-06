@@ -59,7 +59,7 @@ class CompanyFormController extends Controller
      */
     public function edit($id)
     {
-        $company_form = ompany_form::find($id);
+        $company_form = company_form::find($id);
         // Return edit view with company_form data
         return view('company_forms.edit', compact('company_form'));
     }
