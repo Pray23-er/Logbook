@@ -18,8 +18,5 @@ class Logbook extends Model
     {
         return $this->belongsTo(Student::class, 'matric_number');
     }
-    public function companies()
-    {
-        return $this->belongsToMany(Company::class, 'logbook_company_pivot');
-    }
+   
 }

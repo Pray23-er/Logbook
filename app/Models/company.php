@@ -63,7 +63,7 @@ class Company extends Model implements Authenticatable
     }
 
     public function logbooks()
-    {
-        return $this->belongsToMany(Logbook::class, 'logbook_company_pivot');
-    }
+{
+    return $this->hasManyThrough(Logbook::class, Student::class, 'company_id', 'matric_number', 'id', 'matric_number');
+}
 }

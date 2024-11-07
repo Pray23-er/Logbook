@@ -32,7 +32,7 @@ class Student extends Authenticatable
         'password',
         'company_id',
     ];
-
+    protected $primaryKey = 'matric_number';
     protected $hidden = [
         'password',
     ];
@@ -89,8 +89,5 @@ class Student extends Authenticatable
         return $this->hasMany(Logbook::class, 'matric_number');
     }
 
-    public function companies()
-    {
-        return $this->belongsToMany(Company::class, 'company_student_pivot', 'matric_number', 'company_id');
-    }
+
 }

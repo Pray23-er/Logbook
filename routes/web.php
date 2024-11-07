@@ -58,3 +58,4 @@ Route::resource('/companyform', CompanyFormController::class);
 
 Route::get('/forms/approve/{id}', [CompanyFormController::class, 'approve'])->name('form.approve');
 Route::get('/forms/reject/{id}', [CompanyFormController::class, 'reject'])->name('form.reject');
+

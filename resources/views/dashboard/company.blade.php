@@ -29,6 +29,20 @@
     }
 </style>
 
+<!-- resources/views/companies/show.blade.php -->
+
+<!-- resources/views/dashboard/company.blade.php -->
+
+<h2>Logbook Records</h2>
+<ul>
+    @foreach($company->logbooks as $logbook)
+        <li>
+            {{ $logbook->title }} - {{ $logbook->description }}
+            (Filled by: {{ $logbook->student->matric_number }})
+        </li>
+    @endforeach
+</ul>
+
     </x-layout>
 
 
