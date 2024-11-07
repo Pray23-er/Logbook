@@ -84,10 +84,13 @@ class Student extends Authenticatable
         return $this->hasMany(company_form::class, 'matric_number', 'matric_number');
     }
 
+    // public function logbooks()
+    // {
+    //     return $this->hasMany(Logbook::class, 'matric_number');
+    // }
     public function logbooks()
-    {
-        return $this->hasMany(Logbook::class, 'matric_number');
-    }
-
+{
+    return $this->hasMany(Logbook::class, 'matric_number', 'matric_number');
+}
 
 }

@@ -59,3 +59,6 @@ Route::resource('/companyform', CompanyFormController::class);
 Route::get('/forms/approve/{id}', [CompanyFormController::class, 'approve'])->name('form.approve');
 Route::get('/forms/reject/{id}', [CompanyFormController::class, 'reject'])->name('form.reject');
 
+// web.php
+Route::post('/logbook/approve/{id}', [LogbookController::class, 'approve'])->name('logbook.approve');
+Route::post('/logbook/reject/{id}', [LogbookController::class, 'reject'])->name('logbook.reject');

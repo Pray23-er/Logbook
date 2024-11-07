@@ -62,8 +62,12 @@ class Company extends Model implements Authenticatable
         return $this->hasMany(Student_form::class);
     }
 
-    public function logbooks()
+//     public function logbooks()
+// {
+//     return $this->hasManyThrough(Logbook::class, Student::class, 'company_id', 'matric_number', 'id', 'matric_number');
+// }
+public function logbooks()
 {
-    return $this->hasManyThrough(Logbook::class, Student::class, 'company_id', 'matric_number', 'id', 'matric_number');
+    return $this->hasManyThrough(Logbook::class, Student_form::class, 'company_id', 'matric_number', 'id', 'matric_number');
 }
 }

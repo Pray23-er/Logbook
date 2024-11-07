@@ -24,4 +24,8 @@ class Student_form extends Model
 {
     return $this->belongsTo(Company::class);
 }
+public function logbook()
+{
+    return $this->hasOne(Logbook::class, 'matric_number', 'matric_number');
+}
 }

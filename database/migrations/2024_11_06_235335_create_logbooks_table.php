@@ -10,8 +10,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('logbooks', function (Blueprint $table) {
+        Schema::create('logbooks', function (Blueprint $table) {
+            $table->id();
+            $table->text('title');
+            $table->string('description');
             $table->string('matric_number');
+            $table->string('status')->default('pending');
+            $table->timestamps();
+
             $table->foreign('matric_number')->references('matric_number')->on('students');
         });
     }
@@ -23,7 +29,8 @@ return new class extends Migration
     {
         Schema::table('logbooks', function (Blueprint $table) {
             $table->dropForeign('logbooks_matric_number_foreign');
-            $table->dropColumn('matric_number');
         });
+
+        Schema::dropIfExists('logbooks');
     }
 };

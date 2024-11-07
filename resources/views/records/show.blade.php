@@ -21,8 +21,11 @@ Display Record
                 <th scope="col" class="px-6 py-3">
                     Actions
                 </th>
-                <th>
+                <th scope="col" class="px-6 py-3">
                     Edited
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Status
                 </th>
             </tr>
         </thead>
@@ -59,6 +62,15 @@ Display Record
 
    <td class="px-6 py-4">
     {{ $logbook->updated_at }}
+</td>
+<td class="px-6 py-4">
+    @if($logbook->status == 'pending')
+        <span class="bg-yellow-200 text-yellow-600 py-1 px-2 rounded">Pending</span>
+    @elseif($logbook->status == 'approved')
+        <span class="bg-green-200 text-green-600 py-1 px-2 rounded">Approved</span>
+    @elseif($logbook->status == 'rejected')
+        <span class="bg-red-200 text-red-600 py-1 px-2 rounded">Rejected</span>
+    @endif
 </td>
 
 

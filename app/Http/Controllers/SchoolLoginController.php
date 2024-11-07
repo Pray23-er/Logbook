@@ -36,12 +36,5 @@ class SchoolLoginController extends Controller
 
     }
 
-    public function logout(Request $request)
-    {
-        Auth::guard('school')->logout();
-        
-
-        return to_route('school.login');
-
-    }
+   
 }

@@ -12,11 +12,12 @@ class Logbook extends Model
         'title',
         'description',
         'matric_number',
+        'status',
     ];
 
     public function student()
     {
         return $this->belongsTo(Student::class, 'matric_number');
     }
-   
+
 }

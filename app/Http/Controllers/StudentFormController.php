@@ -38,9 +38,9 @@ return view('forms.create');
             'lastname' => ['required','min:5', 'max:255'],
             'matric_number' => ['required','min:5', 'max:255'],
 
-            'school_name'=> ['required','min:30','max:255'],
+            'school_name'=> ['required','min:10','max:255'],
             'phone_number'=> ['required','min:11','max:25'],
-            'address'=> ['required','min:30','max:255'],
+            'address'=> ['required','min:20','max:255'],
         ]);
 
         // Add company_id to validated data

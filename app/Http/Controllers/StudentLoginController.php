@@ -35,12 +35,20 @@ class StudentLoginController extends Controller
     }
 
 
-    public function logout(Request $request)
-    {
-        Auth::guard('student')->logout();
+//     public function logout(Request $request)
+//     {
+//         Auth::guard('student')->logout();
 
 
-        return view('welcome');
+//         return view('welcome');
 
+// }
+public function logout(Request $request)
+{
+    Auth::guard('student')->logout();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+
+    return redirect('/'); // Redirect to the root URL instead of returning a view
 }
 }

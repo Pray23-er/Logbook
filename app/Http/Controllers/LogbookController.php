@@ -110,6 +110,22 @@ class LogbookController extends Controller
         // Redirect with success message
         return redirect()->route('records.index');
     }
+    // LogbookController
+public function approve($id)
+{
+    $logbook = Logbook::find($id);
+    $logbook->status = 'approved';
+    $logbook->save();
+    return redirect()->back()->with('success', 'Logbook approved successfully!');
+}
+
+public function reject($id)
+{
+    $logbook = Logbook::find($id);
+    $logbook->status = 'rejected';
+    $logbook->save();
+    return redirect()->back()->with('success', 'Logbook rejected successfully!');
+}
 
 
 }
