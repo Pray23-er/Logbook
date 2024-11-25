@@ -60,4 +60,9 @@ class School extends Model implements Authenticatable
     {
         return $this->hasMany(company_form::class);
     }
+
+    public function logbooks()
+{
+    return $this->hasManyThrough(Logbook::class, Student_form::class,  'matric_number', 'id', 'matric_number');
+}
 }

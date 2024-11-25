@@ -1,12 +1,13 @@
 <x-layout>
     <!-- Dashboard layout -->
     <div class="flex h-screen">
+
         <!-- Sidebar -->
         <div class="w-64 bg-gray-00 p-4 flex-shrink-0">
             <h2 class="text-lg font-bold mb-4">School Dashboard</h2>
             <ul>
                 <li class="mb-4">
-                    <a href="{{ route('school.dashboard') }}" class="text-gray-600 hover:text-gray-900">
+                    <a href="#" onclick="Viewlogbook()"  class="text-gray-600 hover:text-gray-900">
                         View Logbook records
                     </a>
                 </li>
@@ -23,6 +24,11 @@
                 <li class="mb-4">
                     <a href="{{ route('student_register.store') }}" class="text-gray-600 hover:text-gray-900">
                         Add Student
+                    </a>
+                </li>
+                <li class="mb-4">
+                    <a href="{{ route('school.dashboard') }}" class="text-gray-600 hover:text-gray-900">
+                        ADMIN PAGE
                     </a>
                 </li>
             </ul>
@@ -128,6 +134,47 @@
                 </table>
             </div>
 
+            <div class="container mx-auto p-4"  id="logbook-list" style="display: none;">
+
+                <h2 class="text-2xl font-bold mb-4">Logbook Record</h2>
+
+                <ul>
+                    @foreach($registeredStudents as $student)
+                        <li class="mb-2">
+                            {{ $student->name }}
+                            <a href="?matric_number={{ $student->matric_number }}" class="text-blue-600 hover:text-blue-800">{{ $student->firstname }}-{{ $student->lastname }} </a>
+                        </li>
+                    @endforeach
+                </ul>
+
+                @if(isset($selectedStudent) && isset($studentLogbooks))
+                    <div class="bg-gray-100 p-4 mt-4 border border-gray-300 rounded shadow">
+                        <h2 class="text-2xl font-bold mb-4">{{ $selectedStudent->firstname }} {{ $selectedStudent->lastname }}'s Logbook</h2>
+                        <table class="w-full table-auto border border-green-300">
+                            <thead>
+                                <tr class="bg-green-200 border-b border-green-300">
+                                    <th class="px-4 py-2 text-green-700">Title</th>
+                                    <th class="px-4 py-2 text-green-700">Description</th>
+                                    <th class="px-4 py-2 text-green-700">Created At</th>
+                                    <th class="px-4 py-2 text-green-700">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($studentLogbooks as $logbook)
+                                    <tr class="border-b border-green-300 hover:bg-green-100">
+                                        <td class="px-4 py-2 text-green-700">{{ $logbook->title }}</td>
+                                        <td class="px-4 py-2 text-green-700">{{ $logbook->description }}</td>
+                                        <td class="px-4 py-2 text-green-700">{{ $logbook->created_at }}</td>
+                                        <th class="px-4 py-2 text-green-700">{{ $logbook->status }}</th>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                @endif
+        </div>
+
+
             <!-- School name section -->
             <div class="mt-4">
                 <h1 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $authenticatedSchool->name }}</h1>
@@ -135,20 +182,29 @@
         </div>
     </div>
 
-    @auth
-        <!-- User is authenticated -->
-    @else
-        <a href="{{ route('login') }}">Login</a>
-    @endauth
 
+
+
+ @auth
+    <!-- User is authenticated -->
+@else
+    <a href="{{ route('login') }}">Login</a>
+@endauth
     <script>
         function showStudentList() {
             document.getElementById("student-list").style.display = "block";
             document.getElementById("approval-list").style.display = "none";
+            document.getElementById("logbook-list").style.display = "none";
         }
         function Viewapproval() {
             document.getElementById("approval-list").style.display = "block";
             document.getElementById("student-list").style.display = "none";
+            document.getElementById("logbook-list").style.display = "none";
+        }
+        function Viewlogbook() {
+            document.getElementById("logbook-list").style.display = "block";
+            document.getElementById("student-list").style.display = "none";
+            document.getElementById("approval-list").style.display = "none";
         }
     </script>
 </x-layout>
