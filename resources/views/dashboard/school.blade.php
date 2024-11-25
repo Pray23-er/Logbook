@@ -133,7 +133,7 @@
                     </tbody>
                 </table>
             </div>
-
+                <!-- Logbook list section -->
             <div class="container mx-auto p-4"  id="logbook-list" style="display: none;">
 
                 <h2 class="text-2xl font-bold mb-4">Logbook Record</h2>

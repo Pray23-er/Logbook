@@ -92,13 +92,13 @@
             <h2 class="mb-2 text-lg font-bold text-slate-700 dark:text-slate-200">Contact Information</h2>
             <ul>
                 <li class="mb-2">
-                    <span class="font-bold">Email:</span> support@logbook.com
+                    <span class="font-bold">Email:</span> amoosamuel777@gmail.com
                 </li>
                 <li class="mb-2">
-                    <span class="font-bold">Phone:</span> +1 555 123 4567
+                    <span class="font-bold">Phone:</span> +243 8064 9636 06
                 </li>
                 <li class="mb-2">
-                    <span class="font-bold">Address:</span> 123 Main St, Anytown, USA 12345
+                    <span class="font-bold">Address:</span> 123 Bembo St, Sango, Ibadan, Oyo-state.
                 </li>
             </ul>
         </div>
