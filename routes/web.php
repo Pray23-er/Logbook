@@ -62,3 +62,20 @@ Route::get('/forms/reject/{id}', [CompanyFormController::class, 'reject'])->name
 // web.php
 Route::post('/logbook/approve/{id}', [LogbookController::class, 'approve'])->name('logbook.approve');
 Route::post('/logbook/reject/{id}', [LogbookController::class, 'reject'])->name('logbook.reject');
+
+
+
+
+Route::get('/profiles/student', [StudentController::class, 'profile'])->name('profiles.student');
+
+// web.php
+
+
+
+// routes/web.php
+// routes/web.php
+
+// routes/web.php
+
+Route::get('/profiles/password/edit', [StudentController::class, 'editPassword'])->name('student.password.edit');
+Route::patch('/profiles/password', [StudentController::class, 'updateStudentPassword'])->name('student.password.update');

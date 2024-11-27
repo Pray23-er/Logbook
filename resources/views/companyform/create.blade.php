@@ -1,55 +1,46 @@
-
-
-
 <x-layout>
-    Fill company form
-    <form action="/companyform"  method="POST">
-    @csrf
-        <div>
-            <b><label>Company Name</label></b> <br>
-            <input type="text" name="companyname">
+    <h1 class="text-3xl font-bold mb-4">Fill Company Form</h1>
+    <form action="/companyform" method="POST" class="max-w-md mx-auto p-4 bg-white rounded-lg shadow-md">
+        @csrf
+        <div class="mb-4">
+            <label for="companyname" class="block text-gray-700 text-sm font-bold mb-2">Company Name</label>
+            <input type="text" name="companyname" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            @error('companyname')
+            <span class="text-red-500 text-xs italic">{{ $message }}</span>
+            @enderror
         </div>
-        @error('companyname')
-        <span  style="color: red">{{ $message }}</span>
-        @enderror
-
-        <div>
-            <b><label> Company Phone Number</label></b> <br>
-            <input type="text" name="Company_phone_number">
+        <div class="mb-4">
+            <label for="Company_phone_number" class="block text-gray-700 text-sm font-bold mb-2">Company Phone Number</label>
+            <input type="text" name="Company_phone_number" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            @error('Company_phone_number')
+            <span class="text-red-500 text-xs italic">{{ $message }}</span>
+            @enderror
         </div>
-        @error('Company_phone_number')
-        <span  style="color: red">{{ $message }}</span>
-        @enderror
-
-        <div>
-            <b><label>Company Email</label></b> <br>
-            <input type="text" name="Company_email">
+        <div class="mb-4">
+            <label for="Company_email" class="block text-gray-700 text-sm font-bold mb-2">Company Email</label>
+            <input type="text" name="Company_email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            @error('Company_email')
+            <span class="text-red-500 text-xs italic">{{ $message }}</span>
+            @enderror
         </div>
-        @error('Company_email')
-        <span  style="color: red">{{ $message }}</span>
-        @enderror
-
-        <div>
-            <b><label>Matric Number</label></b> <br>
-            <input type="text" name="matric_number">
+        <div class="mb-4">
+            <label for="matric_number" class="block text-gray-700 text-sm font-bold mb-2">Matric Number</label>
+            <input type="text" name="matric_number" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            @error('matric_number')
+            <span class="text-red-500 text-xs italic">{{ $message }}</span>
+            @enderror
         </div>
-        @error('matric_number')
-        <span  style="color: red">{{ $message }}</span>
-        @enderror
-        <div>
-            <b><label>Added By</label></b> <br>
-            <input type="text" name="Added_by">
+        <div class="mb-4">
+            <label for="Added_by" class="block text-gray-700 text-sm font-bold mb-2">Added By</label>
+            <input type="text" name="Added_by" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            @error('Added_by')
+            <span class="text-red-500 text-xs italic">{{ $message }}</span>
+            @enderror
         </div>
-        @error('Added_by')
-        <span  style="color: red">{{ $message }}</span>
-        @enderror
-        <div>
-            <button>submit</button>
+        <div class="flex items-center justify-between">
+            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                Submit
+            </button>
         </div>
     </form>
-
-
-
-    </x-layout>
-
-
+</x-layout>
