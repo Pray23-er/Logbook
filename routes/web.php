@@ -67,6 +67,7 @@ Route::post('/logbook/reject/{id}', [LogbookController::class, 'reject'])->name(
 
 
 Route::get('/profiles/student', [StudentController::class, 'profile'])->name('profiles.student');
+Route::get('/profiles/company', [CompanyController::class, 'profile'])->name('profiles.company');
 
 // web.php
 
@@ -79,3 +80,8 @@ Route::get('/profiles/student', [StudentController::class, 'profile'])->name('pr
 
 Route::get('/profiles/password/edit', [StudentController::class, 'editPassword'])->name('student.password.edit');
 Route::patch('/profiles/password', [StudentController::class, 'updateStudentPassword'])->name('student.password.update');
+
+Route::get('/profiles/passComp/edit', [CompanyController::class, 'editPassword'])->name('company.password.edit');
+Route::patch('/profiles/passComp', [CompanyController::class, 'updateStudentPassword'])->name('company.password.update');
+
+Route::get('/profiles/companyViewStudent', [CompanyController::class, 'index'])->name('company.view.student');
