@@ -1,106 +1,97 @@
 <x-layout>
-    <div class="mt-4">
-        <h1 class="p-2 text-slate-700 dark:text-slate-200">Training and Help</h1>
+    <div class="container mx-auto p-4 mt-4">
+        <h1 class="text-3xl font-bold text-slate-700 dark:text-slate-200">Training and Help</h1>
 
         <!-- Guides -->
         <div class="mt-4">
-            <h2 class="mb-2 text-lg font-bold text-slate-700 dark:text-slate-200">Guides</h2>
-            <ul>
+            <h2 class="text-2xl font-bold text-slate-700 dark:text-slate-200">Guides</h2>
+            <div class="flex flex-wrap -mx-4">
                 <!-- Student Guides -->
-                <li class="mb-2">
-                    <span class="font-bold">Students:</span>
-                    <ul class="ml-4">
+                <div class="w-full md:w-1/2 xl:w-1/3 p-4 bg-slate-100 dark:bg-slate-800 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold text-slate-700 dark:text-slate-200">Students</h3>
+                    <ul>
                         <li class="mb-2">
-                            <a href="#" class="text-blue-600 hover:text-blue-800">Getting Started with Logbook: Learn how to create an account, navigate the dashboard, and start recording logbook entries.</a>
+                            <span class="text-lg font-bold">Getting Started with Logbook</span>
+                            <p class="text-slate-700 dark:text-slate-200">To get started with Logbook, follow these steps:</p>
+                            <ol>
+                                <li>Register for an account on the Logbook website.</li>
+                                <li>Verify your email address and set up your password.</li>
+                                <li>Log in to your account and complete your profile.</li>
+                                <li>Start creating logbook entries to track your progress.</li>
+                            </ol>
                         </li>
                         <li class="mb-2">
-                            <a href="#" class="text-blue-600 hover:text-blue-800">Recording Logbook Entries: Understand how to create, edit, and delete logbook entries, and how to attach files and images.</a>
-                        </li>
-                        <li class="mb-2">
-                            <a href="#" class="text-blue-600 hover:text-blue-800">Submitting Logbook for Approval: Find out how to submit your logbook for approval, track the status, and respond to feedback.</a>
-                        </li>
-                        <li class="mb-2">
-                            <a href="#" class="text-blue-600 hover:text-blue-800">Troubleshooting Common Issues: Resolve common issues such as login problems, entry errors, and approval delays.</a>
+                            <span class="text-lg font-bold">Recording Logbook Entries</span>
+                            <p class="text-slate-700 dark:text-slate-200">To record logbook entries, follow these steps:</p>
+                            <ol>
+                                <li>Log in to your account and navigate to the logbook page.</li>
+                                <li>Click the "New Entry" button to create a new logbook entry.</li>
+                                <li>Enter the details of your logbook entry, including the date, time, and description of your activities.</li>
+                                <li>Attach any relevant files or images to your logbook entry.</li>
+                                <li>Save your logbook entry and submit it for approval.</li>
+                            </ol>
                         </li>
                     </ul>
-                </li>
+                </div>
 
                 <!-- Company Guides -->
-                <li class="mb-2">
-                    <span class="font-bold">Companies:</span>
-                    <ul class="ml-4">
+                <div class="w-full md:w-1/2 xl:w-1/3 p-4 bg-slate-200 dark:bg-slate-900 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold text-slate-700 dark:text-slate-200">Companies</h3>
+                    <ul>
                         <li class="mb-2">
-                            <a href="#" class="text-blue-600 hover:text-blue-800">Creating and Managing Student Accounts: Learn how to create, edit, and delete student accounts, and assign roles and permissions.</a>
+                            <span class="text-lg font-bold">Creating and Managing Student Accounts</span>
+                            <p class="text-slate-700 dark:text-slate-200">As a company administrator, you can create and manage student accounts for your interns or employees.</p>
+                            <ol>
+                                <li>Log in to your account and navigate to the administrator dashboard.</li>
+                                <li>Click the "Create New Account" button to create a new student account.</li>
+                                <li>Enter the student's details, including their name, email address, and password.</li>
+                                <li>Assign the student to a supervisor or mentor.</li>
+                                <li>Save the student's account and provide them with their login credentials.</li>
+                            </ol>
                         </li>
                         <li class="mb-2">
-                            <a href="#" class="text-blue-600 hover:text-blue-800">Approving and Rejecting Logbook Entries: Understand how to review, approve, or reject logbook entries, and provide feedback.</a>
-                        </li>
-                        <li class="mb-2">
-                            <a href="#" class="text-blue-600 hover:text-blue-800">Viewing Student Progress and Reports: Find out how to track student progress, generate reports, and analyze data.</a>
-                        </li>
-                        <li class="mb-2">
-                            <a href="#" class="text-blue-600 hover:text-blue-800">Customizing Logbook Settings: Learn how to customize logbook settings, such as entry templates, approval workflows, and notification preferences.</a>
+                            <span class="text-lg font-bold">Approving and Rejecting Logbook Entries</span>
+                            <p class="text-slate-700 dark:text-slate-200">As a company administrator or supervisor, you can approve or reject logbook entries submitted by students.</p>
+                            <ol>
+                                <li>Log in to your account and navigate to the logbook page.</li>
+                                <li>Click on a logbook entry to view its details.</li>
+                                <li>Review the logbook entry and provide feedback or comments.</li>
+                                <li>Approve or reject the logbook entry.</li>
+                                <li>Save your changes and notify the student of your decision.</li>
+                            </ol>
                         </li>
                     </ul>
-                </li>
+                </div>
 
                 <!-- School Guides -->
-                <li class="mb-2">
-                    <span class="font-bold">Schools:</span>
-                    <ul class="ml-4">
+                <div class="w-full md:w-1/2 xl:w-1/3 p-4 bg-slate-300 dark:bg-slate-700 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold text-slate-700 dark:text-slate-200">Schools</h3>
+                    <ul>
                         <li class="mb-2">
-                            <a href="#" class="text-blue-600 hover:text-blue-800">Integrating Logbook with Existing Systems: Understand how to integrate logbook with your institution's existing systems, such as LMS, SIS, or CRM.</a>
+                            <span class="text-lg font-bold">Integrating Logbook with Existing Systems </span>
+                            <p class="text-slate-700 dark:text-slate-200">As a school administrator, you can integrate Logbook with your existing systems, such as learning management systems (LMS) or student information systems (SIS).</p>
+                            <ol>
+                                <li>Log in to your account and navigate to the administrator dashboard.</li>
+                                <li>Click on the "Integrations" tab.</li>
+                                <li>Select the system you want to integrate with Logbook.</li>
+                                <li>Follow the instructions to complete the integration.</li>
+                                <li>Test the integration to ensure it is working correctly.</li>
+                            </ol>
                         </li>
                         <li class="mb-2">
-                            <a href="#" class="text-blue-600 hover:text-blue-800">Managing Student and Company Accounts: Learn how to manage student and company accounts, assign roles and permissions, and track progress.</a>
-                        </li>
-                        <li class="mb-2">
-                            <a href="#" class="text-blue-600 hover:text-blue-800">Monitoring Student Progress and Reports: Find out how to track student progress, generate reports, and analyze data.</a>
-                        </li>
-                        <li class="mb-2">
-                            <a href="#" class="text-blue-600 hover:text-blue-800">Customizing Logbook Settings for Your Institution: Learn how to customize logbook settings to meet your institution's specific needs.</a>
+                            <span class="text-lg font-bold">Managing Student and Company Accounts</span>
+                            <p class="text-slate-700 dark:text-slate-200">As a school administrator, you can manage student and company accounts, including assigning roles and permissions.</p>
+                            <ol>
+                                <li>Log in to your account and navigate to the administrator dashboard.</li>
+                                <li>Click on the "Accounts" tab.</li>
+                                <li>Select the account you want to manage.</li>
+                                <li>Assign roles and permissions to the account.</li>
+                                <li>Save your changes.</li>
+                            </ol>
                         </li>
                     </ul>
-                </li>
-            </ul>
-        </div>
-
-        <!-- Additional Resources -->
-        <div class="mt-4">
-            <h2 class="mb-2 text-lg font-bold text-slate-700 dark:text-slate-200">Additional Resources</h2>
-            <ul>
-                <li class="mb-2">
-                    <a href="#" class="text-blue-600 hover:text-blue-800">Logbook User Manual: Download the comprehensive user manual for detailed instructions.</a>
-                </li>
-                <li class="mb-2">
-                    <a href="#" class="text-blue-600 hover:text-blue-800">Video Tutorials: Watch step-by-step video tutorials to learn how to use Logbook.</a>
-                </li>
-                <li class="mb-2">
-                    <a href="#" class="text-blue-600 hover:text-blue-800">FAQs: Find answers to frequently asked questions about Logbook.</a>
-                </li>
-                <li class="mb-2">
-                    <a href="#" class="text-blue-600 hover:text-blue-800">Contact Support: Reach out to our support team for assistance with Logbook.</a>
-                </li>
-                <li class="mb-2">
-                    <a href="#" class="text-blue-600 hover:text-blue-800">Community Forum: Join our community forum to discuss Logbook with other users.</a>
-                </li>
-            </ul>
-        </div>
-
-        <!-- Contact Information -->
-        <div class="mt-4">
-            <h2 class="mb-2 text-lg font-bold text-slate-700 dark:text-slate-200">Contact Information</h2>
-            <ul>
-                <li class="mb-2">
-                    <span class="font-bold">Email:</span> amoosamuel777@gmail.com
-                </li>
-                <li class="mb-2">
-                    <span class="font-bold">Phone:</span> +243 8064 9636 06
-                </li>
-                <li class="mb-2">
-                    <span class="font-bold">Address:</span> 123 Bembo St, Sango, Ibadan, Oyo-state.
-                </li>
-            </ul>
+                </div>
+            </div>
         </div>
     </div>
 </x-layout>
