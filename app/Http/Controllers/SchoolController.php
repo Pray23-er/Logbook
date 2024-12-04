@@ -35,6 +35,41 @@ use Illuminate\Support\Facades\Auth;
 // }
 
 
+// class SchoolController extends Controller
+// {
+//     public function school(Request $request)
+//     {
+//         if (!Auth::guard('school')->check()) {
+//             return redirect()->route('school.login');
+//         }
+
+//         $school = Auth::guard('school')->user();
+//         $school->load('students');
+
+//         $matricNumber = $request->query('matric_number');
+
+//         if ($matricNumber) {
+//             $selectedStudent = Student::where('matric_number', $matricNumber)->first();
+//             $studentLogbooks = $selectedStudent->logbooks;
+
+//             return view('dashboard.school', [
+//                 'company_forms' => company_form::all(),
+//                 'registeredStudents' => $school->students,
+//                 'authenticatedSchool' => $school,
+//                 'selectedStudent' => $selectedStudent,
+//                 'studentLogbooks' => $studentLogbooks
+//             ]);
+//         }
+
+//         return view('dashboard.school', [
+//             'company_forms' => company_form::all(),
+//             'registeredStudents' => $school->students,
+//             'authenticatedSchool' => $school
+//         ]);
+//     }
+// }
+
+
 class SchoolController extends Controller
 {
     public function school(Request $request)
@@ -53,7 +88,7 @@ class SchoolController extends Controller
             $studentLogbooks = $selectedStudent->logbooks;
 
             return view('dashboard.school', [
-                'company_forms' => company_form::all(),
+                'company_forms' => company_form::whereIn('matric_number', $school->students->pluck('matric_number'))->get(),
                 'registeredStudents' => $school->students,
                 'authenticatedSchool' => $school,
                 'selectedStudent' => $selectedStudent,
@@ -62,7 +97,7 @@ class SchoolController extends Controller
         }
 
         return view('dashboard.school', [
-            'company_forms' => company_form::all(),
+            'company_forms' => company_form::whereIn('matric_number', $school->students->pluck('matric_number'))->get(),
             'registeredStudents' => $school->students,
             'authenticatedSchool' => $school
         ]);

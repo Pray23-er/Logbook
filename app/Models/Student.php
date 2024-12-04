@@ -93,4 +93,5 @@ class Student extends Authenticatable
     return $this->hasMany(Logbook::class, 'matric_number', 'matric_number');
 }
 
+
 }

@@ -1,4 +1,7 @@
 <x-layout>
+    <p>
+        {{ $authenticatedSchool->name }}
+    </p>
     <div class="flex h-screen">
         <!-- Sidebar -->
         <div class="w-64 bg-blue-100 p-4 flex-shrink-0 h-screen border-r border-gray-300 fixed top-0 left-0">
@@ -179,10 +182,6 @@ Delete
 
 </div>
 </div>
-</x-layout>
-
-
-
 
 
 <script>
@@ -214,4 +213,10 @@ Delete
         });
     });
 </script>
+</x-layout>
+
+
+
+
+
 

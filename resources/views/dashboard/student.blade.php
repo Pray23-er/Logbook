@@ -1,3 +1,5 @@
+
+
 <x-layout>
     {{-- Header --}}
     <div class="flex justify-between items-center bg-gray-800 text-white p-4">
@@ -22,27 +24,29 @@
         <div class="w-64 bg-gray-200 p-4 mr-4">
             <h2 class="text-lg font-bold mb-4">Navigation</h2>
             <ul>
-                <li class="mb-2">
-                    <a href="{{ route('records.index') }}" class="text-gray-600 hover:text-gray-800">
-                        Add Logbook Records
-                    </a>
-                </li>
-                <li class="mb-2">
-                    <a href="{{ route('student.dashboard') }}" class="text-gray-600 hover:text-gray-800">
-                        View Logbook Records
-                    </a>
-                </li>
-                <li class="mb-2">
-                    <a href="{{ route('student.dashboard') }}" class="text-gray-600 hover:text-gray-800">
-                        View Approval
-                    </a>
-                </li>
-                <li class="mb-2">
-                    <a href="{{ route('companyform.store') }}" class="text-gray-600 hover:text-gray-800">
-                        Fill Company Form
-                    </a>
-                </li>
-
+                @if($companyFormFilled && $companyFormApproved)
+                    <li class="mb-2">
+                        <a href="{{ route('records.index') }}" class="text-gray-600 hover:text-gray-800">
+                            Add Logbook Records
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="{{ route('student.dashboard') }}" class="text-gray-600 hover:text-gray-800">
+                            View Logbook Records
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="{{ route('student.dashboard') }}" class="text-gray-600 hover:text-gray-800">
+                            View Approval
+                        </a>
+                    </li>
+                @else
+                    <li class="mb-2">
+                        <a href="{{ route('companyform.store') }}" class="text-gray-600 hover:text-gray-800">
+                            Fill Company Form
+                        </a>
+                    </li>
+                @endif
             </ul>
         </div>
 
