@@ -32,18 +32,7 @@ class LogbookController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    // public function store(Request $request)
-    // {
-    //     //
-    //     $validated = $request->validate([
-    //         'title' => ['required','min:5', 'max:255'],
-    //         'description'=> ['required','min:10'],
-
-    //     ]);
-    //     Logbook::create($validated);
-
-    //     return to_route('records.index');
-    // }
+   
     public function store(Request $request)
 {
     $validated = $request->validate([
