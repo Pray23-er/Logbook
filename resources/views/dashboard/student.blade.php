@@ -27,7 +27,7 @@
                 @if($companyFormFilled && $companyFormApproved)
                     <li class="mb-2">
                         <a href="{{ route('records.index') }}" class="text-gray-600 hover:text-gray-800">
-                            Add Logbook Records
+                           New Entry
                         </a>
                     </li>
                     <li class="mb-2">

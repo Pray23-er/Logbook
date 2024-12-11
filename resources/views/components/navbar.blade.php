@@ -62,7 +62,7 @@
 
           <form action="{{ route('logout') }}" method="POST">
             @csrf
-            <x-navbar-link href="{{route('register')}}" :active="false" onclick="event.preventDefault();  this.closest('form').submit();">Logout</x-navbar-link>
+            <x-navbar-link href="#" :active="false" onclick="event.preventDefault();  this.closest('form').submit();">Logout</x-navbar-link>
           </form>
         </ul>
       </div>
@@ -77,12 +77,12 @@
           <x-navbar-link href="{{route('login')}}" :active="request()->is('login')">Login</x-navbar-link>
           <x-navbar-link href="{{route('register')}}" :active="request()->is('register')">Register</x-navbar-link>
           @endguest
-          @auth('student')
+
           <form action="{{ route('logout') }}" method="POST">
             @csrf
             <x-navbar-link href="#" :active="false" onclick="event.preventDefault();  this.closest('form').submit();">Logout</x-navbar-link>
           </form>
-        @endauth
+    
         </ul>
       </div>
     </div>

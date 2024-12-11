@@ -32,7 +32,7 @@
             <h2 class="font-bold mb-2">Quick Actions</h2>
             <ul>
                 <li class="mb-2"><a href="{{ route('company.view.student') }}" class="text-blue-600 hover:text-blue-800">View Student List</a></li>
-                <li class="mb-2"><a href="{{ route('forms.index') }}" class="text-blue-600 hover:text-blue-800">Add Student</a></li>
+                <li class="mb-2"><a href="{{ route('forms.index') }}" class="text-blue-600 hover:text-blue-800">Create New Account</a></li>
                 <li class="mb-2"><a href="{{ route('company.password.edit') }}" class="text-blue-600 hover:text-blue-800">Update Password</a></li>
             </ul>
         </div>

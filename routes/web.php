@@ -42,28 +42,28 @@ Route::get('/loginC', [CompanyLoginController::class, 'login'])->name('company.l
 Route::post('/loginC', [CompanyLoginController::class, 'store'])->name('company.login.store');
 
 // School Routes
-Route::group(['middleware' => ['auth:school']], function () {
-    Route::post('/logout', [SchoolLoginController::class, 'logout'])->name('logout');
+
+
     Route::get('/school', [SchoolController::class, 'school'])->name('school.dashboard');
     Route::get('/school/calendar', [SchoolController::class, 'calendar'])->name('school.calendar');
 
 Route::post('/school/calendar', [SchoolController::class, 'storeCalendarEvent'])->name('school.calendar.store');
-});
+
 
 Route::delete('/school/calendar/{id}', [SchoolController::class, 'deleteCalendarEvent'])->name('school.calendar.delete');
 
 // Company Routes
-Route::group(['middleware' => ['auth:company']], function () {
-    Route::post('/logout', [CompanyLoginController::class, 'logout'])->name('logout');
+
+
     Route::get('/company', [CompanyController::class, 'company'])->name('company.dashboard');
     Route::get('/profiles/company', [CompanyController::class, 'profile'])->name('profiles.company');
     Route::get('/profiles/passComp/edit', [CompanyController::class, 'editPassword'])->name('company.password.edit');
     Route::patch('/profiles/passComp', [CompanyController::class, 'updateStudentPassword'])->name('company.password.update');
     Route::get('/profiles/companyViewStudent', [CompanyController::class, 'index'])->name('company.view.student');
-});
+
 
 // Student Routes
-Route::group(['middleware' => ['auth:student']], function () {
+
     Route::post('/logout', [StudentLoginController::class, 'logout'])->name('logout');
     Route::get('/student', [StudentController::class, 'index'])->name('student.dashboard');
     Route::get('/profiles/student', [StudentController::class, 'profile'])->name('profiles.student');
@@ -76,4 +76,4 @@ Route::group(['middleware' => ['auth:student']], function () {
     Route::get('/forms/reject/{id}', [CompanyFormController::class, 'reject'])->name('form.reject');
     Route::post('/logbook/approve/{id}', [LogbookController::class, 'approve'])->name('logbook.approve');
     Route::post('/logbook/reject/{id}', [LogbookController::class, 'reject'])->name('logbook.reject');
-});
+

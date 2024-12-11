@@ -39,13 +39,6 @@ class CompanyLoginController extends Controller
 
     }
 
-    // public function logout(Request $request)
-    // {
-    //     Auth::guard('company')->logout();
-
-
-    //     return to_route('');
-
-    // }
+   
 
 }

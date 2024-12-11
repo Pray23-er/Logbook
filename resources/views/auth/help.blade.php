@@ -45,7 +45,6 @@
                                 <li>Log in to your account and navigate to the administrator dashboard.</li>
                                 <li>Click the "Create New Account" button to create a new student account.</li>
                                 <li>Enter the student's details, including their name, email address, and password.</li>
-                                <li>Assign the student to a supervisor or mentor.</li>
                                 <li>Save the student's account and provide them with their login credentials.</li>
                             </ol>
                         </li>
@@ -55,7 +54,7 @@
                             <ol>
                                 <li>Log in to your account and navigate to the logbook page.</li>
                                 <li>Click on a logbook entry to view its details.</li>
-                                <li>Review the logbook entry and provide feedback or comments.</li>
+
                                 <li>Approve or reject the logbook entry.</li>
                                 <li>Save your changes and notify the student of your decision.</li>
                             </ol>
