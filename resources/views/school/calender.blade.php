@@ -27,7 +27,7 @@
     </div>
     <!-- Create new event form -->
     <div class="mt-6">
-        <h2 class="text-2xl font-bold mb-4">Create New Event</h2>
+        <h2 class="text-2xl font-bold mb-4">Create New Siwes Calender</h2>
 
         <form action="{{ route('school.calendar.store') }}" method="POST">
             @csrf

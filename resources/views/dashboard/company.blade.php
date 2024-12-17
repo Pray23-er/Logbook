@@ -27,6 +27,7 @@
         </div>
     </div>
 
+
     <div class="flex flex-row justify-between mb-4">
         <div class="bg-gray-100 border border-gray-400 text-gray-700 px-4 py-3 rounded relative" style="width: 20rem;">
             <h2 class="font-bold mb-2">Quick Actions</h2>
@@ -44,65 +45,74 @@
         </div>
     </div>
 
-    <!-- Logbook Records Table -->
-    <div class="overflow-x-auto mt-8" id="logbook-list" style="display: none;">
-        <h2 class="mb-4">Logbook Records</h2>
-        <table class="table-auto w-full text-left">
-            <thead class="bg-gray-200">
-                <tr>
-                    <th class="px-4 py-2">Title</th>
-                    <th class="px-4 py-2">Description</th>
-                    <th class="px-4 py-2">Filled By</th>
-                    <th class="px-4 py-2">Student Name</th>
-                    <th class="px-4 py-2">Status</th>
-                    <th class="px-4 py-2">Actions</th>
-                    <th class="px-4 py-2">Created on</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($company->logbooks as $logbook)
-                        <tr class="border-b">
-                            <td class="px-4 py-2">{{ $logbook->title }}</td>
-                            <td class="px-4 py-2">{{ $logbook->description }}</td>
-                            <td class="px-4 py-2">{{ $logbook->matric_number }}</td>
-                            <td class="px-4 py-2">{{ $logbook->student->firstname }} {{ $logbook->student->lastname }}</td>
-                            <td class="px-4 py-2">
-                                @if($logbook->status == 'approved')
-                                    <span class="bg-green-200 text-green-600 py-1 px-2 rounded">Approved</span>
-                                @elseif($logbook->status == 'pending')
-                                    <span class="bg-yellow-200 text-yellow-600 py-1 px-2 rounded">Pending</span>
-                                @elseif($logbook->status == 'rejected')
-                                    <span class="bg-red-200 text-red-600 py-1 px-2 rounded">Rejected</span>
-                                @endif
-                            </td>
-                            <td class="px-4 py-2">
-                                @if($logbook->status == 'pending')
-                                    <form action="{{ route('logbook.approve', $logbook->id) }}" method="POST">
-                                        @csrf
-                                        <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Approve</button>
-                                    </form>
-                                    <form action="{{ route('logbook.reject', $logbook->id) }}" method="POST">
-                                        @csrf
-                                        <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Reject</button>
-                                    </form>
-                                @elseif($logbook->status == 'approved')
-                                    <form action="{{ route('logbook.reject', $logbook->id) }}" method="POST">
-                                        @csrf
-                                        <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Reject</button>
-                                    </form>
-                                    @elseif($logbook->status == 'rejected')
-                                    <form action="{{ route('logbook.approve', $logbook->id) }}" method="POST">
-                                        @csrf
-                                        <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Approve</button>
-                                    </form>
-                                @endif
-                            </td>
-                            <td class="px-4 py-2">{{ $logbook->created_at }}</td>
-                        </tr>
-                    @endforeach
-                    </tbody>
-                    </table>
-                    </div>
+
+
+<div class="overflow-x-auto mt-8" id="logbook-list" style="display: none;">
+    <h2 class="mb-4">Logbook Records</h2>
+    <table class="table-auto w-full text-left">
+        <thead class="bg-gray-200">
+            <tr>
+                <th class="px-4 py-2">Title</th>
+                <th class="px-4 py-2">Description</th>
+                <th class="px-4 py-2">Filled By</th>
+                <th class="px-4 py-2">Student Name</th>
+                <th class="px-4 py-2">Status</th>
+                <th class="px-4 py-2">Actions</th>
+                <th class="px-4 py-2">Created on</th>
+                <th class="px-4 py-2">Feedback</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($company->logbooks as $logbook)
+                <tr class="border-b">
+                    <td class="px-4 py-2">{{ $logbook->title }}</td>
+                    <td class="px-4 py-2">{{ $logbook->description }}</td>
+                    <td class="px-4 py-2">{{ $logbook->matric_number }}</td>
+                    <td class="px-4 py-2">{{ $logbook->student->firstname }} {{ $logbook->student->lastname }}</td>
+                    <td class="px-4 py-2">
+                        @if($logbook->status == 'approved')
+                            <span class="bg-green-200 text-green-600 py-1 px-2 rounded">Approved</span>
+                        @elseif($logbook->status == 'pending')
+                            <span class="bg-yellow-200 text-yellow-600 py-1 px-2 rounded">Pending</span>
+                        @elseif($logbook->status == 'rejected')
+                            <span class="bg-red-200 text-red-600 py-1 px-2 rounded">Rejected</span>
+                        @endif
+                    </td>
+                    <td class="px-4 py-2">
+                        @if($logbook->status == 'pending')
+                            <form action="{{ route('logbook.approve', $logbook->id) }}" method="POST">
+                                @csrf
+                                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Approve</button>
+                            </form>
+                            <form action="{{ route('logbook.reject', $logbook->id) }}" method="POST">
+                                @csrf
+                                <textarea name="feedback" placeholder="Provide feedback for rejection"></textarea>
+                                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Reject</button>
+                            </form>
+                        @elseif($logbook->status == 'approved')
+                            <form action="{{ route('logbook.reject', $logbook->id) }}" method="POST">
+                                @csrf
+                                <textarea name="feedback" placeholder="Provide feedback for rejection"></textarea>
+                                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Reject</button>
+                            </form>
+                        @elseif($logbook->status == 'rejected')
+                            <form action="{{ route('logbook.approve', $logbook->id) }}" method="POST">
+                                @csrf
+                                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Approve</button>
+                            </form>
+                        @endif
+                    </td>
+                    <td class="px-4 py-2">{{ $logbook->created_at }}</td>
+                    <td class="px-4 py-2">
+                        @if($logbook->status == 'rejected')
+                            {{ $logbook->feedback }}
+                        @endif
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
 
                     <script>
                     function showLogbookList(){

@@ -1,7 +1,6 @@
 <x-layout>
-<p>
-{{ $authenticatedSchool->name }}
-</p>
+
+<h1 class="text-3xl font-bold mb-4" style="color: green">{{ $authenticatedSchool->name }}</h1>
 <div class="flex h-screen">
 <!-- Sidebar -->
 <div class="w-64 bg-blue-100 p-4 flex-shrink-0 h-screen border-r border-gray-300">
@@ -9,17 +8,17 @@
 <ul>
 <li class="mb-4">
 <a href="#student-list" class="text-gray-600 hover:text-gray-900">
-View Student list
+Student list
 </a>
 </li>
 <li class="mb-4">
 <a href="#approval-list" class="text-gray-600 hover:text-gray-900">
-View approval
+Submitted Industries
 </a>
 </li>
 <li class="mb-4">
 <a href="#logbook-list" class="text-gray-600 hover:text-gray-900">
-View Logbook records
+ Logbook Records
 </a>
 </li>
 </ul>
@@ -37,7 +36,7 @@ View Logbook records
             </li>
             <li class="mb-4">
                 <a href="{{ route('school.calendar') }}" class="text-gray-600 hover:text-gray-900">
-                    View SIWES Calendar
+                     SIWES Calendar
                 </a>
             </li>
 
@@ -45,8 +44,6 @@ View Logbook records
     </div>
     <!-- Main content -->
     <div class="flex-1 p-4">
-        <h1 class="text-3xl font-bold mb-4" style="color: green">School page</h1>
-
         <!-- Student list section -->
         <div id="student-list" class="mt-4">
             @if (!empty($registeredStudents) && count($registeredStudents) > 0)
@@ -86,9 +83,9 @@ View Logbook records
 
         <!-- Approval list section -->
         <div id="approval-list" class="mt-4">
-            <h2 class="text-lg font-bold mb-4">Approval List:</h2>
+            <h2 class="text-lg font-bold mb-4">Recently Submitted Industries:</h2>
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                Here is the rest of the updated code:
+
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="px-6 py-3">Company Name</th>
@@ -183,8 +180,6 @@ View Logbook records
                                 </div>
                                 @endif
                                 </div>
-
-                                <!-- School name section -->
 
                                 </div>
                                 </div>

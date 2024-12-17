@@ -62,7 +62,7 @@ class StudentController extends Controller
             'password' => 'required|confirmed',
             'email' => 'required|email|unique:students',
             'phone_number' => 'required',
-            'school_id' => 'required|exists:schools,id',
+            // 'school_id' => 'required|exists:schools,id',
         ]);
 
         $student = new Student();
@@ -74,13 +74,17 @@ class StudentController extends Controller
         $student->year = $request->year;
         $student->email = $request->email;
         $student->phone_number = $request->phone_number;
-        $student->school_id = $request->school_id;
+        // $student->school_id = $request->school_id;
         $student->password = bcrypt($request->password);
 
         // Check if company user is authenticated
         if (auth()->guard('company')->check()) {
             $student->company_id = auth()->guard('company')->user()->id;
         }
+        if (auth()->guard('school')->check()) {
+            $student->school_id = auth()->guard('school')->user()->id;
+        }
+
 
         $student->save();
 

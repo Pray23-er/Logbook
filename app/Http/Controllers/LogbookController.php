@@ -32,7 +32,7 @@ class LogbookController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-   
+
     public function store(Request $request)
 {
     $validated = $request->validate([
@@ -67,6 +67,7 @@ class LogbookController extends Controller
     $logbook = Logbook::findOrfail($id);
     return view('records.edit', compact('logbook'));
 }
+
     /**
      * Update the specified resource in storage.
      */
@@ -108,13 +109,21 @@ public function approve($id)
     return redirect()->back()->with('success', 'Logbook approved successfully!');
 }
 
-public function reject($id)
+// public function reject($id)
+// {
+//     $logbook = Logbook::find($id);
+//     $logbook->status = 'rejected';
+//     $logbook->save();
+//     return redirect()->back()->with('success', 'Logbook rejected successfully!');
+// }
+
+public function reject(Request $request, $id)
 {
     $logbook = Logbook::find($id);
     $logbook->status = 'rejected';
+    $logbook->feedback = $request->input('feedback');
     $logbook->save();
     return redirect()->back()->with('success', 'Logbook rejected successfully!');
 }
-
 
 }

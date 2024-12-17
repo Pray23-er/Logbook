@@ -27,6 +27,11 @@ Display Record
                 <th scope="col" class="px-6 py-3">
                     Status
                 </th>
+                <th scope="col" class="px-6 py-3">
+             Feedback
+                </th>
+
+
             </tr>
         </thead>
         <tbody>
@@ -72,7 +77,13 @@ Display Record
         <span class="bg-red-200 text-red-600 py-1 px-2 rounded">Rejected</span>
     @endif
 </td>
-
+<td class="px-6 py-4">
+    @if($logbook->status == 'rejected')
+        {{ $logbook->feedback }}
+    @else
+        -
+    @endif
+</td>
 
 
 </tr>

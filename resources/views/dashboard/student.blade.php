@@ -26,12 +26,12 @@
             <ul>
                 @if($companyFormFilled && $companyFormApproved)
                     <li class="mb-2">
-                        <a href="{{ route('records.index') }}" class="text-gray-600 hover:text-gray-800">
+                        <a href="{{ route('records.create') }}" class="text-gray-600 hover:text-gray-800">
                            New Entry
                         </a>
                     </li>
                     <li class="mb-2">
-                        <a href="{{ route('student.dashboard') }}" class="text-gray-600 hover:text-gray-800">
+                        <a href="{{ route('records.index') }}" class="text-gray-600 hover:text-gray-800">
                             View Logbook Records
                         </a>
                     </li>
