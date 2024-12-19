@@ -1,94 +1,133 @@
 <x-layout>
-    <div class="container mx-auto p-4 mt-4">
-        <h1 class="text-3xl font-bold text-slate-700 dark:text-slate-200">Training and Help</h1>
+    <div class="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 py-12">
+        <div class="container mx-auto px-4 max-w-7xl">
+            <header class="mb-12">
+                <h1 class="text-4xl font-bold text-slate-800 dark:text-slate-100">Training and Help</h1>
+                <p class="mt-3 text-lg text-slate-600 dark:text-slate-400">Find comprehensive guides for students, companies, and schools</p>
+            </header>
 
-        <!-- Guides -->
-        <div class="mt-4">
-            <h2 class="text-2xl font-bold text-slate-700 dark:text-slate-200">Guides</h2>
-            <div class="flex flex-wrap -mx-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Student Guides -->
-                <div class="w-full md:w-1/2 xl:w-1/3 p-4 bg-slate-100 dark:bg-slate-800 rounded-lg shadow-md">
-                    <h3 class="text-xl font-bold text-slate-700 dark:text-slate-200">Students</h3>
-                    <ul>
-                        <li class="mb-2">
-                            <span class="text-lg font-bold">Getting Started with Logbook</span>
-                            <p class="text-slate-700 dark:text-slate-200">To get started with Logbook, follow these steps:</p>
-                            <ol>
-                                <li>Register for an account on the Logbook website.</li>
-                                <li>Verify your email address and set up your password.</li>
-                                <li>Log in to your account and complete your profile.</li>
-                                <li>Start creating logbook entries to track your progress.</li>
-                            </ol>
-                        </li>
-                        <li class="mb-2">
-                            <span class="text-lg font-bold">Recording Logbook Entries</span>
-                            <p class="text-slate-700 dark:text-slate-200">To record logbook entries, follow these steps:</p>
-                            <ol>
-                                <li>Log in to your account and navigate to the logbook page.</li>
-                                <li>Click the "New Entry" button to create a new logbook entry.</li>
-                                <li>Enter the details of your logbook entry, including the date, time, and description of your activities.</li>
-                                <li>Attach any relevant files or images to your logbook entry.</li>
-                                <li>Save your logbook entry and submit it for approval.</li>
-                            </ol>
-                        </li>
-                    </ul>
+                <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 transition duration-300 hover:shadow-md">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <svg class="w-6 h-6 text-blue-600 dark:text-blue-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                            </svg>
+                            <h2 class="text-2xl font-bold text-slate-800 dark:text-slate-100">Students</h2>
+                        </div>
+
+                        <div class="space-y-6">
+                            <section>
+                                <h3 class="text-lg font-semibold text-slate-700 dark:text-slate-200 mb-3">Getting Started with Logbook</h3>
+                                <div class="space-y-3 text-slate-600 dark:text-slate-300">
+                                    <p class="text-sm">To get started with Logbook, follow these steps:</p>
+                                    <ol class="list-decimal list-inside space-y-2 text-sm pl-4">
+                                        <li>Register for an account on the Logbook website</li>
+                                        <li>Verify your email address and set up your password</li>
+                                        <li>Log in to your account and complete your profile</li>
+                                        <li>Start creating logbook entries to track your progress</li>
+                                    </ol>
+                                </div>
+                            </section>
+
+                            <section>
+                                <h3 class="text-lg font-semibold text-slate-700 dark:text-slate-200 mb-3">Recording Logbook Entries</h3>
+                                <div class="space-y-3 text-slate-600 dark:text-slate-300">
+                                    <p class="text-sm">To record logbook entries, follow these steps:</p>
+                                    <ol class="list-decimal list-inside space-y-2 text-sm pl-4">
+                                        <li>Navigate to the logbook page</li>
+                                        <li>Click the "New Entry" button</li>
+                                        <li>Enter entry details including date, time, and activities</li>
+                                        <li>Attach relevant files or images</li>
+                                        <li>Save and submit for approval</li>
+                                    </ol>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Company Guides -->
-                <div class="w-full md:w-1/2 xl:w-1/3 p-4 bg-slate-200 dark:bg-slate-900 rounded-lg shadow-md">
-                    <h3 class="text-xl font-bold text-slate-700 dark:text-slate-200">Companies</h3>
-                    <ul>
-                        <li class="mb-2">
-                            <span class="text-lg font-bold">Creating and Managing Student Accounts</span>
-                            <p class="text-slate-700 dark:text-slate-200">As a company administrator, you can create and manage student accounts for your interns or employees.</p>
-                            <ol>
-                                <li>Log in to your account and navigate to the administrator dashboard.</li>
-                                <li>Click the "Create New Account" button to create a new student account.</li>
-                                <li>Enter the student's details, including their name, email address, and password.</li>
-                                <li>Save the student's account and provide them with their login credentials.</li>
-                            </ol>
-                        </li>
-                        <li class="mb-2">
-                            <span class="text-lg font-bold">Approving and Rejecting Logbook Entries</span>
-                            <p class="text-slate-700 dark:text-slate-200">As a company administrator or supervisor, you can approve or reject logbook entries submitted by students.</p>
-                            <ol>
-                                <li>Log in to your account and navigate to the logbook page.</li>
-                                <li>Click on a logbook entry to view its details.</li>
+                <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 transition duration-300 hover:shadow-md">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <svg class="w-6 h-6 text-blue-600 dark:text-blue-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                            </svg>
+                            <h2 class="text-2xl font-bold text-slate-800 dark:text-slate-100">Companies</h2>
+                        </div>
 
-                                <li>Approve or reject the logbook entry.</li>
-                                <li>Save your changes and notify the student of your decision.</li>
-                            </ol>
-                        </li>
-                    </ul>
+                        <div class="space-y-6">
+                            <section>
+                                <h3 class="text-lg font-semibold text-slate-700 dark:text-slate-200 mb-3">Managing Student Accounts</h3>
+                                <div class="space-y-3 text-slate-600 dark:text-slate-300">
+                                    <p class="text-sm">Create and manage student accounts for your interns:</p>
+                                    <ol class="list-decimal list-inside space-y-2 text-sm pl-4">
+                                        <li>Access the administrator dashboard</li>
+                                        <li>Click "Create New Account"</li>
+                                        <li>Enter student details</li>
+                                        <li>Provide login credentials</li>
+                                    </ol>
+                                </div>
+                            </section>
+
+                            <section>
+                                <h3 class="text-lg font-semibold text-slate-700 dark:text-slate-200 mb-3">Managing Logbook Entries</h3>
+                                <div class="space-y-3 text-slate-600 dark:text-slate-300">
+                                    <p class="text-sm">Review and manage student logbook entries:</p>
+                                    <ol class="list-decimal list-inside space-y-2 text-sm pl-4">
+                                        <li>Access the logbook page</li>
+                                        <li>Review entry details</li>
+                                        <li>Approve or reject entries</li>
+                                        <li>Provide feedback when needed</li>
+                                    </ol>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- School Guides -->
-                <div class="w-full md:w-1/2 xl:w-1/3 p-4 bg-slate-300 dark:bg-slate-700 rounded-lg shadow-md">
-                    <h3 class="text-xl font-bold text-slate-700 dark:text-slate-200">Schools</h3>
-                    <ul>
-                        <li class="mb-2">
-                            <span class="text-lg font-bold">Integrating Logbook with Existing Systems </span>
-                            <p class="text-slate-700 dark:text-slate-200">As a school administrator, you can integrate Logbook with your existing systems, such as learning management systems (LMS) or student information systems (SIS).</p>
-                            <ol>
-                                <li>Log in to your account and navigate to the administrator dashboard.</li>
-                                <li>Click on the "Integrations" tab.</li>
-                                <li>Select the system you want to integrate with Logbook.</li>
-                                <li>Follow the instructions to complete the integration.</li>
-                                <li>Test the integration to ensure it is working correctly.</li>
-                            </ol>
-                        </li>
-                        <li class="mb-2">
-                            <span class="text-lg font-bold">Managing Student and Company Accounts</span>
-                            <p class="text-slate-700 dark:text-slate-200">As a school administrator, you can manage student and company accounts, including assigning roles and permissions.</p>
-                            <ol>
-                                <li>Log in to your account and navigate to the administrator dashboard.</li>
-                                <li>Click on the "Accounts" tab.</li>
-                                <li>Select the account you want to manage.</li>
-                                <li>Assign roles and permissions to the account.</li>
-                                <li>Save your changes.</li>
-                            </ol>
-                        </li>
-                    </ul>
+                <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 transition duration-300 hover:shadow-md">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <svg class="w-6 h-6 text-blue-600 dark:text-blue-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                            </svg>
+                            <h2 class="text-2xl font-bold text-slate-800 dark:text-slate-100">Schools</h2>
+                        </div>
+
+                        <div class="space-y-6">
+                            <section>
+                                <h3 class="text-lg font-semibold text-slate-700 dark:text-slate-200 mb-3">System Integration</h3>
+                                <div class="space-y-3 text-slate-600 dark:text-slate-300">
+                                    <p class="text-sm">Integrate Logbook with your existing systems:</p>
+                                    <ol class="list-decimal list-inside space-y-2 text-sm pl-4">
+                                        <li>Access integration settings</li>
+                                        <li>Select target system</li>
+                                        <li>Configure integration options</li>
+                                        <li>Test and verify connection</li>
+                                    </ol>
+                                </div>
+                            </section>
+
+                            <section>
+                                <h3 class="text-lg font-semibold text-slate-700 dark:text-slate-200 mb-3">Account Management</h3>
+                                <div class="space-y-3 text-slate-600 dark:text-slate-300">
+                                    <p class="text-sm">Manage all user accounts effectively:</p>
+                                    <ol class="list-decimal list-inside space-y-2 text-sm pl-4">
+                                        <li>Access account management</li>
+                                        <li>Review account details</li>
+                                        <li>Modify roles and permissions</li>
+                                        <li>Update account settings</li>
+                                    </ol>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

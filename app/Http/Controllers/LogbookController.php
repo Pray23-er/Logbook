@@ -109,14 +109,6 @@ public function approve($id)
     return redirect()->back()->with('success', 'Logbook approved successfully!');
 }
 
-// public function reject($id)
-// {
-//     $logbook = Logbook::find($id);
-//     $logbook->status = 'rejected';
-//     $logbook->save();
-//     return redirect()->back()->with('success', 'Logbook rejected successfully!');
-// }
-
 public function reject(Request $request, $id)
 {
     $logbook = Logbook::find($id);
