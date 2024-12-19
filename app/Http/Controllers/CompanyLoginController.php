@@ -38,7 +38,14 @@ class CompanyLoginController extends Controller
 
 
     }
+    public function logout(Request $request)
+{
+    Auth::guard('school')->logout(); // Use the 'school' guard
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+    return redirect('/');
+}
 
-   
+
 
 }

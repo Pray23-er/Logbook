@@ -62,9 +62,12 @@ Route::delete('/school/calendar/{id}', [SchoolController::class, 'deleteCalendar
     Route::get('/profiles/companyViewStudent', [CompanyController::class, 'index'])->name('company.view.student');
 
 
+Route::post('/logout/student', [StudentLoginController::class, 'logout'])->name('logout.student');
+Route::post('/logout/school', [SchoolLoginController::class, 'logout'])->name('logout.school');
+Route::post('/logout/company', [CompanyLoginController::class, 'logout'])->name('logout.company');
 // Student Routes
 
-    Route::post('/logout', [StudentLoginController::class, 'logout'])->name('logout');
+   
     Route::get('/student', [StudentController::class, 'index'])->name('student.dashboard');
     Route::get('/profiles/student', [StudentController::class, 'profile'])->name('profiles.student');
     Route::get('/profiles/password/edit', [StudentController::class, 'editPassword'])->name('student.password.edit');
