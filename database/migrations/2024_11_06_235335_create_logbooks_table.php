@@ -15,6 +15,7 @@ return new class extends Migration
             $table->text('title');
             $table->string('description');
             $table->string('matric_number');
+            $table->string('thumbnail');
             $table->string('status')->default('pending');
             $table->timestamps();
 

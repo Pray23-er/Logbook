@@ -12,7 +12,7 @@
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-12">
                 <h1 class="text-3xl font-bold text-sky-800 dark:text-white mb-3">Student Dashboard</h1>
-                <p class="text-sky-600 dark:text-sky-400">Welcome back!</p>
+                <p class="text-sky-600 dark:text-sky-400">Welcome back! <b> {{ $student->firstname}}</b>  <b>{{ $student->lastname}}</b></p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
@@ -71,15 +71,17 @@
                                     <td class="px-4 py-2">{{ $record->title }}</td>
                                     <td class="px-4 py-2">{{ $record->description }}</td>
                                     <td class="px-4 py-2">
-                                        {{-- ORIGINAL STATUS LOGIC --}}
-                                        @if ($record->is_approved)
+                                        {{-- UPDATED STATUS LOGIC --}}
+                                        @if ($record->status === 'approved')
                                             <span class="text-green-500">Approved</span>
+                                        @elseif ($record->status === 'rejected')
+                                            <span class="text-red-500">Rejected</span>
                                         @else
-                                            <span class="text-red-500">Rejected</span> {{-- Or whatever your "rejected" status is --}}
+                                            <span class="text-yellow-500">Pending</span>
                                         @endif
                                     </td>
                                 </tr>
-                                @endforeach
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

@@ -29,7 +29,7 @@ class SchoolLoginController extends Controller
         else{
             // if unsucessful, thrn redirect back to the login page
             return back()->withErrors([
-                'email'=>'The provided credentials does not match our records'
+                'email'=>'The provided credentials does not match our records, Pls register your account.'
             ]);
         }
 

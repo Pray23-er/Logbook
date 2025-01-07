@@ -33,23 +33,25 @@ class LogbookController extends Controller
      * Store a newly created resource in storage.
      */
 
-    public function store(Request $request)
-{
-    $validated = $request->validate([
-        'title' => ['required', 'min:5', 'max:255'],
-        'description' => ['required', 'min:10'],
-    ]);
+     public function store(Request $request)
+     {
+         $validated = $request->validate([
+             'title' => ['required', 'min:5', 'max:255'],
+             'description' => ['required', 'min:10'],
+             'thumbnail' => ['required', 'image'],
+         ]);
 
-    // Retrieve authenticated student's matric number using Student guard
-    $matricNumber = auth('student')->user()->matric_number;
+         // Retrieve authenticated student's matric number using Student guard
+         $matricNumber = auth('student')->user()->matric_number;
 
-    // Merge matric number with validated data
-    $validated['matric_number'] = $matricNumber;
+         $validated['thumbnail'] = $request->file('thumbnail')->store('thumbnails', 'public');
+         // Merge matric number with validated data
+         $validated['matric_number'] = $matricNumber;
 
-    Logbook::create($validated);
+         Logbook::create($validated);
 
-    return to_route('records.index');
-}
+         return to_route('records.index');
+     }
 
     /**
      * Display the specified resource.

@@ -17,7 +17,7 @@ class StudentController extends Controller
         $companyFormFilled = $student->company_forms()->exists();
         $companyFormApproved = $student->company_forms()->where('status', 'approved')->exists();
 
-        return view('dashboard.student', compact('logbookRecordsCount', 'approvedRecordsCount', 'pendingApprovalCount', 'recentLogbookRecords', 'companyFormFilled', 'companyFormApproved'));
+        return view('dashboard.student', compact('logbookRecordsCount', 'approvedRecordsCount', 'pendingApprovalCount', 'recentLogbookRecords', 'companyFormFilled', 'companyFormApproved','student'));
     }
 
     public function register()

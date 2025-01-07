@@ -49,7 +49,7 @@
                     </div>
 
                     <div class="flex items-center justify-between">
-                        
+
 
                         <a href="#" class="text-sm font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400">
                             Forgot password?
