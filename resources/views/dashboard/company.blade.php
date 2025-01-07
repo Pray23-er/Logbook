@@ -60,6 +60,7 @@
             <th class="px-4 py-2">Actions</th>
             <th class="px-4 py-2">Created on</th>
             <th class="px-4 py-2">Feedback</th>
+            <th class="px-4 py-2">Uploads</th>
           </tr>
         </thead>
         <tbody>
@@ -110,6 +111,9 @@
                   {{ $logbook->feedback }}
                 @endif
               </td>
+              <td class="px-4 py-2">
+                <img src="{{ $logbook->thumbnail }}" alt="Thumbnail" style="max-width: 100px; max-height: 100px;">
+            </td>
             </tr>
           @endforeach
         </tbody>

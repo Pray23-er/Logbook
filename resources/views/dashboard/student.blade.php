@@ -11,9 +11,11 @@
     <div class="min-h-screen bg-gradient-to-b from-sky-50 to-sky-100 dark:from-slate-900 dark:to-slate-800 px-4 py-16">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-12">
-                <h1 class="text-3xl font-bold text-sky-800 dark:text-white mb-3">Student Dashboard</h1>
-                <p class="text-sky-600 dark:text-sky-400">Welcome back! <b> {{ $student->firstname}}</b>  <b>{{ $student->lastname}}</b></p>
+                <img src="{{ asset('images/students/'.$student->image) }}" alt="Student Image" class="w-24 h-24 rounded-full object-cover mb-2 inline-block">
+                
+                <p class="text-sky-600 dark:text-sky-400 inline-block ml-4">Welcome back! <b> {{ $student->firstname}}</b>  <b>{{ $student->lastname}}</b></p>
             </div>
+        </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
 

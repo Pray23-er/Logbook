@@ -88,7 +88,7 @@ Display Record
     @endif
 </td>
 <td class="px-6 py-4">
-    <img src="{{ $logbook->thumbnail }}" alt="Thumbnail">
+    <img src="{{ $logbook->thumbnail }}" alt="Thumbnail" style="max-width: 100px; max-height: 100px;">
 </td>
 </tr>
 

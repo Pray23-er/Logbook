@@ -7,7 +7,7 @@
             </div>
 
             <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-8 border border-slate-200 dark:border-slate-700">
-                <form method="POST" action="{{ route('student_register.store') }}" class="space-y-6">
+                <form method="POST" action="{{ route('student_register.store') }}" class="space-y-6" enctype="multipart/form-data">
                     @csrf
 
                     <div class="space-y-2">
@@ -196,6 +196,23 @@
                         placeholder="Confirm your password"
                     >
                     @error('password_confirmation')
+                        <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="space-y-2">
+                    <label for="image" class="block text-sm font-medium text-slate-700 dark:text-slate-200">
+                        Profile Picture
+                    </label>
+                    <input
+                        type="file"
+                        id="image"
+                        name="image"
+                        class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600
+                               focus:ring-2 focus:ring-blue-500 focus:border-transparent
+                               dark:bg-slate-700 dark:text-white placeholder-slate-400
+                               @error('image') border-red-500 @enderror"
+                    >
+                    @error('image')
                         <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                     @enderror
                 </div>

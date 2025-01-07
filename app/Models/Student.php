@@ -27,6 +27,7 @@ class Student extends Authenticatable
         'level',
         'year',
         'email',
+        'image',
         'phone_number',
         'school_id',
         'password',
