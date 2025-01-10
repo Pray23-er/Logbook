@@ -1,4 +1,13 @@
-<x-layout>
+<x-head>
+
+</x-head>
+
+<x-header>
+
+
+</x-header>
+
+@vite('resources/css/app.css')
     <div class="bg-gray-100 dark:bg-gray-800 min-h-screen py-12 px-4 lg:px-8">
         <div class="max-w-7xl mx-auto">
             <h1 class="text-3xl font-bold mb-8 text-gray-800 dark:text-white text-center">SIWES Calendar</h1>
@@ -78,4 +87,6 @@
         </div>
     </div>
     <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
-</x-layout>
+    <x-footer>
+
+    </x-footer>

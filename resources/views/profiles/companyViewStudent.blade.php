@@ -1,5 +1,14 @@
-<x-layout>
-    <div class="container mx-auto p-4 pt-6 mt-10">
+<x-head>
+
+</x-head>
+
+<x-header>
+
+
+</x-header>
+
+@vite('resources/css/app.css')
+<div class="container mx-auto p-4 pt-6 bg-gray-200 dark:bg-gray-800 rounded-lg shadow-md">
         <h1 class="text-4xl font-bold mb-4 text-indigo-900"> Student List</h1>
 
 
@@ -35,4 +44,6 @@
             <a href="{{ route('company.dashboard') }}" class="text-indigo-700 hover:text-indigo-900 font-bold underline">Back to Company Page</a>
         </div>
     </div>
-</x-layout>
+    <x-footer>
+
+    </x-footer>

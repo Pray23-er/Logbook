@@ -6,6 +6,7 @@ use App\Models\Logbook;
 use App\Models\Student;
 use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class LogbookController extends Controller
 {
@@ -70,6 +71,8 @@ class LogbookController extends Controller
     return view('records.edit', compact('logbook'));
 }
 
+
+
     /**
      * Update the specified resource in storage.
      */
@@ -81,7 +84,17 @@ class LogbookController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|string',
             'description' => 'required|string',
+            'thumbnail' => ['nullable', 'image'],
         ]);
+
+        // Check if thumbnail is updated
+        if ($request->hasFile('thumbnail')) {
+            // Delete old thumbnail
+            Storage::delete('public/' . $logbook->thumbnail);
+
+            // Store new thumbnail
+            $validatedData['thumbnail'] = $request->file('thumbnail')->store('thumbnails', 'public');
+        }
 
         // Update logbook record
         $logbook->update($validatedData);
@@ -89,6 +102,8 @@ class LogbookController extends Controller
         // Redirect with success message
         return redirect()->route('records.index');
     }
+
+
     /**
      * Remove the specified resource from storage.
      */

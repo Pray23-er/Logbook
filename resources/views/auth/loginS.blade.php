@@ -1,4 +1,4 @@
-<x-layout>
+@vite('resources/css/app.css')
     <div class="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 py-16">
         <div class="max-w-md mx-auto px-4 sm:px-6">
             <div class="text-center mb-8">
@@ -67,4 +67,4 @@
             </div>
         </div>
     </div>
-</x-layout>
+

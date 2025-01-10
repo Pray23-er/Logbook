@@ -1,5 +1,8 @@
-<x-layout>
-    <h1 class="text-3xl font-bold mb-4">Fill Company Form</h1>
+<x-head></x-head>
+
+<x-header></x-header>
+@vite('resources/css/app.css')
+
     <form action="/companyform" method="POST" class="max-w-md mx-auto p-4 bg-white rounded-lg shadow-md">
         @csrf
         <div class="mb-4">
@@ -43,4 +46,5 @@
             </button>
         </div>
     </form>
-</x-layout>
+
+<x-footer></x-footer>

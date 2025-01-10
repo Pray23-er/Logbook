@@ -67,7 +67,7 @@ Route::post('/logout/school', [SchoolLoginController::class, 'logout'])->name('l
 Route::post('/logout/company', [CompanyLoginController::class, 'logout'])->name('logout.company');
 // Student Routes
 
-   
+
     Route::get('/student', [StudentController::class, 'index'])->name('student.dashboard');
     Route::get('/profiles/student', [StudentController::class, 'profile'])->name('profiles.student');
     Route::get('/profiles/password/edit', [StudentController::class, 'editPassword'])->name('student.password.edit');
@@ -80,3 +80,6 @@ Route::post('/logout/company', [CompanyLoginController::class, 'logout'])->name(
     Route::post('/logbook/approve/{id}', [LogbookController::class, 'approve'])->name('logbook.approve');
     Route::post('/logbook/reject/{id}', [LogbookController::class, 'reject'])->name('logbook.reject');
 
+    Route::view('/Sailor/index', 'Sailor.index');
+    Route::view('/Sailor/register', 'Sailor.register');
+    Route::view('/Sailor/help', 'Sailor.help');

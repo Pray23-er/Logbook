@@ -15,7 +15,7 @@
             <p class="text-gray-900">{{ $company->email }}</p>
         </div>
 
-   
+
     </div>
 
     <br>
