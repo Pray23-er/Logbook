@@ -185,6 +185,4 @@
 
   </x-footer>
 
-</body>
 
-</html>
