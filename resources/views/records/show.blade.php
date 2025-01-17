@@ -10,10 +10,9 @@
 
 <div class="container mx-auto p-4 pt-6 bg-gray-200 dark:bg-gray-800 rounded-lg shadow-md">
     <h1 class="text-3xl font-bold mb-4 text-center"><i class="bi bi-journal"></i> Display Record</h1>
-
-    <div class="max-w-4xl mx-auto p-4  rounded-lg shadow-md border border-gray-300">
+    <hr class="my-4 border-gray-300 dark:border-gray-600">
+    <div class="container max-w-5xl mx-auto p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-300 overflow-x-auto">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3">
                         <i class="bi bi-card-text"></i> Title

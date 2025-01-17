@@ -15,7 +15,6 @@
     <h1 class="text-2xl font-bold">{{ $authenticatedSchool->name }}</h1>
 </header>
 <div class="flex h-screen">
-
     <div class="w-64 bg-gray-100 p-4 flex-shrink-0 h-screen border-r border-gray-300">
         <h2 class="text-lg font-bold mb-4">Navigation</h2>
         <ul class="space-y-4">
@@ -61,12 +60,11 @@
             </li>
         </ul>
     </div>
-
-    <div class="flex-1 p-4">
-        <div id="student-list" class="mt-4">
-            <h2 class="text-lg font-bold mb-4"><i class="bi bi-people"></i> Registered Students:</h2>
-            <div class="overflow-x-auto">
-                <table class="min-w-full divide-y divide-gray-200">
+<div class="flex-1 overflow-y-auto">
+    <div id="student-list" class="mt-4">
+        <h2 class="text-lg font-bold mb-4"><i class="bi bi-people"></i> Registered Students:</h2>
+        <div class="overflow-x-auto w-full">
+            <table class="w-full divide-y divide-gray-200 table-auto responsive">
                     <thead class="bg-gray-50">
                         <tr>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -115,8 +113,9 @@
 
         <div id="approval-list" class="mt-4 hidden">
             <h2 class="text-lg font-bold mb-4"><i class="bi bi-check2-circle"></i> Recently Submitted Industries:</h2>
-            <div class="overflow-x-auto">
-                <table class="min-w-full divide-y divide-gray-200">
+            <div class="overflow-x-auto w-full flex-shrink-0">
+                <table class="w-full divide-y divide-gray-200">
+
                     <thead class="bg-gray-50">
                         <tr>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -178,63 +177,8 @@
                 </table>
             </div>
         </div>
+</div>
 
-        <div id="logbook-list" class="mt-4 hidden">
-            <h2 class="text-lg font-bold mb-4"><i class="bi bi-journal"></i> Logbook Record</h2>
-
-            <ul class="space-y-2">
-                @foreach($registeredStudents as $student)
-                    <li>
-                        <a href="?matric_number={{ $student->matric_number }}" class="text-blue-600 hover:text-blue-900">{{ $student->firstname }} {{ $student->lastname }}</a>
-                    </li>
-                @endforeach
-            </ul>
-
-            @if(isset($selectedStudent) && isset($studentLogbooks))
-                <div class="bg-gray-100 p-4 mt-4 border border-gray-300 rounded shadow">
-                    <h2 class="text-2xl font-bold mb-4">{{ $selectedStudent->firstname }} {{ $selectedStudent->lastname }}'s Logbook</h2>
-                    <table class="min-w-full divide-y divide-gray-200">
-                        <thead>
-                            <tr>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    <i class="bi bi-card-text"></i> Title
-                                </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    <i class="bi bi-chat-left-text"> Description</i>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        <i class="bi bi-chat-left-text">Created At</i>
-                                    </th>
-
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        <i class="bi bi-check2-circle"></i> Status
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody class="bg-white divide-y divide-gray-200">
-                                @foreach($studentLogbooks as $logbook)
-                                    <tr>
-                                        <td class="px-6 py-4 whitespace-nowrap">{{ $logbook->title }}</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">{{ $logbook->description }}</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">{{ $logbook->created_at }}</td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium leading-4">
-                                                @if ($logbook->status == 'pending')
-                                                    <span class="bg-yellow-100 text-yellow-800"><i class="bi bi-hourglass"></i> Pending</span>
-                                                @elseif ($logbook->status == 'approved')
-                                                    <span class="bg-green-100 text-green-800"><i class="bi bi-check2-circle"></i> Approved</span>
-                                                @else
-                                                    <span class="bg-red-100 text-red-800"><i class="bi bi-x-circle"></i> Rejected</span>
-                                                @endif
-                                            </span>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                @endif
-            </div>
-        </div>
     </div>
 
 
@@ -247,24 +191,19 @@
 document.addEventListener("DOMContentLoaded", function () {
   const studentListLink = document.querySelector("a[href='#student-list']");
   const approvalListLink = document.querySelector("a[href='#approval-list']");
-  const logbookListLink = document.querySelector("a[href='#logbook-list']");
-  const studentListSection = document.querySelector("#student-list");
-  const approvalListSection = document.querySelector("#approval-list");
-  const logbookListSection = document.querySelector("#logbook-list");
+  const studentListSection = document.getElementById("student-list");
+  const approvalListSection = document.getElementById("approval-list");
 
-  // Function to show a section and hide others
   function showSection(section) {
     studentListSection.classList.add('hidden');
     approvalListSection.classList.add('hidden');
-    logbookListSection.classList.add('hidden');
     section.classList.remove('hidden');
   }
 
-  // Show the student list by default
   showSection(studentListSection);
 
   studentListLink.addEventListener("click", function (event) {
-    event.preventDefault(); // Prevent default anchor behavior
+    event.preventDefault();
     showSection(studentListSection);
   });
 
@@ -272,12 +211,6 @@ document.addEventListener("DOMContentLoaded", function () {
     event.preventDefault();
     showSection(approvalListSection);
   });
-
-  // Remove the event listener for the logbook link
-  // logbookListLink.addEventListener("click", function (event) {
-  //   event.preventDefault();
-  //   showSection(logbookListSection);
-  // });
 });
 </script>
 
