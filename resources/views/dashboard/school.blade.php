@@ -36,13 +36,13 @@
                 </a>
             </li>
             <li>
-                <a href="#logbook-list" class="flex items-center text-gray-600 hover:text-gray-900 rounded-md p-2 transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 00-2 2v12a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H9m2 1h4a2 2 0 002 2v1a2 2 0 00-2-2h-4" />
-                    </svg>
-                    Logbook Records
+                <a href="{{ route('logbook.page') }}" class="flex items-center text-gray-600 hover:text-gray-900 rounded-md p-2 transition-colors">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 012-2h2a2 2 0 012 2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                  </svg>
+                  Logbook Records
                 </a>
-            </li>
+              </li>
             <li>
                 <a href="{{ route('student_register.store') }}" class="flex items-center text-gray-600 hover:text-gray-900 rounded-md p-2 transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -204,7 +204,7 @@
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         <i class="bi bi-chat-left-text">Created At</i>
                                     </th>
-                                   
+
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         <i class="bi bi-check2-circle"></i> Status
                                     </th>
@@ -245,60 +245,41 @@
 <script>
 
 document.addEventListener("DOMContentLoaded", function () {
-const studentListLink = document.querySelector("a[href='#student-list']");
- const approvalListLink = document.querySelector("a[href='#approval-list']");
-const logbookListLink = document.querySelector("a[href='#logbook-list']");
-const studentListSection = document.querySelector("#student-list");
- const approvalListSection = document.querySelector("#approval-list");
-const logbookListSection = document.querySelector("#logbook-list");
+  const studentListLink = document.querySelector("a[href='#student-list']");
+  const approvalListLink = document.querySelector("a[href='#approval-list']");
+  const logbookListLink = document.querySelector("a[href='#logbook-list']");
+  const studentListSection = document.querySelector("#student-list");
+  const approvalListSection = document.querySelector("#approval-list");
+  const logbookListSection = document.querySelector("#logbook-list");
 
+  // Function to show a section and hide others
+  function showSection(section) {
+    studentListSection.classList.add('hidden');
+    approvalListSection.classList.add('hidden');
+    logbookListSection.classList.add('hidden');
+    section.classList.remove('hidden');
+  }
 
- // Function to show a section and hide others
-function showSection(section) {
-studentListSection.classList.add('hidden');
-approvalListSection.classList.add('hidden');
-logbookListSection.classList.add('hidden');
-section.classList.remove('hidden'); }
+  // Show the student list by default
+  showSection(studentListSection);
 
+  studentListLink.addEventListener("click", function (event) {
+    event.preventDefault(); // Prevent default anchor behavior
+    showSection(studentListSection);
+  });
 
+  approvalListLink.addEventListener("click", function (event) {
+    event.preventDefault();
+    showSection(approvalListSection);
+  });
 
-            // Show the student list by default
-
-            showSection(studentListSection);
-
-
-
-            studentListLink.addEventListener("click", function (event) {
-
-              event.preventDefault(); // Prevent default anchor behavior
-
-              showSection(studentListSection);
-
-            });
-
-
-
-            approvalListLink.addEventListener("click", function (event) {
-
-              event.preventDefault();
-
-              showSection(approvalListSection);
-
-            });
-
-
-
-            logbookListLink.addEventListener("click", function (event) {
-
-              event.preventDefault();
-
-              showSection(logbookListSection);
-
-            });
-
-          });
-
-        </script>
+  // Remove the event listener for the logbook link
+  // logbookListLink.addEventListener("click", function (event) {
+  //   event.preventDefault();
+  //   showSection(logbookListSection);
+  // });
+});
+</script>
 
 <x-footer>
 

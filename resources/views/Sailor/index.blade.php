@@ -23,29 +23,29 @@
       <div id="hero-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
 
         <div class="carousel-item active">
-            <img src="{{ asset('assets/img/hero-carousel/hero-carousel-1.jpg') }}" alt="">
+            <img src="{{ asset('assets/img/hero-carousel/logbook4.jpeg') }}" alt="">
           <div class="carousel-container">
             <h2>Welcome to Siweslog<br></h2>
             <p>Siweslog is a digital tool that helps students, schools, and companies manage student internships better. It replaces paper logbooks with an easy-to-use online system, making it easier for everyone to track progress and learn.</p>
-            <a href="#featured-services" class="btn-get-started">Get Started</a>
+            <a href="{{ url('/Sailor/register') }}" class="btn-get-started">Get Started</a>
           </div>
         </div><!-- End Carousel Item -->
 
         <div class="carousel-item">
-            <img src="{{ asset('assets/img/hero-carousel/hero-carousel-2.jpg') }}" alt="">
+            <img src="{{ asset('assets/img/hero-carousel/logbook2.jpeg') }}" alt="">
           <div class="carousel-container">
             <h2>Log your Experience</h2>
             <p>Siweslog helps students record their work experience easily, get feedback from supervisors, and learn more effectively. Schools can also use it to monitor students' progress and make informed decisions. It saves time and reduces paperwork..</p>
-            <a href="#featured-services" class="btn-get-started">Get Started</a>
+            <a href="{{ url('/Sailor/register') }}" class="btn-get-started">Get Started</a>
           </div>
         </div><!-- End Carousel Item -->
 
         <div class="carousel-item">
-            <img src="{{ asset('assets/img/hero-carousel/hero-carousel-3.jpg') }}" alt="">
+            <img src="{{ asset('assets/img/hero-carousel/logbook3.jpeg') }}" alt="">
           <div class="carousel-container">
             <h2>Streamlining Siwes Logbook</h2>
             <p>With Siweslog, companies can easily verify students' work, provide guidance, and build strong partnerships with schools. It makes internships more efficient, effective, and beneficial for everyone involved</p>
-            <a href="#featured-services" class="btn-get-started">Get Started</a>
+            <a href="{{ url('/Sailor/register') }}" class="btn-get-started">Get Started</a>
           </div>
         </div><!-- End Carousel Item -->
 
@@ -86,7 +86,7 @@
             <p>
               With our E-Logbook system, students can easily record their work experience, while supervisors can efficiently monitor progress and provide feedback. Institutions can also access detailed reports to evaluate the effectiveness of their SIWES programs.
             </p>
-            <a href="services.html" class="read-more"><span>Learn More</span><i class="bi bi-arrow-right"></i></a>
+            <a href="{{ url('/Sailor/register') }}" class="read-more"><span>Learn More</span><i class="bi bi-arrow-right"></i></a>
           </div>
 
         </div>
@@ -172,7 +172,7 @@
     <!-- /Services Section -->
   </main>
 
- 
+
 
   <!-- Scroll Top -->
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
@@ -185,6 +185,4 @@
 
   </x-footer>
 
-</body>
 
-</html>

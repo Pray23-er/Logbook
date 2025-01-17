@@ -12,6 +12,9 @@ use App\Http\Controllers\CompanyLoginController;
 use App\Http\Controllers\HelpUserController;
 use App\Http\Controllers\StudentFormController;
 use App\Http\Controllers\CompanyFormController;
+use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\AdminRegisterController;
+use App\Http\Controllers\AdminLoginController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -51,6 +54,7 @@ Route::post('/school/calendar', [SchoolController::class, 'storeCalendarEvent'])
 
 
 Route::delete('/school/calendar/{id}', [SchoolController::class, 'deleteCalendarEvent'])->name('school.calendar.delete');
+Route::get('/logbook', [SchoolController::class, 'logbook'])->name('logbook.page');
 
 // Company Routes
 
@@ -81,5 +85,14 @@ Route::post('/logout/company', [CompanyLoginController::class, 'logout'])->name(
     Route::post('/logbook/reject/{id}', [LogbookController::class, 'reject'])->name('logbook.reject');
 
     Route::view('/Sailor/index', 'Sailor.index');
+    Route::view('/Sailor/index2', 'Sailor.index2');
     Route::view('/Sailor/register', 'Sailor.register');
     Route::view('/Sailor/help', 'Sailor.help');
+
+    Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+
+    Route::get('/admin/register', [AdminRegisterController::class, 'showRegistrationForm'])->name('admin.register');
+    Route::post('/admin/register', [AdminRegisterController::class, 'register']);
+    Route::get('/admin/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
+    Route::post('/admin/login', [AdminLoginController::class, 'login']);
+    Route::get('/admin/logout', [AdminLoginController::class, 'logout'])->name('logout.admin');

@@ -93,9 +93,45 @@
                             -
                         @endif
                     </td>
+
+
                     <td class="px-6 py-4">
-                        <img src="{{ $logbook->thumbnail }}" alt="Thumbnail" style="max-width: 100px; max-height: 100px;">
+                        @if($logbook->thumbnail)
+                            @if(pathinfo($logbook->thumbnail, PATHINFO_EXTENSION) == 'jpg' ||
+                                pathinfo($logbook->thumbnail, PATHINFO_EXTENSION) == 'jpeg' ||
+                                pathinfo($logbook->thumbnail, PATHINFO_EXTENSION) == 'png' ||
+                                pathinfo($logbook->thumbnail, PATHINFO_EXTENSION) == 'gif' ||
+                                pathinfo($logbook->thumbnail, PATHINFO_EXTENSION) == 'svg')
+                                <img src="{{ $logbook->thumbnail }}" alt="Thumbnail" style="max-width: 100px; max-height: 100px;">
+                            @else
+                                @if(pathinfo($logbook->thumbnail, PATHINFO_EXTENSION) == 'pdf')
+                                    <a href="{{ $logbook->thumbnail }}" target="_blank">
+                                        <i class="fas fa-file-pdf"></i> View PDF
+                                    </a>
+                                @elseif(pathinfo($logbook->thumbnail, PATHINFO_EXTENSION) == 'docx' || pathinfo($logbook->thumbnail, PATHINFO_EXTENSION) == 'doc')
+                                    <a href="{{ $logbook->thumbnail }}" target="_blank">
+                                        <i class="fas fa-file-word"></i> View Word Document
+                                    </a>
+                                @elseif(pathinfo($logbook->thumbnail, PATHINFO_EXTENSION) == 'pptx' || pathinfo($logbook->thumbnail, PATHINFO_EXTENSION) == 'ppt')
+                                    <a href="{{ $logbook->thumbnail }}" target="_blank">
+                                        <i class="fas fa-file-powerpoint"></i> View PowerPoint Presentation
+                                    </a>
+                                @elseif(pathinfo($logbook->thumbnail, PATHINFO_EXTENSION) == 'xlsx' || pathinfo($logbook->thumbnail, PATHINFO_EXTENSION) == 'xls')
+                                    <a href="{{ $logbook->thumbnail }}" target="_blank">
+                                        <i class="fas fa-file-excel"></i> View Excel Spreadsheet
+                                    </a>
+                                @else
+                                    <a href="{{ $logbook->thumbnail }}" target="_blank">
+                                        <i class="fas fa-file"></i> View File
+                                    </a>
+                                @endif
+                            @endif
+                        @else
+                            <i class="fas fa-times"></i> No thumbnail
+                        @endif
                     </td>
+
+
                 </tr>
             </tbody>
         </table>

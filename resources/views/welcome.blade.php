@@ -23,7 +23,7 @@
       <div id="hero-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
 
         <div class="carousel-item active">
-            <img src="{{ asset('assets/img/hero-carousel/hero-carousel-1.jpg') }}" alt="">
+            <img src="{{ asset('assets/img/hero-carousel/logbook4.jpeg') }}" alt="">
           <div class="carousel-container">
             <h2>Welcome to Siweslog<br></h2>
             <p>Siweslog is a digital tool that helps students, schools, and companies manage student internships better. It replaces paper logbooks with an easy-to-use online system, making it easier for everyone to track progress and learn.</p>
@@ -32,7 +32,7 @@
         </div><!-- End Carousel Item -->
 
         <div class="carousel-item">
-            <img src="{{ asset('assets/img/hero-carousel/hero-carousel-2.jpg') }}" alt="">
+            <img src="{{ asset('assets/img/hero-carousel/logbook2.jpeg') }}" alt="">
           <div class="carousel-container">
             <h2>Log your Experience</h2>
             <p>Siweslog helps students record their work experience easily, get feedback from supervisors, and learn more effectively. Schools can also use it to monitor students' progress and make informed decisions. It saves time and reduces paperwork..</p>
@@ -41,7 +41,7 @@
         </div><!-- End Carousel Item -->
 
         <div class="carousel-item">
-            <img src="{{ asset('assets/img/hero-carousel/hero-carousel-3.jpg') }}" alt="">
+            <img src="{{ asset('assets/img/hero-carousel/logbook3.jpeg') }}" alt="">
           <div class="carousel-container">
             <h2>Streamlining Siwes Logbook</h2>
             <p>With Siweslog, companies can easily verify students' work, provide guidance, and build strong partnerships with schools. It makes internships more efficient, effective, and beneficial for everyone involved</p>

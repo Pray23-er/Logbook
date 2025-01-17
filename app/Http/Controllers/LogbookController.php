@@ -39,7 +39,7 @@ class LogbookController extends Controller
          $validated = $request->validate([
              'title' => ['required', 'min:5', 'max:255'],
              'description' => ['required', 'min:10'],
-             'thumbnail' => ['required', 'image'],
+             'thumbnail' => 'required|mimes:jpeg,png,jpg,gif,svg,pdf,ppt,txt,doc,docx|max:2048',
          ]);
 
          // Retrieve authenticated student's matric number using Student guard
@@ -84,7 +84,7 @@ class LogbookController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|string',
             'description' => 'required|string',
-            'thumbnail' => ['nullable', 'image'],
+          'thumbnail' => 'required|mimes:jpeg,png,jpg,gif,svg,pdf,ppt,txt,doc,docx,xlsx|max:2048',
         ]);
 
         // Check if thumbnail is updated
@@ -134,5 +134,7 @@ public function reject(Request $request, $id)
     $logbook->save();
     return redirect()->back()->with('success', 'Logbook rejected successfully!');
 }
+
+
 
 }

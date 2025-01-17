@@ -41,7 +41,7 @@
             <a href="{{ route('company.view.student') }}" class="text-blue-600 hover:text-blue-800"><i class="bi bi-people"></i> View Student List</a>
           </li>
           <li class="mb-2">
-            <a href="{{ route('forms.create') }}" class="text-blue-600 hover:text-blue-800"><i class="bi bi-plus-lg"></i> Create New Account</a>
+            <a href="{{ route('forms.create') }}" class="text-blue-600 hover:text-blue-800"><i class="bi bi-plus-lg"></i> Add New Student</a>
           </li>
           <li class="mb-2">
             <a href="{{ route('company.password.edit') }}" class="text-blue-600 hover:text-blue-800"><i class="bi bi-lock"></i> Update Password</a>
@@ -118,10 +118,45 @@
                   {{ $logbook->feedback }}
                 @endif
               </td>
-              <td class="px-4 py-2">
-                <img src="{{ $logbook->thumbnail }}" alt="Thumbnail" style="max-width: 100px; max-height: 100px;">
+
+              <td class="px-6 py-4">
+                @if($logbook->thumbnail)
+                    @if(pathinfo($logbook->thumbnail, PATHINFO_EXTENSION) == 'jpg' ||
+                        pathinfo($logbook->thumbnail, PATHINFO_EXTENSION) == 'jpeg' ||
+                        pathinfo($logbook->thumbnail, PATHINFO_EXTENSION) == 'png' ||
+                        pathinfo($logbook->thumbnail, PATHINFO_EXTENSION) == 'gif' ||
+                        pathinfo($logbook->thumbnail, PATHINFO_EXTENSION) == 'svg')
+                        <img src="{{ $logbook->thumbnail }}" alt="Thumbnail" style="max-width: 100px; max-height: 100px;">
+                    @else
+                        @if(pathinfo($logbook->thumbnail, PATHINFO_EXTENSION) == 'pdf')
+                            <a href="{{ $logbook->thumbnail }}" target="_blank">
+                                <i class="fas fa-file-pdf"></i> View PDF
+                            </a>
+                        @elseif(pathinfo($logbook->thumbnail, PATHINFO_EXTENSION) == 'docx' || pathinfo($logbook->thumbnail, PATHINFO_EXTENSION) == 'doc')
+                            <a href="{{ $logbook->thumbnail }}" target="_blank">
+                                <i class="fas fa-file-word"></i> View Word Document
+                            </a>
+                        @elseif(pathinfo($logbook->thumbnail, PATHINFO_EXTENSION) == 'pptx' || pathinfo($logbook->thumbnail, PATHINFO_EXTENSION) == 'ppt')
+                            <a href="{{ $logbook->thumbnail }}" target="_blank">
+                                <i class="fas fa-file-powerpoint"></i> View PowerPoint Presentation
+                            </a>
+                        @elseif(pathinfo($logbook->thumbnail, PATHINFO_EXTENSION) == 'xlsx' || pathinfo($logbook->thumbnail, PATHINFO_EXTENSION) == 'xls')
+                            <a href="{{ $logbook->thumbnail }}" target="_blank">
+                                <i class="fas fa-file-excel"></i> View Excel Spreadsheet
+                            </a>
+                        @else
+                            <a href="{{ $logbook->thumbnail }}" target="_blank">
+                                <i class="fas fa-file"></i> View File
+                            </a>
+                        @endif
+                    @endif
+                @else
+                    <i class="fas fa-times"></i> No thumbnail
+                @endif
             </td>
-            </tr>          @endforeach
+
+            </tr>
+         @endforeach
         </tbody>
       </table>
     </div>

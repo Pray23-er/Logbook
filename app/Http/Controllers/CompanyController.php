@@ -22,16 +22,19 @@ class CompanyController extends Controller
             return redirect()->route('login');
         }
     }
+
     public function profile()
     {
         $company = auth('company')->user();
         return view('profiles.company', compact('company'));
     }
 
+
     public function editPassword()
 {
     return view('profiles.passComp');
 }
+
 
 public function updateStudentPassword(Request $request)
 {
@@ -52,6 +55,7 @@ public function updateStudentPassword(Request $request)
 
     return redirect()->route('company.dashboard')->with('success', 'Password updated successfully');
 }
+
 public function index()
 {
     $company = auth()->guard('company')->user();

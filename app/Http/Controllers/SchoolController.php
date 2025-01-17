@@ -17,33 +17,18 @@ class SchoolController extends Controller
 {
     public function school(Request $request)
     {
-        if (!Auth::guard('school')->check()) {
-            return redirect()->route('school.login');
-        }
+    if (!Auth::guard('school')->check()) {
+        return redirect()->route('school.login');
+    }
 
-        $school = Auth::guard('school')->user();
-        $school->load('students');
+    $school = Auth::guard('school')->user();
+    $school->load('students');
 
-        $matricNumber = $request->query('matric_number');
-
-        if ($matricNumber) {
-            $selectedStudent = Student::where('matric_number', $matricNumber)->first();
-            $studentLogbooks = $selectedStudent->logbooks;
-
-            return view('dashboard.school', [
-                'company_forms' => company_form::whereIn('matric_number', $school->students->pluck('matric_number'))->get(),
-                'registeredStudents' => $school->students,
-                'authenticatedSchool' => $school,
-                'selectedStudent' => $selectedStudent,
-                'studentLogbooks' => $studentLogbooks
-            ]);
-        }
-
-        return view('dashboard.school', [
-            'company_forms' => company_form::whereIn('matric_number', $school->students->pluck('matric_number'))->get(),
-            'registeredStudents' => $school->students,
-            'authenticatedSchool' => $school
-        ]);
+    return view('dashboard.school', [
+        'company_forms' => company_form::whereIn('matric_number', $school->students->pluck('matric_number'))->get(),
+        'registeredStudents' => $school->students,
+        'authenticatedSchool' => $school
+    ]);
     }
 
 
@@ -86,6 +71,21 @@ class SchoolController extends Controller
         $event->delete();
 
         return redirect()->route('school.calendar');
+    }
+
+    public function logbook(Request $request)
+    {
+      $registeredStudents = Student::where('school_id', Auth::guard('school')->user()->id)->get();
+      $matricNumber = $request->query('matric_number');
+      $selectedStudent = null;
+      $studentLogbooks = null;
+
+      if ($matricNumber) {
+        $selectedStudent = Student::where('matric_number', $matricNumber)->first();
+        $studentLogbooks = $selectedStudent->logbooks;
+      }
+
+      return view('auth.logbook', compact('registeredStudents', 'selectedStudent', 'studentLogbooks'));
     }
 }
 

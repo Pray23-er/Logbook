@@ -56,9 +56,22 @@
             </button>
         </form>
     </li>
+    @elseif(Auth::guard('admin')->check())
+    <li>
+        <form action="{{ route('logout.admin') }}" method="GET">
+            @csrf
+            <button type="submit" class="text-sm text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 flex items-center space-x-1">
+                <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
+                    <path d="M9.707 16.707a1 1 0 01-1.414-1.414L12.636 10.5a1 1 0 011.414 1.414l-3.354 3.354z" clip-rule="evenodd" />
+                </svg>
+                <span>Logout</span>
+            </button>
+        </form>
+    </li>
     @else
-    <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">Login</a>
+    <li class="nav-item dropdown d-flex align-items-center">
+        <li class="dropdown"><a href="#"><span>Login</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
         <ul class="dropdown-menu">
             <li><a href="{{ route('school.login') }}">School</a></li>
             <li><a href="{{ route('company.login') }}">Company</a></li>
@@ -75,4 +88,6 @@
 
     </div>
 </header>
+
 {{ $slot }}
+

@@ -1,4 +1,12 @@
-<x-layout>
+<x-head>
+
+</x-head>
+
+<x-header>
+
+</x-header>
+
+@vite('resources/css/app.css')
     <div class="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 px-4 py-16">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-12">
@@ -66,4 +74,6 @@
             </div>
         </div>
     </div>
-</x-layout>
+    <x-footer>
+
+    </x-footer>
