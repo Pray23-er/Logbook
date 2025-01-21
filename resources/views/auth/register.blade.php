@@ -1,110 +1,77 @@
-<x-layout>
-    <div class="min-h-screen bg-slate-50 dark:bg-gray-900 py-12 px-4 sm:px-6">
-        <div class="max-w-2xl mx-auto">
-            <div class="text-center mb-8">
-                <h1 class="text-3xl font-bold text-slate-800 dark:text-white">Register your Account</h1>
-                <p class="mt-2 text-slate-600 dark:text-slate-400">Create a new account to get started</p>
-            </div>
+<!DOCTYPE html>
+<html lang="en">
 
-            <div class="bg-white dark:bg-slate-800 shadow-sm rounded-xl p-8 border border-slate-200 dark:border-slate-700">
-                <form method="POST" action="{{ route('register.store') }}" class="space-y-6">
+<x-head>
+
+</x-head>
+
+<body class="contact-page">
+
+    <x-header>
+
+    </x-header>
+    <div class="container d-flex justify-content-center my-5">
+        <div class="card bg-light shadow-sm" style="width: 30rem;">
+            <div class="card-body">
+                <h2 class="text-center mb-4">Register your Account</h2>
+                <p class="text-center text-muted mb-4">Create a new account to get started</p>
+
+                <form method="POST" action="{{ route('register.store') }}">
                     @csrf
 
                     <!-- Name Field -->
-                    <div>
-                        <label for="name" class="block text-sm font-medium text-slate-700 dark:text-slate-200">
-                            Name
-                        </label>
-                        <input
-                            type="text"
-                            id="name"
-                            name="name"
-                            class="mt-1 block w-full px-4 py-2 rounded-lg border @error('name') border-red-500 @else border-slate-300 dark:border-slate-600 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                            placeholder="Enter your full name"
-                        >
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="Enter your full name">
                         @error('name')
-                            <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
+                            <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <!-- Email Field -->
-                    <div>
-                        <label for="email" class="block text-sm font-medium text-slate-700 dark:text-slate-200">
-                            Email
-                        </label>
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            class="mt-1 block w-full px-4 py-2 rounded-lg border @error('email') border-red-500 @else border-slate-300 dark:border-slate-600 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                            placeholder="Enter your email address"
-                        >
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="Enter your email address">
                         @error('email')
-                            <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
+                            <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <!-- Password Field -->
-                    <div>
-                        <label for="password" class="block text-sm font-medium text-slate-700 dark:text-slate-200">
-                            Password
-                        </label>
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            class="mt-1 block w-full px-4 py-2 rounded-lg border @error('password') border-red-500 @else border-slate-300 dark:border-slate-600 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                            placeholder="Create a strong password"
-                        >
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" placeholder="Create a strong password">
                         @error('password')
-                            <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
+                            <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <!-- Password Confirmation Field -->
-                    <div>
-                        <label for="password_confirmation" class="block text-sm font-medium text-slate-700 dark:text-slate-200">
-                            Confirm Password
-                        </label>
-                        <input
-                            type="password"
-                            id="password_confirmation"
-                            name="password_confirmation"
-                            class="mt-1 block w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                            placeholder="Confirm your password"
-                        >
+                    <div class="mb-3">
+                        <label for="password_confirmation" class="form-label">Confirm Password</label>
+                        <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Confirm your password">
                     </div>
 
                     <!-- Account Type Selection -->
-                    <div>
-                        <label for="type" class="block text-sm font-medium text-slate-700 dark:text-slate-200">
-                            Account Type
-                        </label>
-                        <select
-                            id="type"
-                            name="type"
-                            class="mt-1 block w-full px-4 py-2 rounded-lg border @error('type') border-red-500 @else border-slate-300 dark:border-slate-600 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        >
+                    <div class="mb-3">
+                        <label for="type" class="form-label">Account Type</label>
+                        <select class="form-select @error('type') is-invalid @enderror" id="type" name="type">
                             <option value="">Select account type</option>
                             <option value="school">School</option>
                             <option value="company">Company</option>
                         </select>
                         @error('type')
-                            <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
+                            <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <!-- Submit Button -->
-                    <div class="pt-4">
-                        <button
-                            type="submit"
-                            class="w-full px-4 py-3 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-slate-800"
-                        >
-                            Create Account
-                        </button>
-                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Create Account</button>
                 </form>
             </div>
         </div>
     </div>
-</x-layout>
+
+    <x-footer>
+
+    </x-footer>

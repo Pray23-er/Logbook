@@ -46,6 +46,16 @@
                   </div>
 
 
+                  <!-- Email Field -->
+                  <div class="form-group mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" id="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Enter your email">
+                    @error('email')
+                      <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                  </div>
+
+
                   <!-- Password Field -->
                   <div class="form-group mb-3">
                     <label for="password" class="form-label">Password</label>

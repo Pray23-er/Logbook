@@ -1,7 +1,7 @@
 <header id="header" class="header d-flex align-items-center sticky-top border-0 shadow-bottom">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
-        <a href="{{ url('/Sailor/index') }}" class="logo d-flex align-items-center me-auto">
+        <a href="/" class="logo d-flex align-items-center me-auto">
             <!-- Uncomment the line below if you also wish to use an image logo -->
             <!-- <img src="assets/img/logo.png" alt=""> -->
             <h1 class="sitename">Siweslog</h1>
@@ -10,7 +10,7 @@
         <nav id="navmenu" class="navmenu">
             <ul>
                 <li>
-                    <a href="{{ url('/Sailor/index') }}" class="{{ request()->is('Sailor/index') ? 'active' : '' }}">Home</a>
+                    <a href="/" class="{{ request()->is('Sailor/index') ? 'active' : '' }}">Home</a>
                 </li>
 
                 <li>
@@ -79,7 +79,7 @@
         </ul>
     </li>
     <li>
-        <a href="{{ url('/Sailor/register') }}" class="{{ request()->is('register') ? 'active' : '' }}">Register</a>
+        <a href="{{ route("register.store") }}" class="{{ request()->is('register') ? 'active' : '' }}">Register</a>
     </li>
 @endauth
             </ul>

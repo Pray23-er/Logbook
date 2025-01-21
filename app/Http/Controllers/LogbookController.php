@@ -37,8 +37,8 @@ class LogbookController extends Controller
      public function store(Request $request)
      {
          $validated = $request->validate([
-             'title' => ['required', 'min:5', 'max:255'],
-             'description' => ['required', 'min:10'],
+             'title' => ['required', 'min:3', 'max:255'],
+             'description' => ['required', 'min:5'],
              'thumbnail' => 'required|mimes:jpeg,png,jpg,gif,svg,pdf,ppt,txt,doc,docx|max:2048',
          ]);
 

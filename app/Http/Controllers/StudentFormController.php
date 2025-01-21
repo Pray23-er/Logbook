@@ -34,9 +34,9 @@ return view('forms.create');
         //
 
         $validated = $request->validate([
-            'firstname' => ['required','min:5', 'max:255'],
-            'lastname' => ['required','min:5', 'max:255'],
-            'matric_number' => ['required','min:5', 'max:255'],
+            'firstname' => ['required','min:3', 'max:255'],
+            'lastname' => ['required','min:3', 'max:255'],
+            'matric_number' => ['required','min:3', 'max:255'],
 
             'school_name'=> ['required','min:10','max:255'],
             'phone_number'=> ['required','min:11','max:25'],
