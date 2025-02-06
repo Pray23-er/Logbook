@@ -47,7 +47,7 @@
             <div class="service-item d-flex position-relative h-100">
               <i class="bi bi-lock icon flex-shrink-0"></i>
               <div>
-                <h4 class="title"><a href="#" class="stretched-link">Account Security and Privacy</a></h4>
+                <h4 class="title"><a href="{{ route('help') }}" class="stretched-link">Account Security and Privacy</a></h4>
                 <p class="description">Understand how we protect your personal data, and learn tips on how to keep your account secure and prevent unauthorized access.</p>
               </div>
             </div>
@@ -67,7 +67,7 @@
             <div class="service-item d-flex position-relative h-100">
               <i class="bi bi-chat-left-text icon flex-shrink-0"></i>
               <div>
-                <h4 class="title"><a href="#" class="stretched-link">Communication and Collaboration</a></h4>
+                <h4 class="title"><a href="{{ route('help') }}" class="stretched-link">Communication and Collaboration</a></h4>
                 <p class="description">Discover how to effectively communicate with supervisors, administrators, and peers, and learn about collaboration tools within the E-Logbook system.</p>
               </div>
             </div>
@@ -77,7 +77,7 @@
             <div class="service-item d-flex position-relative h-100">
               <i class="bi bi-gear-wide-connected icon flex-shrink-0"></i>
               <div>
-                <h4 class="title"><a href="#" class="stretched-link">Customizing Your E-Logbook Experience</a></h4>
+                <h4 class="title"><a href="{{ route('help') }}" class="stretched-link">Customizing Your E-Logbook Experience</a></h4>
                 <p class="description">Learn how to personalize your E-Logbook dashboard, set reminders and notifications, and customize your logbook templates.</p>
               </div>
             </div>
@@ -87,7 +87,7 @@
             <div class="service-item d-flex position-relative h-100">
               <i class="bi bi-headset icon flex-shrink-0"></i>
               <div>
-                <h4 class="title"><a href="#" class="stretched-link">Technical Support and Troubleshooting</a></h4>
+                <h4 class="title"><a href="{{ route('help') }}" class="stretched-link">Technical Support and Troubleshooting</a></h4>
                 <p class="description">Find solutions to common technical issues, learn how to contact our support team, and get troubleshooting tips for resolving errors.</p>
               </div>
             </div>
