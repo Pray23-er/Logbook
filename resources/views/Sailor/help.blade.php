@@ -37,7 +37,7 @@
             <div class="service-item d-flex position-relative h-100">
               <i class="bi bi-question-circle icon flex-shrink-0"></i>
               <div>
-                <h4 class="title"><a href="#" class="stretched-link">Getting Started with E-Logbook</a></h4>
+                <h4 class="title"><a href="{{ route('help') }}" class="stretched-link">Getting Started with E-Logbook</a></h4>
                 <p class="description">Learn how to create an account, set up your profile, and start using the E-Logbook system for students, schools, and companies.</p>
               </div>
             </div>
@@ -57,7 +57,7 @@
             <div class="service-item d-flex position-relative h-100">
               <i class="bi bi-file-earmark-text icon flex-shrink-0"></i>
               <div>
-                <h4 class="title"><a href="#" class="stretched-link">Submitting and Approving Logbooks</a></h4>
+                <h4 class="title"><a href="{{ route('help') }}" class="stretched-link">Submitting and Approving Logbooks</a></h4>
                 <p class="description">Find out how to submit logbooks, track progress, and approve or reject submissions as a supervisor or administrator.</p>
               </div>
             </div>

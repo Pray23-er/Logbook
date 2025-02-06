@@ -38,7 +38,7 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>Matric Number</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th>School ID</th>
@@ -63,7 +63,7 @@
                                     <td>{{ $student->level }}</td>
                                     <td>{{ $student->year }}</td>
                                     <td>{{ $student->email }}</td>
-                                    <td>{{ $student->course }}</td>
+                                    <td>{{ $student->course_of_study }}</td>
                                     <td>{{ $student->department }}</td>
                                 </tr>
                             @endforeach

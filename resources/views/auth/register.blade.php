@@ -26,6 +26,8 @@
                         @error('name')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
+                        <p class="text-center text-green" style="font-size: 12px; color: green;">Required : Company or School name</p>
+
                     </div>
 
                     <!-- Email Field -->
@@ -44,6 +46,7 @@
                         @error('password')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
+                        <p class="text-center text-green" style="font-size: 12px; color: green;">Required : Minimum 8 characters, at least 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character</p>
                     </div>
 
                     <!-- Password Confirmation Field -->

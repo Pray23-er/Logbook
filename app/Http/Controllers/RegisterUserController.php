@@ -15,20 +15,29 @@ class RegisterUserController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => ['required','min:5', 'max:255','string'],
-            'email'=> 'required|email|unique:users',
-            'password' => ['required', 'min:8', 'confirmed'],
-            'type'=>'required',
+            'name' => ['required', 'min:5', 'max:255', 'string'],
+            'email' => 'required|email|unique:users',
+            'password' => [
+                'required',
+                'min:8',
+                'confirmed',
+                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/'
+            ],
+            'type' => 'required',
         ]);
 
-        if($validated['type'] =='school'){
+        if($validated['type'] =='school')
+        {
             $school = School::create([
                 'name' => $request->name,
                 'email'=> $request->email,
                 'password'=> bcrypt($request->password),
             ]);
             return to_route('school.login');
-        } elseif($validated['type'] =='company'){
+        }
+
+        elseif($validated['type'] =='company')
+        {
             $company = Company::create([
                 'name' => $request->name,
                 'email'=> $request->email,

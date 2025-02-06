@@ -12,13 +12,16 @@ class CompanyController extends Controller
 {
     public function company()
     {
-        if (auth()->guard('company')->check()) {
+        if (auth()->guard('company')->check())
+        {
             $company = auth()->guard('company')->user();
             $company->load('logbooks', 'students');
             $logbooks = $company->logbooks;
 
             return view('dashboard.company', compact('company'));
-        } else {
+        }
+        else
+        {
             return redirect()->route('login');
         }
     }
@@ -31,13 +34,13 @@ class CompanyController extends Controller
 
 
     public function editPassword()
-{
+    {
     return view('profiles.passComp');
-}
+    }
 
 
-public function updateStudentPassword(Request $request)
-{
+    public function updateStudentPassword(Request $request)
+    {
     $request->validate([
         'current_password' => 'required',
         'password' => 'required|confirmed',
@@ -54,14 +57,14 @@ public function updateStudentPassword(Request $request)
     $company->save();
 
     return redirect()->route('company.dashboard')->with('success', 'Password updated successfully');
-}
+    }
 
-public function index()
-{
+    public function index()
+    {
     $company = auth()->guard('company')->user();
     $student_forms = $company->student_forms;
 
     return view('profiles.companyViewStudent', compact('student_forms'));
-}
+    }
 
 }

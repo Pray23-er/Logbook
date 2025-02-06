@@ -15,6 +15,8 @@ use App\Http\Controllers\CompanyFormController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminRegisterController;
 use App\Http\Controllers\AdminLoginController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\ResetPasswordController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +35,7 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'welcome');
 Route::get('/help', [HelpUserController::class, 'help'])->name('help');
 Route::get('/login', [loginController::class, 'login'])->name('login');
+
 Route::get('/register', [RegisterUserController::class, 'register'])->name('register');
 Route::post('/register', [RegisterUserController::class, 'store'])->name('register.store');
 Route::get('/studentRegister', [StudentController::class, 'register'])->name('student_register');
@@ -46,42 +49,57 @@ Route::post('/loginC', [CompanyLoginController::class, 'store'])->name('company.
 
 // School Routes
 
-
     Route::get('/school', [SchoolController::class, 'school'])->name('school.dashboard');
+
     Route::get('/school/calendar', [SchoolController::class, 'calendar'])->name('school.calendar');
 
-Route::post('/school/calendar', [SchoolController::class, 'storeCalendarEvent'])->name('school.calendar.store');
+    Route::post('/school/calendar', [SchoolController::class, 'storeCalendarEvent'])->name('school.calendar.store');
 
 
-Route::delete('/school/calendar/{id}', [SchoolController::class, 'deleteCalendarEvent'])->name('school.calendar.delete');
-Route::get('/logbook', [SchoolController::class, 'logbook'])->name('logbook.page');
+    Route::delete('/school/calendar/{id}', [SchoolController::class, 'deleteCalendarEvent'])->name('school.calendar.delete');
+
+    Route::get('/logbook', [SchoolController::class, 'logbook'])->name('logbook.page');
 
 // Company Routes
 
-
     Route::get('/company', [CompanyController::class, 'company'])->name('company.dashboard');
+
     Route::get('/profiles/company', [CompanyController::class, 'profile'])->name('profiles.company');
+
     Route::get('/profiles/passComp/edit', [CompanyController::class, 'editPassword'])->name('company.password.edit');
+
     Route::patch('/profiles/passComp', [CompanyController::class, 'updateStudentPassword'])->name('company.password.update');
+
     Route::get('/profiles/companyViewStudent', [CompanyController::class, 'index'])->name('company.view.student');
 
+    Route::post('/logout/student', [StudentLoginController::class, 'logout'])->name('logout.student');
 
-Route::post('/logout/student', [StudentLoginController::class, 'logout'])->name('logout.student');
-Route::post('/logout/school', [SchoolLoginController::class, 'logout'])->name('logout.school');
-Route::post('/logout/company', [CompanyLoginController::class, 'logout'])->name('logout.company');
+    Route::post('/logout/school', [SchoolLoginController::class, 'logout'])->name('logout.school');
+
+    Route::post('/logout/company', [CompanyLoginController::class, 'logout'])->name('logout.company');
+
 // Student Routes
 
-
     Route::get('/student', [StudentController::class, 'index'])->name('student.dashboard');
+
     Route::get('/profiles/student', [StudentController::class, 'profile'])->name('profiles.student');
+
     Route::get('/profiles/password/edit', [StudentController::class, 'editPassword'])->name('student.password.edit');
+
     Route::patch('/profiles/password', [StudentController::class, 'updateStudentPassword'])->name('student.password.update');
+
     Route::resource('/records', LogbookController::class);
+
     Route::resource('/forms', StudentFormController::class);
+
     Route::resource('/companyform', CompanyFormController::class);
+
     Route::get('/forms/approve/{id}', [CompanyFormController::class, 'approve'])->name('form.approve');
+
     Route::get('/forms/reject/{id}', [CompanyFormController::class, 'reject'])->name('form.reject');
+
     Route::post('/logbook/approve/{id}', [LogbookController::class, 'approve'])->name('logbook.approve');
+
     Route::post('/logbook/reject/{id}', [LogbookController::class, 'reject'])->name('logbook.reject');
 
     Route::view('/Sailor/index', 'Sailor.index');
@@ -96,3 +114,11 @@ Route::post('/logout/company', [CompanyLoginController::class, 'logout'])->name(
     Route::get('/admin/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
     Route::post('/admin/login', [AdminLoginController::class, 'login']);
     Route::get('/admin/logout', [AdminLoginController::class, 'logout'])->name('logout.admin');
+
+    Route::get('forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+
+    Route::post('forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+
+    Route::get('reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+
+    Route::post('reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
