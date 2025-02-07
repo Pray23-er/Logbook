@@ -43,7 +43,7 @@ class CompanyLoginController extends Controller
     Auth::guard('school')->logout(); // Use the 'school' guard
     $request->session()->invalidate();
     $request->session()->regenerateToken();
-    return redirect('/');
+    return redirect('/loginC');
 }
 
 

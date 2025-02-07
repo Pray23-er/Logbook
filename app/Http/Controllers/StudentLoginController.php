@@ -49,6 +49,6 @@ public function logout(Request $request)
     $request->session()->invalidate();
     $request->session()->regenerateToken();
 
-    return redirect('/'); // Redirect to the root URL instead of returning a view
+    return redirect('/student-login'); // Redirect to the root URL instead of returning a view
 }
 }

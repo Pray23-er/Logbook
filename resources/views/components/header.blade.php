@@ -71,7 +71,7 @@
     </li>
     @else
     <li class="nav-item dropdown d-flex align-items-center">
-        <li class="dropdown"><a href="#"><span>Login</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+        <li class="dropdown"><a href="{{ route('login') }}"><span>Login</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
         <ul class="dropdown-menu">
             <li><a href="{{ route('school.login') }}">School</a></li>
             <li><a href="{{ route('company.login') }}">Company</a></li>

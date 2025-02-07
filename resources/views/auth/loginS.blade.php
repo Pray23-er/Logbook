@@ -1,8 +1,17 @@
+<x-head>
+
+</x-head>
+
+
+
+    <x-header>
+
+    </x-header>
 @vite('resources/css/app.css')
 <div class="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 py-16 flex items-center justify-center">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row justify-center">
         <div class="w-full md:w-1/2 xl:w-1/2 2xl:w-1/2 mb-8 md:mb-0 md:mr-8">
-            <img src="{{ asset('images/school login.jpeg') }}" alt="School Login Image" class="w-full h-full object-cover rounded-2xl">
+            <img src="{{ asset('images/newschool.jpeg') }}" alt="School Login Image" class="w-full h-full object-cover rounded-2xl">
         </div>
         <div class="w-full md:w-1/2 xl:w-1/2 2xl:w-1/2 bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-8 border border-slate-200 dark:border-slate-700">
             <div class="text-center mb-8">
@@ -65,3 +74,6 @@
         </div>
     </div>
 </div>
+<x-footer>
+
+</x-footer>
