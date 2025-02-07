@@ -122,3 +122,13 @@ Route::post('/loginC', [CompanyLoginController::class, 'store'])->name('company.
     Route::get('reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 
     Route::post('reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
+
+    // routes/web.php
+
+    Route::get('/verify-email/{token}/{email}', [RegisterUserController::class, 'verifyEmail'])->name('verify.email');
+
+    // routes/web.php
+
+    Route::get('/register/success', function () {
+    return view('auth.register-success');
+    })->name('register.success');

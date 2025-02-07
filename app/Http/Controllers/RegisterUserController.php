@@ -1,9 +1,12 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Models\School;
 use App\Models\Company;
+use Illuminate\Support\Facades\Mail;
 
 class RegisterUserController extends Controller
 {
@@ -32,8 +35,9 @@ class RegisterUserController extends Controller
                 'name' => $request->name,
                 'email'=> $request->email,
                 'password'=> bcrypt($request->password),
+                'email_verified_at' => now(), // automatically verify the email address
             ]);
-            return to_route('school.login');
+            return redirect()->route('register.success');
         }
 
         elseif($validated['type'] =='company')
@@ -42,9 +46,11 @@ class RegisterUserController extends Controller
                 'name' => $request->name,
                 'email'=> $request->email,
                 'password'=> bcrypt($request->password),
+                'email_verified_at' => now(), // automatically verify the email address
             ]);
-            return to_route('company.login');
+            return redirect()->route('register.success');
         }
     }
-}
 
+
+}

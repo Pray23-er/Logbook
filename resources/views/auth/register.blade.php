@@ -18,7 +18,7 @@
 
                 <form method="POST" action="{{ route('register.store') }}">
                     @csrf
-
+                    @method('post')
                     <!-- Name Field -->
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
