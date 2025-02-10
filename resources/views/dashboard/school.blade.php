@@ -104,6 +104,13 @@
                                 <td class="px-6 py-4 whitespace-nowrap">{{ $student->year }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap">{{ $student->email }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap">{{ $student->phone_number }}</td>
+                                <td class="px-4 py-2">
+                                    <form action="{{ route('student.destroy', $student) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="text-red-600 hover:text-red-900"><i class="bi bi-trash"></i> Delete</button>
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

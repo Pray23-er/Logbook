@@ -77,9 +77,18 @@ return view('forms.create');
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Student_form $student_form)
+    public function delete($id)
     {
-        //
+        $student = Student::findOrfail($id);
+
+        // Delete related records in company_forms table
+        $student->company_forms()->delete();
+
+        // Delete student record
+        $student->delete();
+
+        // Redirect with success message
+        return redirect()->route('school.dashboard');
     }
 
 

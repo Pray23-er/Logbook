@@ -23,6 +23,7 @@
                         <th class="px-4 py-2 text-lg">School Name</th>
                         <th class="px-4 py-2 text-lg">Phone Number</th>
                         <th class="px-4 py-2 text-lg">Address</th>
+                        <th class="px-4 py-2 text-lg">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,6 +35,14 @@
                             <td class="px-4 py-2">{{ $student_form->school_name }}</td>
                             <td class="px-4 py-2">{{ $student_form->phone_number }}</td>
                             <td class="px-4 py-2">{{ $student_form->address }}</td>
+                            <td class="px-4 py-2">
+                                <form action="{{ route('forms.destroy', $student_form->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="text-red-600 hover:text-red-900"><i class="bi bi-trash"></i> Delete</button>
+                                </form>
+
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

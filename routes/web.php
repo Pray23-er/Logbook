@@ -80,13 +80,16 @@ Route::post('/loginC', [CompanyLoginController::class, 'store'])->name('company.
 
 // Student Routes
 
-    Route::get('/student', [StudentController::class, 'index'])->name('student.dashboard');
+Route::delete('/students/destroy/{student}', [StudentController::class, 'delete'])->name('student.destroy');
 
     Route::get('/profiles/student', [StudentController::class, 'profile'])->name('profiles.student');
 
     Route::get('/profiles/password/edit', [StudentController::class, 'editPassword'])->name('student.password.edit');
 
     Route::patch('/profiles/password', [StudentController::class, 'updateStudentPassword'])->name('student.password.update');
+
+    Route::get('/student', [StudentController::class, 'index'])->name('student.dashboard');
+
 
     Route::resource('/records', LogbookController::class);
 
@@ -115,13 +118,13 @@ Route::post('/loginC', [CompanyLoginController::class, 'store'])->name('company.
     Route::post('/admin/login', [AdminLoginController::class, 'login']);
     Route::get('/admin/logout', [AdminLoginController::class, 'logout'])->name('logout.admin');
 
-    Route::get('forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+    // Route::get('forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
 
-    Route::post('forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+    // Route::post('forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
 
-    Route::get('reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+    // Route::get('reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 
-    Route::post('reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
+    // Route::post('reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
 
     // routes/web.php
 

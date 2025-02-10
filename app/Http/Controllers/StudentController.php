@@ -51,7 +51,7 @@ class StudentController extends Controller
     }
 
 
-    
+
 
     public function store(Request $request)
 {
@@ -105,5 +105,15 @@ class StudentController extends Controller
     {
         $student = auth('student')->user();
         return view('profiles.student', compact('student'));
+    }
+
+    public function delete($id){
+        $student = Student::findOrfail($id);
+
+        // Delete logbook record
+        $student->delete();
+
+        // Redirect with success message
+        return redirect()->route('school.dashboard');
     }
 }
