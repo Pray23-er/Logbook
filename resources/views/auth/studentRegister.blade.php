@@ -1,271 +1,123 @@
+<x-head>
+</x-head>
 
-    <x-head>
+<x-header>
+</x-header>
 
-    </x-head>
+<!DOCTYPE html>
+<html lang="en">
 
-    <x-header>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    </x-header>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #f0f0f0, #e0e0e0); /* Light gradient background */
+        }
 
-    @vite('resources/css/app.css')
-    <div class="container mx-auto p-4 pt-6 bg-gray-200 dark:bg-gray-800 rounded-lg shadow-md">
-    <div class="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 py-16">
-        <div class="max-w-md mx-auto px-4 sm:px-6">
-            <div class="text-center mb-8">
-                <h1 class="text-3xl font-bold text-slate-800 dark:text-white">Student Registration</h1>
-                <p class="mt-2 text-slate-600 dark:text-slate-400">Please fill in your details to register.</p>
-            </div>
+        .card {
+            border: none; /* Remove default border */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+        }
 
-            @if ($errors->any())
-                <div class="mb-4">
-                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                        <span class="block sm:inline">Please fix the following errors:</span>
-                        <ul class="mt-3 list-disc list-inside text-sm text-red-600">
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
+        .card-header {
+            background-color: #007bff; /* Blue header */
+            color: white;
+        }
+
+        .form-label {
+            font-weight: 500; /* Slightly bolder labels */
+        }
+
+        .btn-primary {
+            background-color: #007bff; /* Blue button */
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0069d9;
+            border-color: #0062cc;
+        }
+
+        .alert-danger {
+            background-color: #f8d7da; /* Light red background for errors */
+            color: #842029;
+            border-color: #f5c2c7;
+        }
+
+        .invalid-feedback {
+            color: #dc3545; /* Red color for invalid feedback */
+        }
+    </style>
+</head>
+
+<body class="min-vh-100">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h1 class="h3 fw-bold">Student Registration</h1>
+                        <p class="mt-2">Please fill in your details to register.</p>
+                    </div>
+                    <div class="card-body">
+
+                        @if ($errors->any())
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <ul class="mb-0">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                        @endif
+
+                        <form method="POST" action="{{ route('student_register.store') }}" class="space-y-3"
+                            enctype="multipart/form-data">
+                            @csrf
+
+                            @include('components.form-input', ['label' => 'First Name', 'name' => 'firstname', 'type' => 'text'])
+                            @include('components.form-input', ['label' => 'Last Name', 'name' => 'lastname', 'type' => 'text'])
+                            @include('components.form-input', ['label' => 'Email', 'name' => 'email', 'type' => 'email'])
+                            @include('components.form-input', ['label' => 'Matric Number', 'name' => 'matric_number', 'type' => 'text'])
+                            @include('components.form-input', ['label' => 'Year', 'name' => 'year', 'type' => 'text'])
+                            @include('components.form-input', ['label' => 'Level', 'name' => 'level', 'type' => 'text'])
+                            @include('components.form-input', ['label' => 'Course of Study', 'name' => 'course_of_study', 'type' => 'text'])
+                            @include('components.form-input', ['label' => 'Phone Number', 'name' => 'phone_number', 'type' => 'text'])
+                            @include('components.form-input', ['label' => 'Password', 'name' => 'password', 'type' => 'password'])
+                            @include('components.form-input', ['label' => 'Confirm Password', 'name' => 'password_confirmation', 'type' => 'password'])
+
+                            <div class="mb-3">
+                                <label for="image" class="form-label">Profile Picture</label>
+                                <input type="file" id="image" name="image" class="form-control @error('image') is-invalid @enderror">
+                                @error('image')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <button type="submit" class="w-100 btn btn-primary">Register</button>
+                        </form>
                     </div>
                 </div>
-            @endif
-
-            <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-8 border border-slate-200 dark:border-slate-700">
-                <form method="POST" action="{{ route('student_register.store') }}" class="space-y-6" enctype="multipart/form-data">
-                    @csrf
-
-                    <!-- Input fields here -->
-
-                    <form method="POST" action="{{ route('student_register.store') }}" class="space-y-6" enctype="multipart/form-data">
-                        @csrf
-
-                        <div class="space-y-2">
-                            <label for="firstname" class="block text-sm font-medium text-slate-700 dark:text-slate-200">
-                                First Name
-                            </label>
-                            <input
-                                type="text"
-                                id="firstname"
-                                name="firstname"
-                                class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600
-                                       focus:ring-2 focus:ring-blue-500 focus:border-transparent
-                                       dark:bg-slate-700 dark:text-white placeholder-slate-400
-                                       @error('firstname') border-red-500 @enderror"
-                                placeholder="Enter your first name"
-                            >
-                            @error('firstname')
-                                <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
-                            @enderror
-                        </div>
-
-                        <div class="space-y-2">
-                            <label for="lastname" class="block text-sm font-medium text-slate-700 dark:text-slate-200">
-                                Last Name
-                            </label>
-                            <input
-                                type="text"
-                                id="lastname"
-                                name="lastname"
-                                class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600
-                                       focus:ring-2 focus:ring-blue-500 focus:border-transparent
-                                       dark:bg-slate-700 dark:text-white placeholder-slate-400
-                                       @error('lastname') border-red-500 @enderror"
-                                placeholder="Enter your last name"
-                            >
-                            @error('lastname')
-                                <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
-                            @enderror
-                        </div>
-
-                        <div class="space-y-2">
-                            <label for="email" class="block text-sm font-medium text-slate-700 dark:text-slate-200">
-                                Email
-                            </label>
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600
-                                       focus:ring-2 focus:ring-blue-500 focus:border-transparent
-                                       dark:bg-slate-700 dark:text-white placeholder-slate-400
-                                       @error('email') border-red-500 @enderror"
-                                placeholder="Enter your email"
-                            >
-                            @error('email')
-                                <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
-                            @enderror
-                        </div>
-
-                        <div class="space-y-2">
-                            <label for="matric_number" class="block text-sm font-medium text-slate-700 dark:text-slate-200">
-                                Matric Number
-                            </label>
-                            <input
-                                type="text"
-                                id="matric_number"
-                                name="matric_number"
-                                class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600
-                                       focus:ring-2 focus:ring-blue-500 focus:border-transparent
-                                       dark:bg-slate-700 dark:text-white placeholder-slate-400
-                                       @error('matric_number') border-red-500 @enderror"
-                                placeholder="Enter your matric number"
-                            >
-                            @error('matric_number')
-                                <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
-                            @enderror
-                        </div>
-
-                        <div class="space-y-2">
-                            <label for="year" class="block text-sm font-medium text-slate-700 dark:text-slate-200">
-                                Year
-                            </label>
-                            <input
-                                type="text"
-                                id="year"
-                                name="year"
-                                class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600
-                                                                     focus:ring-2 focus:ring-blue-500 focus:border-transparent
-                                   dark:bg-slate-700 dark:text-white placeholder-slate-400
-                                   @error('year') border-red-500 @enderror"
-                            placeholder="Enter your year"
-                        >
-                        @error('year')
-                            <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <div class="space-y-2">
-                        <label for="level" class="block text-sm font-medium text-slate-700 dark:text-slate-200">
-                            Level
-                        </label>
-                        <input
-                            type="text"
-                            id="level"
-                            name="level"
-                            class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600
-                                   focus:ring-2 focus:ring-blue-500 focus:border-transparent
-                                   dark:bg-slate-700 dark:text-white placeholder-slate-400
-                                   @error('level') border-red-500 @enderror"
-                            placeholder="Enter your level"
-                        >
-                        @error('level')
-                            <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <div class="space-y-2">
-                        <label for="course_of_study" class="block text-sm font-medium text-slate-700 dark:text-slate-200">
-                            Course of Study
-                        </label>
-                        <input
-                            type="text"
-                            id="course_of_study"
-                            name="course_of_study"
-                            class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600
-                                   focus:ring-2 focus:ring-blue-500 focus:border-transparent
-                                   dark:bg-slate-700 dark:text-white placeholder-slate-400
-                                   @error('course_of_study') border-red-500 @enderror"
-                            placeholder="Enter your course of study"
-                        >
-                        @error('course_of_study')
-                            <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <div class="space-y-2">
-                        <label for="phone_number" class="block text-sm font-medium text-slate-700 dark:text-slate-200">
-                            Phone Number
-                        </label>
-                        <input
-                            type="text"
-                            id="phone_number"
-                            name="phone_number"
-                            class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600
-                                   focus:ring-2 focus:ring-blue-500 focus:border-transparent
-                                   dark:bg-slate-700 dark:text-white placeholder-slate-400
-                                   @error('phone_number') border-red-500 @enderror"
-                            placeholder="Enter your phone number"
-                        >
-                        @error('phone_number')
-                            <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <div class="space-y-2">
-                        <label for="password" class="block text-sm font-medium text-slate-700 dark:text-slate-200">
-                            Password
-                        </label>
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600
-                                   focus:ring-2 focus:ring-blue-500 focus:border-transparent
-                                   dark:bg-slate-700 dark:text-white placeholder-slate-400
-                                   @error('password') border-red-500 @enderror"
-                            placeholder="Enter your password"
-                        >
-                        @error('password')
-                            <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <div class="space-y-2">
-                        <label for="password_confirmation" class="block text-sm font-medium text-slate-700 dark:text-slate-200">
-                            Password Confirmation
-                        </label>
-                        <input
-                            type="password"
-                            id="password_confirmation"
-                            name="password_confirmation"
-                            class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600
-                                   focus:ring-2 focus:ring-blue-500 focus:border-transparent
-                                   dark:bg-slate-700 dark:text-white placeholder-slate-400
-                                   @error('password_confirmation') border-red-500 @enderror"
-                            placeholder="Confirm your password"
-                        >
-                        @error('password_confirmation')
-                            <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
-                        @enderror
-                    </div>
-                    <div class="space-y-2">
-                        <label for="image" class="block text-sm font-medium text-slate-700 dark:text-slate-200">
-                            Profile Picture
-                        </label>
-                        <input
-                            type="file"
-                            id="image"
-                            name="image"
-                            class="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600
-                                   focus:ring-2 focus:ring-blue-500 focus:border-transparent
-                                   dark:bg-slate-700 dark:text-white placeholder-slate-400
-                                   @error('image') border-red-500 @enderror"
-                        >
-                        @error('image')
-                            <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <button
-                        type="submit"
-                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 px-4 rounded-lg
-                               transform transition-all duration-150 ease-in-out
-                               focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
-                               active:scale-95 dark:focus:ring-offset-slate-800"
-                    >
-                        Register
-                    </button>
-                </form>
             </div>
         </div>
+        <div class="text-center mt-3">
+            <a href="{{ route('school.dashboard') }}" class="btn btn-secondary">Back to School Page</a>
+        </div>
     </div>
+</body>
 
-    <br>
+</html>
 
-    <div class="text-center">
-        <a href="{{ route('school.dashboard') }}" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 px-4 rounded-lg dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 active:scale-95 dark:focus:ring-offset-slate-800">Back to School Page</a>
-    </div>
-    </div>
+<x-footer>
 
-    <x-footer>
-
-    </x-footer>
+</x-footer>

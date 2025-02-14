@@ -1,10 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Auth;
+
 
 use Illuminate\Http\Request;
+use App\Models\Company;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+
 
 class CompanyLoginController extends Controller
 {
@@ -40,7 +43,7 @@ class CompanyLoginController extends Controller
     }
     public function logout(Request $request)
 {
-    Auth::guard('school')->logout(); // Use the 'school' guard
+    Auth::guard('company')->logout(); // Use the 'school' guard
     $request->session()->invalidate();
     $request->session()->regenerateToken();
     return redirect('/loginC');

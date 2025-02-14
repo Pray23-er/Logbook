@@ -7,194 +7,184 @@
 
 </x-header>
 
-@vite('resources/css/app.css')
 
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ $authenticatedSchool->name }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    @vite('resources/css/app.css')
+    <style>
+        /* Custom styles for better table appearance */
+        .table-container {
+            overflow-x: auto; /* Enable horizontal scrolling if needed */
+        }
+        .table th,
+        .table td {
+            padding: 0.75rem; /* Adjust padding as needed */
+            text-align: left; /* Align text to the left */
+            vertical-align: middle;
+            border-top: 1px solid #dee2e6; /* Add border to cells */
+            white-space: nowrap; /* Prevent text from wrapping */
+        }
 
-<header class="bg-gray-200 text-white text-center p-4">
-    <h1 class="text-2xl font-bold">{{ $authenticatedSchool->name }}</h1>
-</header>
-<div class="flex h-screen">
-    <div class="w-64 bg-gray-100 p-4 flex-shrink-0 h-screen border-r border-gray-300">
-        <h2 class="text-lg font-bold mb-4">Navigation</h2>
-        <ul class="space-y-4">
-            <li>
-                <a href="#student-list" class="flex items-center text-gray-600 hover:text-gray-900 rounded-md p-2 transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354A4 4 0 1112 12.354A4 4 0 0112 4.354z" />
-                    </svg>
-                    Student List
-                </a>
-            </li>
-            <li>
-                <a href="#approval-list" class="flex items-center text-gray-600 hover:text-gray-900 rounded-md p-2 transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m-6-4h6m-6 10h6" />
-                    </svg>
-                    Submitted Industries
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('logbook.page') }}" class="flex items-center text-gray-600 hover:text-gray-900 rounded-md p-2 transition-colors">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 012-2h2a2 2 0 012 2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                  </svg>
-                  Logbook Records
-                </a>
-              </li>
-            <li>
-                <a href="{{ route('student_register.store') }}" class="flex items-center text-gray-600 hover:text-gray-900 rounded-md p-2 transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.856-1.154 2.856-2.642V15m-13.856 0L9 14.01M6 8h9.612A4 4 0 114.388 4H6z" />
-                    </svg>
-                    Add Student
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('school.calendar') }}" class="flex items-center text-gray-600 hover:text-gray-900 rounded-md p-2 transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m0 4M8 3h13M21 3v4m-4 0h-5M16 17c-4.411 0-8-1.87-8-4.5v-3c0-1.232.567-2.23 1.328-2.902A4.414 4.414 0 009 7c0 1.12 0.385 2.083 1 2.902V17c0 1.232.567 2.23 1.328 2.902A4.414 4.414 0 0016 21c4.411 0 8-1.87 8-4.5v-3c0-1.232-.567-2.23-1.328-2.902A4.414 4.414 0 0016 17z" />
-                    </svg>
-                    SIWES Calendar
-                </a>
-            </li>
-        </ul>
-    </div>
-<div class="flex-1 overflow-y-auto">
-    <div id="student-list" class="mt-4">
-        <h2 class="text-lg font-bold mb-4"><i class="bi bi-people"></i> Registered Students:</h2>
-        <div class="overflow-x-auto w-full">
-            <table class="w-full divide-y divide-gray-200 table-auto responsive">
-                    <thead class="bg-gray-50">
-                        <tr>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                <i class="bi bi-id-card"></i> Matric Number
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                <i class="bi bi-person"></i> First name
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                <i class="bi bi-person"></i> Last name
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                <i class="bi bi-book"></i> Course
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                <i class="bi bi-sort-numeric-down"></i> Level
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                <i class="bi bi-calendar"></i> Year
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                <i class="bi bi-envelope"></i> Email
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                <i class="bi bi-phone"></i> Phone Number
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white divide-y divide-gray-200">
-                        @foreach ($registeredStudents as $student)
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap">{{ $student->matric_number }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap">{{ $student->firstname }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap">{{ $student->lastname }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap">{{ $student->course_of_study }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap">{{ $student->level }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap">{{ $student->year }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap">{{ $student->email }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap">{{ $student->phone_number }}</td>
-                                <td class="px-4 py-2">
-                                    <form action="{{ route('student.destroy', $student) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="text-red-600 hover:text-red-900"><i class="bi bi-trash"></i> Delete</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+        .table th {
+            background-color: #f8f9fa; /* Light gray background for header */
+            font-weight: 600;
+        }
+
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: rgba(0, 0, 0, 0.05); /* Subtle striped background */
+        }
+
+        .table-hover tbody tr:hover {
+            background-color: rgba(0, 0, 0, 0.075); /* Hover background color */
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="bg-secondary text-white text-center p-4">
+        <h1 class="text-2xl font-bold">{{ $authenticatedSchool->name }}</h1>
+    </header>
+
+    <div class="container-fluid d-flex vh-100">
+        <div class="col-auto w-auto bg-light p-4 border-end">
+            <h2 class="text-lg font-bold mb-4">Navigation</h2>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a href="#student-list" class="nav-link text-dark"><i class="bi bi-people me-2"></i> Student
+                        List</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#approval-list" class="nav-link text-dark"><i class="bi bi-check2-circle me-2"></i>
+                        Submitted Industries</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('logbook.page') }}" class="nav-link text-dark"><i
+                            class="bi bi-journal-text me-2"></i> Logbook Records</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('student_register.store') }}" class="nav-link text-dark"><i
+                            class="bi bi-person-plus me-2"></i> Add Student</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('school.calendar') }}" class="nav-link text-dark"><i
+                            class="bi bi-calendar me-2"></i> SIWES Calendar</a>
+                </li>
+            </ul>
         </div>
 
-        <div id="approval-list" class="mt-4 hidden">
-            <h2 class="text-lg font-bold mb-4"><i class="bi bi-check2-circle"></i> Recently Submitted Industries:</h2>
-            <div class="overflow-x-auto w-full flex-shrink-0">
-                <table class="w-full divide-y divide-gray-200">
-
-                    <thead class="bg-gray-50">
-                        <tr>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                <i class="bi bi-building"></i> Company Name
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                <i class="bi bi-phone"></i> Company Phone Number
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                <i class="bi bi-envelope"></i> Company Email
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                <i class="bi bi-person"></i> Added By
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                <i class="bi bi-id-card"></i> Matric Number
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                <i class="bi bi-check2-circle"></i> Status
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                <i class="bi bi-gear"></i> Actions
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white divide-y divide-gray-200">
-                        @foreach($company_forms as $form)
+        <div class="col overflow-y-auto p-4">
+            <div id="student-list">
+                <h2 class="text-lg font-bold mb-4"><i class="bi bi-people"></i> Registered Students:</h2>
+                <div class="table-container">
+                    <table class="table table-striped table-hover table-bordered w-100">
+                        <thead>
                             <tr>
-                                <td class="px-6 py-4 whitespace-nowrap">{{ $form->companyname }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap">{{ $form->Company_phone_number }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap">{{ $form->Company_email }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap">{{ $form->Added_by }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap">{{ $form->matric_number }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium leading-4">
+                                <th><i class="bi bi-id-card"></i> Matric Number</th>
+                                <th><i class="bi bi-person"></i> First name</th>
+                                <th><i class="bi bi-person"></i> Last name</th>
+                                <th><i class="bi bi-book"></i> Course</th>
+                                <th><i class="bi bi-sort-numeric-down"></i> Level</th>
+                                <th><i class="bi bi-calendar"></i> Year</th>
+                                <th><i class="bi bi-envelope"></i> Email</th>
+                                <th><i class="bi bi-phone"></i> Phone Number</th>
+                                <th><i class="bi bi-gear"></i> Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($registeredStudents as $student)
+                                <tr>
+                                    <td>{{ $student->matric_number }}</td>
+                                    <td>{{ $student->firstname }}</td>
+                                    <td>{{ $student->lastname }}</td>
+                                    <td>{{ $student->course_of_study }}</td>
+                                    <td>{{ $student->level }}</td>
+                                    <td>{{ $student->year }}</td>
+                                    <td>{{ $student->email }}</td>
+                                    <td>{{ $student->phone_number }}</td>
+                                    <td>
+                                        <form action="{{ route('student.destroy', $student) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm"><i
+                                                    class="bi bi-trash"></i> Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="approval-list" class="hidden">
+                <h2 class="text-lg font-bold mb-4"><i class="bi bi-check2-circle"></i> Recently Submitted
+                    Industries:</h2>
+                <div class="table-container">
+                    <table class="table table-striped table-hover table-bordered w-100">
+                        <thead>
+                            <tr>
+                                <th><i class="bi bi-building"></i> Company Name</th>
+                                <th><i class="bi bi-phone"></i> Company Phone Number</th>
+                                <th><i class="bi bi-envelope"></i> Company Email</th>
+                                <th><i class="bi bi-person"></i> Added By</th>
+                                <th><i class="bi bi-id-card"></i> Matric Number</th>
+                                <th><i class="bi bi-check2-circle"></i> Status</th>
+                                <th><i class="bi bi-gear"></i> Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($company_forms as $form)
+                                <tr>
+                                    <td>{{ $form->companyname }}</td>
+                                    <td>{{ $form->Company_phone_number }}</td>
+                                    <td>{{ $form->Company_email }}</td>
+                                    <td>{{ $form->Added_by }}</td>
+                                    <td>{{ $form->matric_number }}</td>
+                                    <td>
+                                        <span class="badge bg-{{ $form->status == 'pending' ? 'warning text-dark' : ($form->status == 'approved' ? 'success' : 'danger') }}">
+                                            <i class="bi bi-{{ $form->status == 'pending' ? 'hourglass' : ($form->status == 'approved' ? 'check2-circle' : 'x-circle') }}"></i>
+                                            {{ ucfirst($form->status) }}
+                                        </span>
+                                    </td>
+                                    <td>
                                         @if ($form->status == 'pending')
-                                            <span class="bg-yellow-100 text-yellow-800"><i class="bi bi-hourglass"></i> Pending</span>
-                                        @elseif ($form->status == 'approved')
-                                            <span class="bg-green-100 text-green-800"><i class="bi bi-check2-circle"></i> Approved</span>
-                                        @else
-                                            <span class="bg-red-100 text-red-800"><i class="bi bi-x-circle"></i> Rejected</span>
+                                            <a href="{{ route('form.approve', $form->id) }}"
+                                                class="btn btn-success btn-sm"><i class="bi bi-check2-circle"></i>
+                                                Approve</a>
+                                            <a href="{{ route('form.reject', $form->id) }}"
+                                                class="btn btn-danger btn-sm"><i class="bi bi-x-circle"></i>
+                                                Reject</a>
                                         @endif
-                                    </span>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    @if ($form->status == 'pending')
-                                        <a href="{{ route('form.approve', $form->id) }}" class="text-green-600 hover:text-green-900"><i class="bi bi-check2-circle"></i> Approve</a> |
-                                        <a href="{{ route('form.reject', $form->id) }}" class="text-red-600 hover:text-red-900"><i class="bi bi-x-circle"></i> Reject</a>
-                                    @endif
-                                    <form action="{{ route('companyform.destroy', $form->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this record?');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="text-red-600 hover:text-red-900"><i class="bi bi-trash"></i> Delete</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                                        <form action="{{ route('companyform.destroy', $form->id) }}" method="POST"
+                                            onsubmit="return confirm('Are you sure you want to delete this record?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm"><i
+                                                    class="bi bi-trash"></i> Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-</div>
-
     </div>
 
 
-
-
-</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-
 document.addEventListener("DOMContentLoaded", function () {
   const studentListLink = document.querySelector("a[href='#student-list']");
   const approvalListLink = document.querySelector("a[href='#approval-list']");

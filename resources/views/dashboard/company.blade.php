@@ -1,175 +1,300 @@
-<x-head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        /* Custom Styles */
+        body {
+            background-color: #f8f9fa;
+        }
 
-</x-head>
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
-<x-header>
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
 
+        .card-header {
+            border-radius: 10px 10px 0 0;
+        }
 
-</x-header>
-@vite('resources/css/app.css')
+        .table {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .table thead {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .table th, .table td {
+            vertical-align: middle;
+        }
+
+        .table tbody tr {
+            transition: background-color 0.3s ease;
+        }
+
+        .table tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .badge {
+            font-size: 0.9em;
+            padding: 0.5em 0.75em;
+        }
+
+        .btn {
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-sm {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+
+        .btn-success:hover, .btn-danger:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .alert {
+            border-radius: 10px;
+        }
+
+        .img-thumbnail {
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .img-thumbnail:hover {
+            transform: scale(1.05);
+        }
+
+        .text-decoration-none {
+            color: inherit;
+        }
+
+        .text-decoration-none:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <x-head></x-head>
+    <x-header></x-header>
+
     @if (session('success'))
-      <div class="alert alert-success" role="alert">
-        <svg class="h-5 w-5 text-green-700" viewBox="0 0 20 20" fill="currentColor">
-          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414 0L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4a1 1 0 000-1.414z" clip-rule="evenodd" />
-        </svg>
-        {{ session('success') }}
-      </div>
+        <div class="alert alert-success d-flex align-items-center mx-3 mt-3" role="alert">
+            <i class="bi bi-check-circle-fill me-2"></i>
+            <div>{{ session('success') }}</div>
+        </div>
     @endif
 
-    <header class="bg-gray-200 text-white text-center p-4">
-        <h1 class="text-2xl font-bold">{{ $company->name }}</h1>
-        <i class="bi bi-building"></i>
+    <header class="text-white text-center py-4" style="background-color: #2c3e50;">
+        <h1 class="h2">{{ $company->name }}</h1>
+        <i class="bi bi-building fs-4"></i>
     </header>
-<br>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <div class="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative">
-        <h2 class="font-bold mb-2"><i class="bi bi-info-circle"></i> Company Information</h2>
-        <p class="text-gray-600 mb-2">Name: {{ $company->name }}</p>
-        <p class="text-gray-600 mb-2">Email: {{ $company->email }}</p>
-      </div>
 
-      <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative">
-        <h2 class="font-bold mb-2"><i class="bi bi-person-badge"></i> Account Information</h2>
-        <p class="text-gray-600 mb-2">Account Created: {{ $company->created_at }}</p>
-        <p class="text-gray-600 mb-2">Last Updated: {{ $company->updated_at }}</p>
-      </div>
+    <div class="container my-4">
+        <div class="row g-4">
+            <!-- Company Information -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h2 class="h5 mb-0"><i class="bi bi-info-circle me-2"></i>Company Information</h2>
+                    </div>
+                    <div class="card-body">
+                        <p class="mb-2"><strong>Name:</strong> {{ $company->name }}</p>
+                        <p class="mb-0"><strong>Email:</strong> {{ $company->email }}</p>
+                    </div>
+                </div>
+            </div>
 
-      <div class="bg-gray-100 border border-gray-400 text-gray-700 px-4 py-3 rounded relative">
-        <h2 class="font-bold mb-2"><i class="bi bi-gear"></i> Quick Actions</h2>
-        <ul>
-          <li class="mb-2">
-            <a href="{{ route('company.view.student') }}" class="text-blue-600 hover:text-blue-800"><i class="bi bi-people"></i> View Student List</a>
-          </li>
-          <li class="mb-2">
-            <a href="{{ route('forms.create') }}" class="text-blue-600 hover:text-blue-800"><i class="bi bi-plus-lg"></i> Add New Student</a>
-          </li>
-          <li class="mb-2">
-            <a href="{{ route('company.password.edit') }}" class="text-blue-600 hover:text-blue-800"><i class="bi bi-lock"></i> Update Password</a>
-          </li>
-        </ul>
-      </div>
+            <!-- Account Information -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-success text-white">
+                        <h2 class="h5 mb-0"><i class="bi bi-person-badge me-2"></i>Account Information</h2>
+                    </div>
+                    <div class="card-body">
+                        <p class="mb-2"><strong>Account Created:</strong> {{ $company->created_at }}</p>
+                        <p class="mb-0"><strong>Last Updated:</strong> {{ $company->updated_at }}</p>
+                    </div>
+                </div>
+            </div>
 
-      <div class="bg-gray-100 border border-gray-400 text-gray-700 px-4 py-3 rounded relative">
-        <h2 class="font-bold mb-2"><i class="bi bi-journal"></i> Logbook Records</h2>
-        <p class="text-gray-600 mb-2">Total Records: {{ $company->logbooks->count() }}</p>
-        <a href="#" class="text-blue-600 hover:text-blue-800" onclick="showLogbookList()"><i class="bi bi-eye"></i> View All Records</a>
-      </div>
+            <!-- Quick Actions -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-secondary text-white">
+                        <h2 class="h5 mb-0"><i class="bi bi-gear me-2"></i>Quick Actions</h2>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-2">
+                                <a href="{{ route('company.view.student') }}" class="text-decoration-none">
+                                    <i class="bi bi-people me-2"></i>View Student List
+                                </a>
+                            </li>
+                            <li class="mb-2">
+                                <a href="{{ route('forms.create') }}" class="text-decoration-none">
+                                    <i class="bi bi-plus-lg me-2"></i>Add New Student
+                                </a>
+                            </li>
+                            <li class="mb-0">
+                                <a href="{{ route('company.password.edit') }}" class="text-decoration-none">
+                                    <i class="bi bi-lock me-2"></i>Update Password
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Logbook Records -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-warning text-white">
+                        <h2 class="h5 mb-0"><i class="bi bi-journal me-2"></i>Logbook Records</h2>
+                    </div>
+                    <div class="card-body">
+                        <p class="mb-2"><strong>Total Records:</strong> {{ $company->logbooks->count() }}</p>
+                        <a href="#" class="text-decoration-none" onclick="showLogbookList()">
+                            <i class="bi bi-eye me-2"></i>View All Records
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Logbook Table (Hidden by Default) -->
+        <div class="mt-4 d-none" id="logbook-list">
+            <h2 class="h4 mb-3"><i class="bi bi-journal me-2"></i>Logbook Records</h2>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col"><i class="bi bi-card-text me-2"></i>Title</th>
+                            <th scope="col"><i class="bi bi-chat-left-text me-2"></i>Description</th>
+                            <th scope="col"><i class="bi bi-person me-2"></i>Student Name</th>
+                            <th scope="col"><i class="bi bi-check2-circle me-2"></i>Status</th>
+                            <th scope="col"><i class="bi bi-gear me-2"></i>Actions</th>
+                            <th scope="col"><i class="bi bi-calendar me-2"></i>Created on</th>
+                            <th scope="col"><i class="bi bi-chat-left-text me-2"></i>Feedback</th>
+                            <th scope="col"><i class="bi bi-file-earmark me-2"></i>Uploads</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($company->logbooks as $logbook)
+                        <tr>
+                            <td>{{ $logbook->title }}</td>
+                            <td>{{ $logbook->description }}</td>
+                            <td>{{ $logbook->student->firstname }} {{ $logbook->student->lastname }}</td>
+                            <td>
+                                @if($logbook->status == 'approved')
+                                    <span class="badge bg-success"><i class="bi bi-check2-circle me-1"></i>Approved</span>
+                                @elseif($logbook->status == 'pending')
+                                    <span class="badge bg-warning"><i class="bi bi-hourglass me-1"></i>Pending</span>
+                                @elseif($logbook->status == 'rejected')
+                                    <span class="badge bg-danger"><i class="bi bi-x-circle me-1"></i>Rejected</span>
+                                @endif
+                            </td>
+                            <td>
+                                <div class="d-flex gap-2">
+                                    @if($logbook->status == 'pending')
+                                        <form action="{{ route('logbook.approve', $logbook->id) }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="btn btn-sm btn-success">
+                                                <i class="bi bi-check2-circle me-1"></i>Approve
+                                            </button>
+                                        </form>
+                                        <form action="{{ route('logbook.reject', $logbook->id) }}" method="POST">
+                                            @csrf
+                                            <textarea name="feedback" class="form-control form-control-sm" placeholder="Provide feedback"></textarea>
+                                            <button type="submit" class="btn btn-sm btn-danger mt-2">
+                                                <i class="bi bi-x-circle me-1"></i>Reject
+                                            </button>
+                                        </form>
+                                    @elseif($logbook->status == 'approved')
+                                        <form action="{{ route('logbook.reject', $logbook->id) }}" method="POST">
+                                            @csrf
+                                            <textarea name="feedback" class="form-control form-control-sm" placeholder="Provide feedback"></textarea>
+                                            <button type="submit" class="btn btn-sm btn-danger mt-2">
+                                                <i class="bi bi-x-circle me-1"></i>Reject
+                                            </button>
+                                        </form>
+                                    @elseif($logbook->status == 'rejected')
+                                        <form action="{{ route('logbook.approve', $logbook->id) }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="btn btn-sm btn-success">
+                                                <i class="bi bi-check2-circle me-1"></i>Approve
+                                            </button>
+                                        </form>
+                                    @endif
+                                </div>
+                            </td>
+                            <td>{{ $logbook->created_at }}</td>
+                            <td>
+                                @if($logbook->status == 'rejected')
+                                    {{ $logbook->feedback }}
+                                @endif
+                            </td>
+                            <td>
+                                @if($logbook->thumbnail)
+                                    @if(in_array(pathinfo($logbook->thumbnail, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png', 'gif', 'svg']))
+                                        <img src="{{ $logbook->thumbnail }}" alt="Thumbnail" class="img-thumbnail" style="max-width: 100px;">
+                                    @else
+                                        <a href="{{ $logbook->thumbnail }}" target="_blank" class="text-decoration-none">
+                                            <i class="bi bi-file-earmark me-1"></i>View File
+                                        </a>
+                                    @endif
+                                @else
+                                    <i class="bi bi-x-circle"></i> No thumbnail
+                                @endif
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
-   <!-- ... -->
+    <x-footer></x-footer>
 
-<div class="overflow-x-auto mt-8" id="logbook-list" style="display: none;">
-    <h2 class="mb-4"><i class="bi bi-journal"></i> Logbook Records</h2>
-    <table class="table-auto w-full text-left">
-      <thead class="bg-gray-200">
-        <tr>
-          <th class="px-4 py-2 text-xs"><i class="bi bi-card-text"></i> Title</th>
-          <th class="px-4 py-2 text-xs"><i class="bi bi-chat-left-text"></i> Description</th>
-          <th class="px-4 py-2 text-xs"><i class="bi bi-person"></i> Student Name</th>
-          <th class="px-4 py-2 text-xs"><i class="bi bi-check2-circle"></i> Status</th>
-          <th class="px-4 py-2 text-xs"><i class="bi bi-gear"></i> Actions</th>
-          <th class="px-4 py-2 text-xs"><i class="bi bi-calendar"></i> Created on</th>
-          <th class="px-4 py-2 text-xs"><i class="bi bi-chat-left-text"></i> Feedback</th>
-          <th class="px-4 py-2 text-xs"><i class="bi bi-file-earmark"></i> Uploads</th>
-        </tr>
-      </thead>
-      <tbody>
-        @foreach($company->logbooks as $logbook)
-        <tr class="border-b hover:bg-gray-50">
-          <td class="px-4 py-2 text-xs">{{ $logbook->title }}</td>
-          <td class="px-4 py-2 text-xs">{{ $logbook->description }}</td>
-          <td class="px-4 py-2 text-xs">{{ $logbook->student->firstname }} {{ $logbook->student->lastname }}</td>
-          <td class="px-4 py-2 text-xs">
-            @if($logbook->status == 'approved')
-            <span class="bg-green-200 text-green-600 py-1 px-2 rounded"><i class="bi bi-check2-circle"></i> Approved</span>
-            @elseif($logbook->status == 'pending')
-            <span class="bg-yellow-200 text-yellow-600 py-1 px-2 rounded"><i class="bi bi-hourglass"></i> Pending</span>
-            @elseif($logbook->status == 'rejected')
-            <span class="bg-red-200 text-red-600 py-1 px-2 rounded"><i class="bi bi-x-circle"></i> Rejected</span>
-            @endif
-          </td>
-          <td class="px-4 py-2 text-xs whitespace-nowrap">
-            <div class="flex space-x-2">
-              @if($logbook->status == 'pending')
-              <form action="{{ route('logbook.approve', $logbook->id) }}" method="POST">
-                @csrf
-                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded text-xs"><i class="bi bi-check2-circle"></i> Approve</button>
-              </form>
-              <form action="{{ route('logbook.reject', $logbook->id) }}" method="POST">
-                @csrf
-                <textarea name="feedback" placeholder="Provide feedback" class="border rounded p-1 text-xs"></textarea>
-                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded text-xs"><i class="bi bi-x-circle"></i> Reject</button>
-              </form>
-              @elseif($logbook->status == 'approved')
-              <form action="{{ route('logbook.reject', $logbook->id) }}" method="POST">
-                @csrf
-                <textarea name="feedback" placeholder="Provide feedback" class="border rounded p-1 text-xs"></textarea>
-                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded text-xs"><i class="bi bi-x-circle"></i> Reject</button>
-              </form>
-              @elseif($logbook->status == 'rejected')
-              <form action="{{ route('logbook.approve', $logbook->id) }}" method="POST">
-                @csrf
-                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded text-xs"><i class="bi bi-check2-circle"></i> Approve</button>
-              </form>
-              @endif
-            </div>
-          </td>
-          <td class="px-4 py-2 text-xs">{{ $logbook->created_at }}</td>
-<td class="px-4 py-2 text-xs">
-  @if($logbook->status == 'rejected')
-  {{ $logbook->feedback }}
-  @endif
-</td>
-
-<td class="px-6 py-4 text-xs">
-  @if($logbook->thumbnail)
-    @if(pathinfo($logbook->thumbnail, PATHINFO_EXTENSION) == 'jpg' ||
-        pathinfo($logbook->thumbnail, PATHINFO_EXTENSION) == 'jpeg' ||
-        pathinfo($logbook->thumbnail, PATHINFO_EXTENSION) == 'png' ||
-        pathinfo($logbook->thumbnail, PATHINFO_EXTENSION) == 'gif' ||
-        pathinfo($logbook->thumbnail, PATHINFO_EXTENSION) == 'svg')
-      <img src="{{ $logbook->thumbnail }}" alt="Thumbnail" style="max-width: 100px; max-height: 100px;">
-    @else
-      @if(pathinfo($logbook->thumbnail, PATHINFO_EXTENSION) == 'pdf')
-        <a href="{{ $logbook->thumbnail }}" target="_blank">
-          <i class="fas fa-file-pdf"></i> View PDF
-        </a>
-      @elseif(pathinfo($logbook->thumbnail, PATHINFO_EXTENSION) == 'docx' || pathinfo($logbook->thumbnail, PATHINFO_EXTENSION) == 'doc')
-        <a href="{{ $logbook->thumbnail }}" target="_blank">
-          <i class="fas fa-file-word"></i> View Word Document
-        </a>
-      @elseif(pathinfo($logbook->thumbnail, PATHINFO_EXTENSION) == 'pptx' || pathinfo($logbook->thumbnail, PATHINFO_EXTENSION) == 'ppt')
-        <a href="{{ $logbook->thumbnail }}" target="_blank">
-          <i class="fas fa-file-powerpoint"></i> View PowerPoint Presentation
-        </a>
-      @elseif(pathinfo($logbook->thumbnail, PATHINFO_EXTENSION) == 'xlsx' || pathinfo($logbook->thumbnail, PATHINFO_EXTENSION) == 'xls')
-        <a href="{{ $logbook->thumbnail }}" target="_blank">
-          <i class="fas fa-file-excel"></i> View Excel Spreadsheet
-        </a>
-      @else
-        <a href="{{ $logbook->thumbnail }}" target="_blank">
-          <i class="fas fa-file"></i> View File
-        </a>
-      @endif
-    @endif
-  @else
-    <i class="fas fa-times"></i> No thumbnail
-  @endif
-</td>
-
-</tr>
-@endforeach
-</tbody>
-</table>
-</div>
-
-<script>
-function showLogbookList() {
-  document.getElementById("logbook-list").style.display = "block";
-}
-</script>
-
-<x-footer>
-
-</x-footer>
-
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function showLogbookList() {
+            document.getElementById("logbook-list").classList.remove("d-none");
+        }
+    </script>
+</body>
+</html>

@@ -1,84 +1,106 @@
-@vite('resources/css/app.css')
+
 <x-head></x-head>
 <x-header></x-header>
 
-<div class="container mx-auto px-4 py-8 max-w-7xl">
-    <!-- Page Title -->
-    <div class="mb-8">
-        <h1 class="text-3xl font-bold text-gray-800">Company Forms</h1>
-        <p class="text-gray-600 mt-2">Manage and view all submitted company information</p>
-    </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Forms</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .table-responsive {
+            overflow-x: auto;
+        }
+        .table-custom { /* Custom table styles */
+            border-collapse: separate; /* Separate cell borders */
+            border-spacing: 0; /* Remove default spacing */
+            min-width: 100%; /* Ensure full width */
+        }
+        .table-custom th, .table-custom td {
+            padding: 1rem; /* Adjust padding */
+            text-align: left; /* Align text left */
+            border-bottom: 1px solid #dee2e6; /* Light border */
+            white-space: nowrap; /* Prevent text wrapping */
+        }
+        .table-custom th {
+            background-color: #f8f9fa; /* Light background for header */
+            font-weight: 600; /* Slightly bolder font */
+            text-transform: uppercase; /* Uppercase header text */
+            color: #343a40; /* Darker text color */
+        }
+        .table-custom tbody tr:hover {
+            background-color: #f5f5f5; /* Subtle hover effect */
+        }
+        .badge {
+            font-size: 0.9rem; /* Adjust badge size */
+            padding: 0.3rem 0.6rem; /* Adjust badge padding */
+        }
 
-    <!-- Action Buttons Container -->
-    <div class="flex justify-end mb-6 space-x-4">
-        <a href="{{ route('companyform.create') }}">
-            <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition duration-200 ease-in-out flex items-center">
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
-                </svg>
-                New Company Form
-            </button>
-        </a>
-    </div>
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-12">
+                <div class="mb-4">
+                    <h1>Company Forms</h1>
+                    <p class="text-muted">Manage and view all submitted company information</p>
+                </div>
 
-    <!-- Table Container -->
-    <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
-        <div class="overflow-x-auto">
-            <table class="w-full">
-                <thead>
-                    <tr class="bg-gray-50 border-b border-gray-200">
-                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Company Name</th>
-                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Phone Number</th>
-                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Email</th>
-                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Added By</th>
-                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Matric Number</th>
-                        <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Status</th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y divide-gray-200">
-                    @foreach ($company_forms as $form)
-                        <tr class="hover:bg-gray-50 transition-colors duration-200">
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
-                                {{ $form->companyname }}
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                                {{ $form->Company_phone_number }}
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                                {{ $form->Company_email }}
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                                {{ $form->Added_by }}
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                                {{ $form->matric_number }}
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm">
-                                <span class="px-3 py-1 rounded-full text-sm font-semibold
-                                    {{ $form->status == 'approved' ? 'bg-green-100 text-green-800' :
-                                       ($form->status == 'rejected' ? 'bg-red-100 text-red-800' :
-                                       'bg-yellow-100 text-yellow-800') }}">
-                                    {{ ucfirst($form->status) }}
-                                </span>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                <div class="d-flex justify-content-end mb-4">
+                    <a href="{{ route('companyform.create') }}" class="btn btn-primary">
+                        <i class="fas fa-plus mr-2"></i> New Company Form
+                    </a>
+                </div>
+
+                <div class="card">
+                    <div class="card-body table-responsive">
+                        <table class="table table-custom table-bordered table-hover">  <thead>
+                                <tr class="table-light">
+                                    <th>Company Name</th>
+                                    <th>Phone Number</th>
+                                    <th>Email</th>
+                                    <th>Added By</th>
+                                    <th>Matric Number</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($company_forms as $form)
+                                    <tr>
+                                        <td>{{ $form->companyname }}</td>
+                                        <td>{{ $form->Company_phone_number }}</td>
+                                        <td>{{ $form->Company_email }}</td>
+                                        <td>{{ $form->Added_by }}</td>
+                                        <td>{{ $form->matric_number }}</td>
+                                        <td>
+                                            <span class="badge
+                                                @if ($form->status == 'approved') bg-success
+                                                @elseif ($form->status == 'rejected') bg-danger
+                                                @else bg-warning @endif">
+                                                {{ ucfirst($form->status) }}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="mt-4 d-flex justify-content-end">
+                    <a href="{{ route('student.dashboard') }}" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left mr-2"></i> Back to Dashboard
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
-
-    <!-- Back to Dashboard Button -->
-    <div class="mt-8 flex justify-end">
-        <a href="{{ route('student.dashboard') }}">
-            <button class="bg-gray-600 hover:bg-gray-700 text-white font-semibold py-2 px-6 rounded-lg transition duration-200 ease-in-out flex items-center">
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
-                </svg>
-                Back to Dashboard
-            </button>
-        </a>
-    </div>
-</div>
+</body>
+</html>
 
 <x-footer></x-footer>

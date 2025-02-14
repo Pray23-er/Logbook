@@ -1,109 +1,112 @@
 <x-head></x-head>
 
 <x-header></x-header>
-@vite('resources/css/app.css')
+
+
 
 <div class="min-h-screen bg-gradient-to-b from-sky-50 to-sky-100 dark:from-slate-900 dark:to-slate-800 px-4 py-16">
     <div class="max-w-7xl mx-auto">
-        <div class="flex items-center justify-center mb-12">
-            <div class="flex items-center">
-                <img src="{{ asset('images/students/'.$student->image) }}" alt="Student Image" class="w-20 h-20 rounded-full object-cover mr-4">
-                <p class="text-sky-600 dark:text-sky-400 inline-block text-xl font-semibold">Welcome back! <b> {{ $student->firstname}}</b>  <b>{{ $student->lastname}}</b></p>
+        <div class="d-flex align-items-center justify-content-center mb-12">
+            <div class="d-flex align-items-center">
+                <img src="{{ asset('images/students/'.$student->image) }}"
+                alt="Student Image"
+                class="rounded-circle object-cover me-3"
+                style="width: 70px; height: 70px;">
+                <div>
+                    <h2 class="text-sky-600 dark:text-sky-400 fw-bold">{{ $student->firstname }} {{ $student->lastname }}</h2>
+                    <p class="text-muted small mb-0">Welcome Back!</p>
+                </div>
             </div>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
 
-            {{-- Sidebar Navigation --}}
-            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 md:col-span-1">
-                <h2 class="text-xl font-bold text-sky-800 dark:text-white mb-4">Navigation</h2>
-                <ul class="space-y-2">
-                    <li>
-                        <a href="{{ route('student.dashboard') }}" class="text-sky-600 dark:text-sky-400 hover:text-sky-800 dark:hover:text-sky-200 transition duration-200 flex items-center">
-                            <i class="bi bi-speedometer2 mr-2"></i> Dashboard
-                        </a>
-                    </li>
-                    @if($companyFormFilled && $companyFormApproved)
-                        <li>
-                            <a href="{{ route('records.index') }}" class="text-sky-600 dark:text-sky-400 hover:text-sky-800 dark:hover:text-sky-200 transition duration-200 flex items-center">
-                                <i class="bi bi-journal mr-2"></i> View Logbook Entries
-                            </a>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 mb-4 d-flex flex-column h-100">  <h5 class="card-title fw-bold text-sky-800 dark:text-white mb-3">Navigation</h5>
+                    <ul class="list-unstyled flex-grow-1">
+                        <li class="mb-2">  <a href="{{ route('student.dashboard') }}" class="nav-link text-sky-600 dark:text-sky-400 hover:text-sky-800 dark:hover:text-sky-200"><i class="bi bi-speedometer2 me-2"></i> Dashboard</a>
                         </li>
-                        <li>
-                            <a href="{{ route('records.create') }}" class="text-sky-600 dark:text-sky-400 hover:text-sky-800 dark:hover:text-sky-200 transition duration-200 flex items-center">
-                                <i class="bi bi-plus-lg mr-2"></i> Add New Entry
-                            </a>
+                        @if($companyFormFilled && $companyFormApproved)
+                            <li class="mb-2">  <a href="{{ route('records.index') }}" class="nav-link text-sky-600 dark:text-sky-400 hover:text-sky-800 dark:hover:text-sky-200"><i class="bi bi-journal me-2"></i> View Logbook Entries</a>
+                            </li>
+                            <li class="mb-2">  <a href="{{ route('records.create') }}" class="nav-link text-sky-600 dark:text-sky-400 hover:text-sky-800 dark:hover:text-sky-200"><i class="bi bi-plus-lg me-2"></i> Add New Entry</a>
+                            </li>
+                        @else
+                            <li class="mb-2">  <a href="{{ route('companyform.store') }}" class="nav-link text-sky-600 dark:text-sky-400 hover:text-sky-800 dark:hover:text-sky-200"><i class="bi bi-file-earmark me-2"></i> Fill Company Form</a>
+                            </li>
+                        @endif
+                        <li class="mb-2">  <a href="{{ route('profiles.student') }}" class="nav-link text-sky-600 dark:text-sky-400 hover:text-sky-800 dark:hover:text-sky-200"><i class="bi bi-person-circle me-2"></i> Profile</a>
                         </li>
-                    @else
-                        <li>
-                            <a href="{{ route('companyform.store') }}" class="text-sky-600 dark:text-sky-400 hover:text-sky-800 dark:hover:text-sky-200 transition duration-200 flex items-center">
-                                <i class="bi bi-file-earmark mr-2"></i> Fill Company Form
-                            </a>
+                        <li class="mb-2">  <a href="{{ route('student.password.edit') }}" class="nav-link text-sky-600 dark:text-sky-400 hover:text-sky-800 dark:hover:text-sky-200"><i class="bi bi-lock me-2"></i> Change Password</a>
                         </li>
-                    @endif
-                    <li>
-                        <a href="{{ route('profiles.student') }}" class="text-sky-600 dark:text-sky-400 hover:text-sky-800 dark:hover:text-sky-200 transition duration-200 flex items-center">
-                            <i class="bi bi-person-circle mr-2"></i> Profile
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('student.password.edit') }}" class="text-sky-600 dark:text-sky-400 hover:text-sky-800 dark:hover:text-sky-200 transition duration-200 flex items-center">
-                            <i class="bi bi-lock mr-2"></i> Change Password
-                        </a>
-                    </li>
-                </ul>
+                    </ul>
+                </div>
             </div>
-            {{-- Dashboard Content (Cards and Table) --}}
-            <div class="md:col-span-2">
-                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-8">
-                    <h2 class="text-2xl font-bold text-sky-800 dark:text-white mb-4">Quick Overview</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div class="bg-sky-100 dark:bg-sky-700 text-sky-800 dark:text-white rounded-lg p-4 hover:bg-sky-200 dark:hover:bg-sky-600 transition duration-300">
-                            <h3 class="text-lg font-bold mb-2">Logbook Records</h3>
-                            <p class="text-xl">{{ $logbookRecordsCount }}</p>
-                            <span class="text-sm">Total entries</span>
+
+            <div class="col-md-9">
+                <div class="card bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 mb-4">
+                    <h5 class="card-title fw-bold text-sky-800 dark:text-white mb-3">Quick Overview</h5>
+                    <div class="row row-cols-1 row-cols-md-3 g-4">
+                        <div class="col">
+                            <div class="card bg-sky-100 dark:bg-sky-700 text-sky-800 dark:text-white rounded-lg p-3 h-100">
+                                <div class="card-body">
+                                    <h6 class="card-subtitle mb-2 text-muted small">Logbook Records</h6>
+                                    <h4 class="card-title">{{ $logbookRecordsCount }}</h4>
+                                    <p class="card-text small">Total entries</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="bg-green-100 dark:bg-green-700 text-green-800 dark:text-white rounded-lg p-4 hover:bg-green-200 dark:hover:bg-green-600 transition duration-300">
-                            <h3 class="text-lg font-bold mb-2">Approved Records</h3>
-                            <p class="text-xl">{{ $approvedRecordsCount }}</p>
-                            <span class="text-sm">Approved entries</span>
+                        <div class="col">
+                            <div class="card bg-success bg-opacity-25 text-success dark:bg-success dark:bg-opacity-50 dark:text-white rounded-lg p-3 h-100">
+                                <div class="card-body">
+                                    <h6 class="card-subtitle mb-2 text-muted small">Approved Records</h6>
+                                    <h4 class="card-title">{{ $approvedRecordsCount }}</h4>
+                                    <p class="card-text small">Approved entries</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="bg-yellow-100 dark:bg-yellow-700 text-yellow-800 dark:text-white rounded-lg p-4 hover:bg-yellow-200 dark:hover:bg-yellow-600 transition duration-300">
-                            <h3 class="text-lg font-bold mb-2">Pending Approval</h3>
-                            <p class="text-xl">{{ $pendingApprovalCount }}</p>
-                            <span class="text-sm">Pending entries</span>
+                        <div class="col">
+                            <div class="card bg-warning bg-opacity-25 text-warning dark:bg-warning dark:bg-opacity-50 dark:text-white rounded-lg p-3 h-100">
+                                <div class="card-body">
+                                    <h6 class="card-subtitle mb-2 text-muted small">Pending Approval</h6>
+                                    <h4 class="card-title">{{ $pendingApprovalCount }}</h4>
+                                    <p class="card-text small">Pending entries</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-                    <h2 class="text-2xl font-bold text-sky-800 dark:text-white mb-4">Recent Logbook Entries</h2>
-                    <input type="text" id="searchRecords" class="border rounded p-2 mb-2 w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white" placeholder="Search records...">
-                    <table class="table-auto w-full mb-4 text-sky-600 dark:text-sky-400" id="recordsTable">
-                        <thead>
-                            <tr>
-                                <th class="px-4 py-2 text-left">Title</th>
-                                <th class="px-4 py-2 text-left">Description</th>
-                                <th class="px-4 py-2 text-left">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($recentLogbookRecords as $record)
-                                <tr class="border-b border-gray-200 dark:border-gray-700 hover:bg-sky-50 dark:hover:bg-gray-700">
-                                    <td class="px-4 py-2">{{ $record->title }}</td>
-                                    <td class="px-4 py-2">{{ $record->description }}</td>
-                                    <td class="px-4 py-2">
-                                        @if ($record->status === 'approved')
-                                            <span class="text-green-500">Approved</span>
-                                        @elseif ($record->status === 'rejected')
-                                            <span class="text-red-500">Rejected</span>
-                                        @else
-                                            <span class="text-yellow-500">Pending</span>
-                                        @endif
-                                    </td>
+                <div class="card bg-white dark:bg-gray-800 rounded-lg shadow-md p-4">
+                    <h5 class="card-title fw-bold text-sky-800 dark:text-white mb-3">Recent Logbook Entries</h5>
+                    <input type="text" id="searchRecords" class="form-control mb-3 dark:bg-gray-700 dark:border-gray-600 dark:text-white" placeholder="Search records...">
+                    <div class="table-responsive">
+                        <table class="table table-borderless table-hover table-striped mb-0" id="recordsTable">
+                            <thead>
+                                <tr class="text-sky-600 dark:text-sky-400">
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Status</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach($recentLogbookRecords as $record)
+                                    <tr class="border-bottom border-gray-200 dark:border-gray-700 hover:bg-sky-50 dark:hover:bg-gray-700 text-sky-600 dark:text-sky-400">
+                                        <td>{{ $record->title }}</td>
+                                        <td>{{ $record->description }}</td>
+                                        <td>
+                                            @if ($record->status === 'approved')
+                                                <span class="badge bg-success bg-opacity-25 text-success dark:text-white">Approved</span>
+                                            @elseif ($record->status === 'rejected')
+                                                <span class="badge bg-danger bg-opacity-25 text-danger dark:text-white">Rejected</span>
+                                            @else
+                                                <span class="badge bg-warning bg-opacity-25 text-warning dark:text-white">Pending</span>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -129,5 +132,6 @@
         });
     });
 </script>
+<x-footer>
 
-<x-footer></x-footer>
+</x-footer>
