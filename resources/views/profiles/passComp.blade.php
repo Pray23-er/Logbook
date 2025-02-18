@@ -1,7 +1,7 @@
 <x-head></x-head>
 <x-header></x-header>
 
-@vite('resources/css/app.css')
+
 
 <div class="container mx-auto p-4 pt-6">
     <h1 class="text-3xl font-bold mb-4 text-center text-indigo-900 dark:text-indigo-400"><i class="bi bi-lock me-2"></i> Change Password</h1>
