@@ -17,6 +17,18 @@ class RegisterUserController extends Controller
 
     public function store(Request $request)
     {
+        // $validated = $request->validate([
+        //     'name' => ['required', 'min:5', 'max:255', 'string'],
+        //     'email' => 'required|email|unique:users',
+        //     'password' => [
+        //         'required',
+        //         'min:8',
+        //         'confirmed',
+        //         'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/'
+        //     ],
+        //     'type' => 'required',
+        // ]);
+
         $validated = $request->validate([
             'name' => ['required', 'min:5', 'max:255', 'string'],
             'email' => 'required|email|unique:users',
@@ -24,7 +36,7 @@ class RegisterUserController extends Controller
                 'required',
                 'min:8',
                 'confirmed',
-                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/'
+                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.])[A-Za-z\d@$!%*?&.]{8,}$/'
             ],
             'type' => 'required',
         ]);

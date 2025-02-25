@@ -5,7 +5,6 @@
 
 <div class="container mx-auto p-4 pt-6">
     <h1 class="text-3xl font-bold mb-4 text-center text-indigo-900 dark:text-indigo-400"><i class="bi bi-lock me-2"></i>Change Password</h1>
-
     <div class="card max-w-md mx-auto p-4 bg-white dark:bg-gray-800 rounded-3xl shadow-lg border border-gray-200 dark:border-gray-700">
         <div class="card-body">
             <form action="{{ route('student.password.update') }}" method="POST">

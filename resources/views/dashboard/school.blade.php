@@ -51,7 +51,7 @@
 <body>
 
     <header class="bg-secondary text-white text-center p-4">
-        <h1 class="text-2xl font-bold">{{ $authenticatedSchool->name }}</h1>
+        <h1 class="text-2xl font-bold text-white">{{ $authenticatedSchool->name }}</h1>
     </header>
 
     <div class="container-fluid d-flex vh-100">
